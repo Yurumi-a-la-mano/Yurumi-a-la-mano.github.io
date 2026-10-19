@@ -506,3 +506,5 @@ ul, ol { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; transition: none !important; }
 }
+
+.foto__marco--vacio { display: grid; place-items: center; }

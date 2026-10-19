@@ -83,7 +83,7 @@ def banda_borrador():
         return ""
     return (
         '<div class="borrador"><div class="envoltura">'
-        "<strong>Borrador.</strong> Faltan proyectos, videos y notas científicas; se irán agregando."
+        "<strong>Borrador.</strong> Faltan algunas fichas, videos y las notas científicas; se irán agregando."
         "</div></div>"
     )
 
@@ -139,6 +139,10 @@ def foco(num):
     return f' style="object-position: {FOCO_FOTOS[num]}"' if num in FOCO_FOTOS else ""
 
 
+def sin_foto():
+    return '<figure class="foto foto--tarjeta"><div class="foto__marco foto__marco--vacio"><span class="foto__etiqueta">Foto pendiente</span></div></figure>'
+
+
 def lista_def(pares, clase="datos"):
     filas = "".join(f"<div><dt>{esc(k)}</dt><dd>{v}</dd></div>" for k, v in pares)
     return f'<dl class="{clase}">{filas}</dl>'
@@ -183,9 +187,9 @@ def tarjeta_proyecto(p, pre):
     estado = f'<p class="pt__estado">{estado_proyecto(p)}</p>' if SITIO.get("borrador") else ""
     return (
         f'<li class="pt"><a class="pt__enlace" href="{pre}proyectos/{p["id"]}.html">'
-        f'{foto(pre, p["foto"], p["foto_texto"], clase="foto--tarjeta")}'
+        f'{foto(pre, p["foto"], p["foto_texto"], clase="foto--tarjeta") if p.get("foto") else sin_foto()}'
         '<div class="pt__cuerpo">'
-        f'<p class="pt__codigo">{p["codigo"]} <span>· {esc(p["ecosistema"])}</span></p>'
+        f'<p class="pt__codigo">{p["codigo"]}{" <span>· " + esc(p["ecosistema"]) + "</span>" if p.get("ecosistema") else ""}</p>'
         f'<h3 class="pt__titulo">{esc(p["titulo"])}</h3>{sub}{estado}'
         "</div></a></li>"
     )
@@ -328,7 +332,7 @@ def pagina_proyecto(p):
 
     sub = f'<p class="pagina__bajada">{esc(p["subtitulo"])}</p>' if p.get("subtitulo") else ""
     campo = lista_def([
-        ("Lugar", esc(SITIO["lugar"])), ("Ecosistema", esc(p["ecosistema"])),
+        ("Lugar", esc(SITIO["lugar"])), ("Ecosistema", esc(p["ecosistema"]) if p.get("ecosistema") else "Por definir"),
         ("Video", "Disponible" if p.get("video") else "Pendiente"),
         ("Nota científica", "Disponible" if p.get("nota") else "Pendiente"),
     ], "datos datos--campo")
@@ -344,7 +348,7 @@ def pagina_proyecto(p):
   <div class="proyecto">
     {bloque_video(p)}
     <div class="proyecto__texto">
-      {foto(pre, p["foto"], p["foto_texto"], p["foto_texto"], "foto--ancha")}
+      {foto(pre, p["foto"], p["foto_texto"], p["foto_texto"], "foto--ancha") if p.get("foto") else ""}
       <section class="prosa">
         <h2>Resumen</h2>
         <p class="texto-pendiente">El resumen del proyecto se agregará cuando el equipo lo envíe.</p>

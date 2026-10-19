@@ -94,9 +94,26 @@ PROYECTOS = [
         "fichas": ["platanillo-bosque-galeria", "platanillo-sapajus-apella", "platanillo-phenakospermum"],
         "nota": None,
     },
-] + [
-    {"id": f"p{n:02d}", "codigo": f"P-{n:02d}", "estado": "preparacion", "titulo": f"Proyecto de campo {n}"}
-    for n in (7, 8)
+    {
+        "id": "p07", "codigo": "P-07", "estado": "listo",
+        "titulo": "La hoja que nadie se comió",
+        "subtitulo": None,
+        "ecosistema": None,
+        "foto": None, "foto_texto": None,
+        "video": {"id": "oWcEV79uiY4", "short": True},
+        "fichas": [],
+        "nota": None,
+    },
+    {
+        "id": "p08", "codigo": "P-08", "estado": "listo",
+        "titulo": "Todo empieza con una hoja",
+        "subtitulo": "¿Quién se come a quién bajo el agua?",
+        "ecosistema": None,
+        "foto": None, "foto_texto": None,
+        "video": {"id": "9RMvCWEwPJY", "short": True},
+        "fichas": [],
+        "nota": None,
+    },
 ]
 
 # ---------------------------------------------------------------------------
