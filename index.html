@@ -1,50 +1,1022 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yurumí a la mano</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Caja de herramientas de gestión ambiental: RNSC Yurumí, Puerto López (Meta)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap">
-<link rel="stylesheet" href="estilos.css?v=e21f5478">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --surface:#FAF8F4; --surface-raised:#FFFFFF; --surface-sunken:#F2EEE6;
+    --line:#E0DCD1; --line-strong:#8C8A74;
+    --ink:#1F2219; --ink-muted:#5C5F4A;
+    --primary:#6B6D43; --primary-strong:#555733; --on-primary:#FFFFFF;
+    --secondary:#99B4AA; --secondary-text:#476358; --tertiary:#ABA66F;
+    --accent:#CF7D65; --accent-text:#A24E37; --on-brand:#1F2219; --cream:#F2DEC7;
+    --success:#4F6B3A; --warning:#8A5E12; --danger:#9E3A2A;
+    --focus:#476358;
+    --scrim:rgba(0,0,0,.55);
+    --serif:"Source Serif 4", Georgia, serif;
+    --sans:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px; --s12:48px; --s16:64px;
+    --r-sm:6px; --r-md:12px; --r-lg:20px; --r-xl:32px; 
+    --ease:cubic-bezier(.2,.7,.2,1);
+    --margin:clamp(20px, 4.5vw, 64px);
+  }
+  *{box-sizing:border-box}
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+  body{margin:0;background:var(--surface);color:var(--ink);font:400 16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img{display:block;max-width:100%}
+  header.site :focus-visible,footer :focus-visible{outline-color:var(--cream)}
+  :focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
+  main:focus{outline:none}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--surface);padding:8px 12px;z-index:10}
+  .skip:focus{left:8px}
+  .wrap{padding-inline:var(--margin);max-width:1440px;margin-inline:auto}
+  .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+  .overline{font:600 12px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--secondary-text);margin:0}
+  .sci{font-style:italic}
+  .muted{color:var(--ink-muted)}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;text-wrap:balance}
+  .view{animation:in .35s ease both}
+  @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* Header */
+  header.site{position:sticky;top:0;z-index:5;background:color-mix(in srgb, var(--primary-strong) 96%, transparent);backdrop-filter:saturate(1.2) blur(8px);color:var(--on-primary)}
+  header.site .wrap{position:relative;display:flex;align-items:center;justify-content:space-between;gap:var(--s6);padding-block:var(--s4)}
+  .brand{text-decoration:none;display:flex;flex-direction:column}
+  .brand b{font:600 22px/26px var(--serif);letter-spacing:-.01em}
+  .brand span{font-size:13px;line-height:18px;color:color-mix(in srgb, var(--on-primary) 72%, transparent)}
+  nav.main{margin-left:auto}
+  nav.main ul{display:flex;gap:var(--s6);list-style:none;margin:0;padding:0;align-items:center}
+  nav.main a{text-decoration:none;font:600 15px/20px var(--sans);padding-block:12px;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .25s}
+  nav.main a:hover,nav.main a[aria-current="page"]{background-size:100% 1px}
+  nav.main a[aria-current="page"]{color:var(--cream);background-image:linear-gradient(var(--cream),var(--cream))}
+  .search{display:flex;align-items:center;gap:8px;border:1px solid color-mix(in srgb, var(--on-primary) 40%, transparent);border-radius:999px;padding:9px 16px 9px 14px!important;background:color-mix(in srgb, var(--on-primary) 8%, transparent)!important;color:color-mix(in srgb, var(--on-primary) 85%, transparent);transition:background .25s;font:400 14px/20px var(--sans)!important;min-height:44px}
+  .search svg{width:18px;height:18px;stroke:var(--on-primary)}
+  .search:hover{background:color-mix(in srgb, var(--on-primary) 16%, transparent)!important}
+  .menu-btn{display:none}
+  .inst{display:flex;align-items:center;gap:var(--s3);flex:none;background:color-mix(in srgb, var(--surface-raised) 85%, transparent);border-radius:var(--r-md);padding:6px var(--s3)}
+  .inst img{display:block;width:auto}
+  .inst .u{height:30px}
+  .inst .m{height:44px}
+  .inst i{width:1px;height:32px;background:var(--line)}
+  .inst.m-only{display:none}
+
+  /* Buscador */
+  .search{cursor:pointer}
+  .sp{position:absolute;left:0;right:0;top:100%;background:var(--surface-raised);color:var(--ink);border-radius:0 0 var(--r-xl) var(--r-xl);box-shadow:0 24px 48px -24px rgba(31,34,25,.45);animation:in .25s var(--ease) both}
+  .sp[hidden]{display:none}
+  .sp-in{max-width:1440px;margin-inline:auto;padding:var(--s4) var(--margin) var(--s6)}
+  .sp-top{display:flex;align-items:center;gap:var(--s3)}
+  .sp-box{flex:1;min-width:0;display:flex;align-items:center;gap:var(--s3);min-height:48px;padding:0 var(--s4);border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);cursor:text}
+  .sp-box:focus-within{outline:2px solid var(--focus);outline-offset:2px}
+  .sp-box svg{width:20px;height:20px;flex:none;color:var(--ink-muted)}
+  .sp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .sp-box input{flex:1;min-width:0;border:0;background:none;outline:0;font:400 16px/24px var(--sans);color:var(--ink)}
+  .sp-box input::placeholder{color:var(--ink-muted);opacity:1}
+  .sp-box input::-webkit-search-cancel-button{display:none}
+  .sp-x{flex:none;min-height:44px;padding:0 var(--s2);border:0;background:none;font:600 14px/20px var(--sans);color:var(--ink);cursor:pointer}
+  .sp-x:hover{text-decoration:underline;text-underline-offset:4px}
+  .sp-s{margin:var(--s3) 0 var(--s2);font-size:14px;line-height:20px;color:var(--ink-muted)}
+  .sp-s a{color:var(--ink);font-weight:600}
+  .sp-r{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s1) var(--s4);max-height:min(56vh,420px);overflow-y:auto}
+  .sp-r a{display:grid;grid-template-columns:56px minmax(0,1fr);gap:var(--s3);align-items:center;padding:var(--s2);border-radius:var(--r-md);text-decoration:none;transition:background .2s}
+  .sp-r a:hover,.sp-r a.on{background:var(--surface-sunken)}
+  .sp-th{width:56px;height:56px;border-radius:var(--r-md);overflow:hidden;background:var(--secondary)}
+  .sp-th img{width:100%;height:100%;object-fit:cover}
+  .sp-n{display:block;font:600 16px/22px var(--serif);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sp-d{display:block;font-size:13px;line-height:18px;color:var(--ink-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  @media (max-width: 900px){ .sp-r{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media (max-width: 640px){ .sp-r{grid-template-columns:minmax(0,1fr);max-height:60vh} }
+
+  /* Shared bits */
+  .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 var(--s6);border-radius:999px;background:var(--primary);color:var(--on-primary);font:600 16px/20px var(--sans);text-decoration:none;border:0;cursor:pointer;transition:background .25s,transform .25s var(--ease),box-shadow .25s}
+  .btn:active{transform:scale(.97)}
+  .btn:hover{box-shadow:0 10px 24px -10px color-mix(in srgb, var(--primary) 70%, transparent)}
+  .btn:hover{background:var(--primary-strong)}
+  .btn svg,.link svg{width:20px;height:20px;transition:transform .2s;flex:none}
+  .btn:hover svg,.link:hover svg{transform:translateX(3px)}
+  .link{display:inline-flex;align-items:center;gap:8px;min-height:44px;font:600 16px/20px var(--sans);text-decoration:none;border-bottom:1px solid currentColor;background:none;border-top:0;border-left:0;border-right:0;color:inherit;cursor:pointer;padding:0}
+  .more{font:600 14px/20px var(--sans);color:var(--ink);white-space:nowrap}
+  .more::before{content:"― ";color:var(--accent)}
+  .photo{position:relative;overflow:hidden;border-radius:var(--r-lg);background:var(--secondary);isolation:isolate}
+  .photo img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+  .photo.pending{background:var(--surface-sunken);border:1px dashed var(--line-strong);display:flex;align-items:flex-end;padding:10px;font-size:12px;line-height:15px;color:var(--ink-muted)}
+  .crumbs{display:flex;gap:8px;flex-wrap:wrap;font-size:14px;color:var(--ink-muted);padding-top:var(--s8)}
+  .crumbs a{text-decoration:none}
+  .crumbs a:hover{text-decoration:underline}
+  .filters{display:flex;gap:var(--s2);flex-wrap:wrap;padding-block:var(--s6) var(--s2)}
+  .filters button{font:600 14px/20px var(--sans);color:var(--ink-muted);background:none;border:1px solid var(--line);border-radius:999px;padding:0 16px;min-height:40px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;transition:border-color .2s,color .2s,background .2s}
+  .filters button span{font-variant-numeric:tabular-nums;font-weight:400}
+  .filters button:hover{border-color:var(--line-strong);color:var(--ink)}
+  .filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+  .sec-head{align-items:end;padding-bottom:var(--s8)}
+  .sec-head .t{grid-column:1 / span 7;display:flex;flex-direction:column;gap:var(--s3)}
+  .sec-head h1,.sec-head h2{font-size:clamp(34px,4vw,56px);line-height:1.04;letter-spacing:-.02em}
+  .sec-head p{grid-column:8 / span 5;margin:0;color:var(--ink-muted)}
+  .page-top{padding-top:var(--s12)}
+
+  /* Home hero */
+  .hero .g12{padding-block:clamp(48px,8vw,112px) clamp(56px,8vw,120px)}
+  .hero-text{grid-column:1 / span 7;display:flex;flex-direction:column;gap:var(--s8);align-self:center}
+  .hero h1{font-size:clamp(44px,6.2vw,84px);line-height:1.02;letter-spacing:-.025em}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--primary)}
+  .lead{font-size:18px;line-height:28px;color:var(--ink-muted);max-width:34em;margin:0}
+  .actions{display:flex;align-items:center;gap:var(--s8);flex-wrap:wrap}
+  .collage{grid-column:8 / span 5;position:relative;min-height:720px}
+  .ph{position:absolute;margin:0;display:flex;flex-direction:column;gap:var(--s2);text-decoration:none}
+  .ph .photo{flex:1}
+  .ph:hover img{transform:scale(1.03)}
+  .ph figcaption{font-size:13px;line-height:18px;color:var(--ink-muted)}
+  .ph.a{right:0;top:0;width:74%;height:440px}
+  .ph.a .photo{border-radius:var(--r-xl)}
+  .ph.b{left:0;top:300px;width:44%;height:300px}
+  .ph.b .photo{border-radius:var(--r-xl)}
+  .ph.c{right:4%;top:500px;width:clamp(190px,44%,224px)}
+  .ph.c .photo{border-radius:var(--r-lg);flex:none;width:100%;aspect-ratio:4/3}
+
+  /* Project list */
+  .projects{padding-block:clamp(56px,8vw,112px)}
+  .grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,4vw,64px)}
+  .item[hidden]{display:none}
+  .item{display:flex;border-bottom:1px dashed var(--line)}
+  .item a{flex:1;min-width:0;display:grid;grid-template-columns:clamp(256px,46%,300px) minmax(0,1fr);gap:var(--s6);padding:var(--s4);margin-inline:calc(-1 * var(--s4));margin-block:var(--s2);text-decoration:none;align-items:start;border-radius:var(--r-lg);transition:background .35s var(--ease)}
+  .item a:hover{background:var(--surface-sunken)}
+  .item .photo{aspect-ratio:3/2;border-radius:var(--r-lg)}
+  .item a:hover img{transform:scale(1.05)}
+  .body{display:flex;flex-direction:column;gap:var(--s2);min-width:0;align-self:stretch}
+  .item h3{font-size:22px;line-height:28px;letter-spacing:-.005em}
+  .item a:hover h3{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .sub{font-size:14px;line-height:20px;color:var(--ink-muted);margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .row3{display:flex;align-items:center;justify-content:flex-end;gap:var(--s4);margin-top:auto;padding-top:var(--s3)}
+
+  /* Guide */
+  .guide{background:var(--primary);color:var(--on-primary);margin:clamp(56px,8vw,112px) clamp(8px,1.6vw,24px) 0;border-radius:var(--r-xl);position:relative;overflow:hidden}
+  .guide .g12{grid-template-columns:minmax(0,1fr);column-gap:0;padding:0;max-width:none}
+  .guide .team{margin:0;aspect-ratio:21/9}
+  .g-head{display:grid;grid-template-columns:auto minmax(0,44.5em);justify-content:space-between;gap:var(--s4) var(--s8);align-items:start}
+  .g-desc{margin:0;font-size:16px;line-height:24px;text-wrap:balance;justify-self:end}
+  .guide .team .photo{height:100%;border:0;border-radius:0}
+  .guide .g-body{display:flex;flex-direction:column;gap:var(--s8);padding:clamp(40px,6vw,80px) var(--margin)}
+  .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3)}
+  .steps li{display:grid;grid-template-columns:48px 1fr;gap:var(--s1) var(--s4);padding:var(--s6);border-radius:var(--r-lg);background:color-mix(in srgb, var(--on-primary) 8%, transparent);align-items:baseline;transition:background .3s,transform .4s var(--ease)}
+  .steps li:hover{background:color-mix(in srgb, var(--on-primary) 14%, transparent);transform:translateY(-3px)}
+  .steps .n{font:400 22px/1 var(--serif);color:var(--primary);background:var(--cream);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+  .steps h3{font-size:22px;line-height:28px}
+  .steps p{margin:0;grid-column:2}
+  .steps a{color:var(--on-primary)}
+  .guide .overline{color:var(--cream)}
+  .guide h2{font-size:clamp(32px,3.6vw,48px);line-height:1.05;letter-spacing:-.02em;margin-top:var(--s3)}
+  
+
+  /* Project detail */
+  .p-head{padding-block:var(--s8) var(--s12);row-gap:var(--s8)}
+  .p-head .t{grid-column:1 / span 8;display:flex;flex-direction:column;gap:var(--s4)}
+  .p-head h1{font-size:clamp(36px,4.6vw,64px);line-height:1.04;letter-spacing:-.02em}
+  .p-head .subt{font-size:18px;line-height:28px;color:var(--ink-muted);max-width:40em;margin:0}
+  .p-media{--h:clamp(320px,42vw,600px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;max-width:1440px;margin-inline:auto;padding-inline:var(--margin)}
+  .p-short{height:var(--h);aspect-ratio:9/16;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--s2);padding:var(--s4);text-align:center;text-decoration:none;border-radius:var(--r-xl);background:var(--primary-strong);color:var(--on-primary);transition:background .25s}
+  a.p-short:hover{background:var(--primary)}
+  .p-play{width:72px;height:72px;margin-bottom:var(--s2);border-radius:50%;background:var(--cream);display:grid;place-items:center;transition:transform .3s var(--ease)}
+  a.p-short:hover .p-play{transform:scale(1.08)}
+  .p-play svg{width:30px;height:30px;fill:var(--primary-strong)}
+  .p-short b{font:600 20px/26px var(--serif)}
+  .p-short small{font-size:13px;line-height:18px;color:color-mix(in srgb, var(--on-primary) 78%, transparent)}
+  .p-short.embed{padding:0;overflow:hidden;background:var(--ink)}
+  .p-short.embed iframe{display:block;width:100%;height:100%;border:0}
+  .p-short.pend{background:var(--surface-sunken);border:1px dashed var(--line-strong);color:var(--ink-muted);font-size:14px;line-height:20px}
+  .p-photo{margin:0;min-width:0}
+  .p-photo:not(figure) .photo{height:var(--h)}
+  .p-photo .photo{height:var(--h);border-radius:var(--r-xl)}
+  .f-photo,.p-photo{position:relative}
+  .f-photo figcaption,.p-photo figcaption{position:absolute;bottom:0;z-index:1;padding:var(--s16) var(--s6) var(--s4);font-size:13px;line-height:18px;color:var(--on-primary);text-shadow:0 1px 2px rgba(0,0,0,.35);background:linear-gradient(to top, var(--scrim), rgba(0,0,0,0));border-radius:0 0 var(--r-xl) var(--r-xl);pointer-events:none}
+  .f-photo figcaption{left:0;right:0}
+  .p-photo figcaption{left:0;right:0}
+  .p-body{padding-block:clamp(48px,7vw,96px);row-gap:var(--s12)}
+  .p-body .side{grid-column:1 / -1}
+  .p-body .main{grid-column:1 / -1;display:flex;flex-direction:column;gap:var(--s6)}
+  .pager{display:grid;grid-template-columns:1fr 1fr;margin-bottom:var(--s12);border-block:1px solid var(--line)}
+  .pager a{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;gap:var(--s2);padding:var(--s6) clamp(20px,3vw,48px);text-decoration:none;color:var(--ink);transition:color .35s var(--ease)}
+  .pager a+a{align-items:flex-end;text-align:right;border-left:1px solid var(--line)}
+  .pg-bg{position:absolute;inset:0;z-index:-1;background:var(--primary-strong);opacity:0;transform:scale(1.06);transition:opacity .45s var(--ease),transform .9s var(--ease)}
+  .pg-bg img{width:100%;height:100%;object-fit:cover}
+  .pg-bg::after{content:"";position:absolute;inset:0;background:var(--scrim)}
+  .pg-l{display:inline-flex;align-items:center;gap:var(--s2);font:600 12px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);transition:color .35s var(--ease)}
+  .pg-l svg{width:20px;height:20px;flex:none;transition:transform .35s var(--ease)}
+  .pager a:first-child .pg-l svg{transform:rotate(180deg)}
+  .pager b{font:600 clamp(24px,2.2vw,30px)/1.25 var(--serif);letter-spacing:-.01em;text-wrap:balance}
+  .pager a:hover,.pager a:focus-visible{color:var(--on-primary)}
+  .pager a:hover .pg-l,.pager a:focus-visible .pg-l{color:var(--cream)}
+  .pager a:hover .pg-bg,.pager a:focus-visible .pg-bg{opacity:1;transform:none}
+  .pager a:first-child:hover .pg-l svg{transform:rotate(180deg) translateX(4px)}
+  .pager a+a:hover .pg-l svg{transform:translateX(4px)}
+
+  /* Fichas catalog */
+  .cat{list-style:none;margin:0;padding:var(--s8) 0 clamp(56px,8vw,112px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s12) 24px}
+  .cat li[hidden]{display:none}
+  .cat a,.cat-p{text-decoration:none;display:flex;flex-direction:column;gap:var(--s3)}
+  .cat.mats{padding:0 0 var(--s12)}
+  .mats .top b{background:var(--cream);color:var(--ink);font-weight:600;letter-spacing:0;text-transform:none;padding:3px 10px;border-radius:999px;text-shadow:none;white-space:nowrap}
+  .cat .photo.pending{display:block}
+  .cat .photo.pending::before{display:none}
+  .cat .photo.pending .top{color:var(--ink-muted);text-shadow:none}
+  .cat .photo{aspect-ratio:3/4;border-radius:var(--r-lg)}
+  .cat a:hover img{transform:scale(1.04)}
+  .cat .photo::before,.item .photo::before{content:"";position:absolute;inset:0 0 auto 0;height:45%;background:linear-gradient(to bottom, var(--scrim), rgba(0,0,0,0));z-index:1;pointer-events:none}
+  .item .photo.pending::before{display:none}
+  .cat .top,.item .top{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:var(--s3);padding:var(--s4);font:600 12px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--on-primary);text-shadow:0 1px 2px rgba(0,0,0,.35)}
+  .cat .top span,.item .top span{display:inline-flex;align-items:center;gap:6px}
+  .cat .top span svg,.item .top span svg{width:14px;height:14px;flex:none}
+  .item .top{padding:var(--s3);gap:var(--s2);letter-spacing:.06em}
+  .item .top span{white-space:nowrap}
+  .item .photo.pending .top{color:var(--ink-muted);text-shadow:none}
+  .cat .org{font:400 24px/28px var(--serif);letter-spacing:-.01em}
+  .cat .org.sci{font-style:italic}
+  .cat .ttl{font-size:14px;line-height:20px;color:var(--ink-muted);margin:0}
+  .cat a:hover .org{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+  .cat li:nth-child(4n+2){margin-top:var(--s12)}
+  .cat li:nth-child(4n+4){margin-top:var(--s12)}
+
+  /* Ficha detail */
+  .f-org{font:400 clamp(36px,6.2vw,84px)/1.02 var(--serif);letter-spacing:-.025em;margin:0;overflow-wrap:anywhere;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+  .f-org.sci{font-style:italic}
+  :root{--hh:88px}
+  body[data-v="ficha"] main{margin-top:calc(-1 * var(--hh))}
+  body[data-v="ficha"] header.site:not(.scrolled){background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:inset 0 -1px 0 color-mix(in srgb, var(--on-primary) 10%, transparent)}
+  .f-hero{position:relative;overflow:hidden;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:var(--primary-strong);color:var(--on-primary);isolation:isolate}
+  .f-bg{position:absolute;inset:0;z-index:-1;will-change:transform}
+  .f-bg img{width:100%;height:100%;object-fit:cover;animation:hzoom 16s var(--ease) both}
+  .f-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, var(--scrim), var(--scrim) 60%, rgba(0,0,0,.72))}
+  @keyframes hzoom{from{transform:scale(1.08)}to{transform:none}}
+  .f-crumbs{position:absolute;left:0;right:0;top:var(--hh);width:100%}
+  .f-hero .crumbs{padding-top:var(--s4);color:var(--on-primary)}
+  .f-text{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s4);width:100%;max-width:1100px;padding-block:calc(var(--hh) + var(--s16)) var(--s16)}
+  .f-hero .overline{color:var(--cream)}
+  .f-text .common{font-size:18px;line-height:28px;margin:-8px 0 0}
+  .f-text h2{font-size:24px;line-height:32px}
+  .f-est{display:flex;flex-direction:column;align-items:center;gap:var(--s2);margin-top:var(--s2)}
+  .f-hero .tag{border-color:color-mix(in srgb, var(--on-primary) 70%, transparent);color:var(--on-primary)}
+  .f-hero .tag:hover{background:var(--on-primary);border-color:var(--on-primary);color:var(--ink)}
+  .f-hero :focus-visible{outline-color:var(--cream)}
+  .f-cr{position:absolute;left:var(--margin);right:var(--margin);bottom:var(--s4);margin:0;font-size:12px;line-height:16px;text-align:center;color:var(--on-primary);text-shadow:0 1px 2px rgba(0,0,0,.35)}
+  .f-hero + .orig{--ot:clamp(40px,6vw,80px);--op:clamp(48px,7vw,96px);margin-top:var(--ot);padding-block:var(--op);position:relative;z-index:2}
+  @media (min-width: 901px){
+    .f-hero + .orig .t{grid-column:1 / span 6;text-wrap:pretty}
+    .f-hero + .orig .sheet{grid-column:9 / span 4;align-self:start;margin-top:calc(-1 * (var(--ot) + var(--op) + 96px));box-shadow:0 28px 56px -24px rgba(31,34,25,.6)}
+    .f-cr{left:50%;right:auto;width:min(28vw,520px);transform:translateX(-50%);text-wrap:balance}
+  }
+  .tags{display:flex;gap:var(--s2);flex-wrap:wrap;justify-content:center}
+  .tag{font:600 13px/18px var(--sans);text-decoration:none;border:1px solid var(--line-strong);border-radius:999px;padding:5px 12px;min-height:32px;display:inline-flex;align-items:center}
+  .tag:hover{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+  .f-qa{padding-block:clamp(48px,7vw,96px);row-gap:var(--s8)}
+  .f-qa .q{grid-column:1 / span 6}
+  .f-qa .q .qq{font:400 clamp(28px,3.2vw,44px)/1.15 var(--serif);letter-spacing:-.015em;margin:var(--s4) 0 0}
+  .f-qa .a{grid-column:8 / span 5;font-size:18px;line-height:30px;margin:0;padding-top:28px}
+  .f-facts{padding-bottom:clamp(48px,7vw,96px);row-gap:24px}
+  .fact{grid-column:span 4;background:var(--surface-sunken);border-radius:var(--r-xl);padding:var(--s8);display:flex;flex-direction:column;gap:var(--s3)}
+  .fact .big{font:600 clamp(40px,4.4vw,64px)/1 var(--serif);color:var(--accent-text);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .fact p{margin:0}
+  .fact.do{background:var(--cream)}
+  .fact.do .overline{color:var(--ink)}
+  .fact.st p{color:var(--ink-muted)}
+  .orig{background:var(--surface-sunken);padding-block:clamp(48px,7vw,96px);margin-inline:clamp(8px,1.6vw,24px);border-radius:var(--r-xl);margin-bottom:var(--s12)}
+  .orig .g12{align-items:center;row-gap:var(--s8)}
+  .orig .t{grid-column:1 / span 5;display:flex;flex-direction:column;gap:var(--s4);align-items:flex-start}
+  .orig .t h2{font-size:clamp(28px,3vw,40px);line-height:1.1}
+  .orig .sheet{grid-column:7 / span 5;margin:0;box-shadow:0 20px 40px -20px rgba(31,34,25,.35);border-radius:var(--r-lg);overflow:hidden;background:var(--surface-raised);transition:transform .6s var(--ease)}
+  .orig .sheet:hover{transform:scale(1.02)}
+  .orig .sheet{animation:sheetfloat 6s ease-in-out infinite}
+  @keyframes sheetfloat{50%{translate:0 -8px}}
+  .orig .sheet a{display:block}
+  .orig .sheet a:focus-visible{outline-offset:-4px;outline-color:var(--cream)}
+
+  /* Notas */
+  .empty{padding-block:var(--s12) clamp(56px,8vw,112px);row-gap:var(--s12)}
+  .empty .t{grid-column:1 / span 5;display:flex;flex-direction:column;gap:var(--s4)}
+  .empty .t h2{font-size:28px;line-height:36px}
+  .empty .t p{margin:0;color:var(--ink-muted)}
+  .queue{grid-column:7 / span 6;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s2)}
+  .queue li a{display:grid;grid-template-columns:1fr auto;gap:var(--s4);align-items:baseline;padding:var(--s4) var(--s6);background:var(--surface-sunken);border-radius:999px;text-decoration:none;transition:background .3s,transform .35s var(--ease)}
+  .queue li a:hover{background:var(--cream);transform:translateX(4px)}
+  .queue .st{background:var(--surface);padding:2px 10px;border-radius:999px}
+  .queue li a:hover span:first-child{text-decoration:underline;text-underline-offset:4px}
+  .queue .st{font:600 13px/18px var(--sans);color:var(--accent-text)}
+
+  /* Acerca */
+  .about{padding-block:var(--s12) clamp(56px,8vw,112px);row-gap:0}
+  .about .intro{grid-column:1 / span 8;font:400 clamp(24px,2.6vw,34px)/1.3 var(--serif);letter-spacing:-.01em;margin:0 0 clamp(48px,6vw,80px)}
+  .toc{grid-column:1 / span 3;position:sticky;top:calc(var(--hh) + var(--s8));align-self:start}
+  .toc .overline{margin-bottom:var(--s3)}
+  .toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+  .toc button{display:block;width:100%;min-height:40px;margin-left:-1px;padding:var(--s2) var(--s3) var(--s2) var(--s4);border:0;border-left:2px solid transparent;background:none;text-align:left;font:600 15px/20px var(--sans);color:var(--ink-muted);cursor:pointer;transition:color .2s,border-color .2s}
+  .toc button:hover{color:var(--ink)}
+  .toc button[aria-current="true"]{color:var(--ink);border-left-color:var(--accent)}
+  .about-c{grid-column:5 / span 8;min-width:0}
+  .about section{scroll-margin-top:calc(var(--hh) + var(--s6));border-top:1px dashed var(--line);padding-block:var(--s8)}
+  .about section:first-child{border-top:0;padding-top:0}
+  .about section:focus{outline:none}
+  .about section h2{font-size:22px;line-height:28px;margin-bottom:var(--s4)}
+  .about section p{margin:0 0 var(--s4);font-size:17px;line-height:28px}
+  .about section p.overline{font-size:12px;line-height:16px;margin-bottom:0}
+  .names{list-style:none;margin:var(--s3) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s1) var(--s6);font-size:17px;line-height:28px}
+  .stats{list-style:none;margin:0 0 var(--s6);padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s6)}
+  .stats b{display:block;font:600 clamp(32px,3.2vw,44px)/1.1 var(--serif);color:var(--accent-text);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .stats span{display:block;margin-top:var(--s1);font-size:15px;line-height:22px;color:var(--ink-muted)}
+  .kv{margin:0}
+  .kv div{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:var(--s6);padding-block:var(--s3);border-bottom:1px dashed var(--line);font-size:17px;line-height:26px}
+  .kv div:first-child{padding-top:0}
+  .kv div:last-child{border-bottom:0;padding-bottom:0}
+  .kv dt{color:var(--ink-muted)}
+  .kv dd{margin:0}
+  .econ{margin:0;padding-left:1.2em;font-size:17px;line-height:28px}
+  .cite{background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s6);font:400 18px/28px var(--serif);margin:var(--s4) 0}
+  .copy-ok{font-size:14px;color:var(--secondary-text);margin-left:var(--s4)}
+
+  /* Footer */
+  footer{background:var(--primary-strong);color:var(--on-primary);border-radius:var(--r-xl) var(--r-xl) 0 0;margin-top:var(--s12);font-size:14px;line-height:20px}
+  footer a{color:inherit}
+  header.site .brand b,footer .brand b{color:var(--on-primary)}
+  footer .ft-top{padding-block:clamp(48px,6vw,80px) var(--s12);row-gap:var(--s12)}
+  footer .fb{grid-column:1 / span 4;display:flex;flex-direction:column;gap:var(--s4)}
+  footer .fb .brand b{font-size:26px;line-height:30px}
+  footer .fb p{margin:0;color:color-mix(in srgb, var(--on-primary) 75%, transparent);max-width:30em}
+  footer h2{font:600 12px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--cream);margin:0 0 var(--s4)}
+  footer .fl{grid-column:6 / span 2}
+  footer .fl ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s3)}
+  footer .fl a{text-decoration:none;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .25s;font-weight:600}
+  footer .fl a:hover{background-size:100% 1px}
+  footer .fc{grid-column:8 / span 2;color:color-mix(in srgb, var(--on-primary) 80%, transparent)}
+  footer .fc p{margin:0 0 var(--s3)}
+  footer .fp{grid-column:10 / span 3}
+  footer .logos{display:flex;flex-direction:column;gap:var(--s3)}
+  footer .logo-slot{height:96px;min-width:0;padding:var(--s2) var(--s4);border-radius:var(--r-md);background:color-mix(in srgb, var(--surface-raised) 85%, transparent);display:grid;place-items:center}
+  footer .logo-slot img{height:44px;width:auto;max-width:100%;object-fit:contain}
+  footer .logo-slot img.m{height:80px}
+  footer .ft-bot{align-items:center;border-top:1px solid color-mix(in srgb, var(--on-primary) 18%, transparent);padding-block:var(--s6);row-gap:var(--s3);color:color-mix(in srgb, var(--on-primary) 75%, transparent);font-size:13px}
+  footer .ft-bot .n1{grid-column:1 / span 7;margin:0;text-wrap:balance}
+  footer .ft-bot .n2{grid-column:8 / span 5;margin:0;text-align:right}
+  footer .ft-bot a{color:var(--cream);font-weight:600}
+  footer p{margin:0}
+
+  /* Progress + route bar */
+  #progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--accent);z-index:20;pointer-events:none}
+  #loader{position:fixed;inset:0;z-index:30;background:var(--surface);display:grid;place-items:center;transition:opacity .6s var(--ease),visibility .6s}
+  #loader.done{opacity:0;visibility:hidden}
+  #loader svg{width:56px;height:56px}
+  #loader path{stroke:var(--primary);stroke-width:2;fill:none;stroke-dasharray:200;stroke-dashoffset:200;animation:draw 1.1s var(--ease) forwards}
+  #loader .lf{fill:var(--secondary);opacity:0;animation:fadein .5s .7s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes fadein{to{opacity:1}}
+  header.site{transition:box-shadow .3s}
+  header.site.scrolled{box-shadow:0 10px 30px -18px rgba(31,34,25,.7)}
+  header.site .wrap{transition:padding .3s var(--ease)}
+  header.site.scrolled .wrap{padding-block:10px}
+  .brand{flex-direction:row;align-items:center;gap:12px}
+  .brand .txt{display:flex;flex-direction:column}
+
+  /* Hero friendly accents */
+  .hl{position:relative;font-style:italic;font-weight:400;color:var(--primary);white-space:nowrap}
+  .hl::before{content:"";position:absolute;left:-.08em;right:-.08em;bottom:.08em;height:.38em;background:var(--cream);border-radius:999px;z-index:-1;transform-origin:0 50%;transform:scaleX(0);animation:mark 1s .9s var(--ease) forwards}
+  @keyframes mark{to{transform:scaleX(1)}}
+  .hero h1{position:relative;z-index:0}
+  .tl{display:block;width:max-content;white-space:nowrap}
+  .hero .lead{max-width:none}
+  @media (min-width: 701px){ .ln{display:block;width:max-content;white-space:nowrap} }
+  @media (max-width: 700px){ .rotator{width:auto!important} }
+  .rotator{display:inline-grid;vertical-align:bottom;height:28px;overflow:hidden;text-align:left}
+  .rotator{transition:width .5s var(--ease)}
+  .rotator span{grid-area:1/1;white-space:nowrap;justify-self:start;transform:translateY(110%);opacity:0;transition:transform .6s var(--ease),opacity .6s}
+  .rotator span.on{transform:none;opacity:1}
+  .rotator span.off{transform:translateY(-110%);opacity:0}
+  .lead b{font-weight:600;color:var(--accent-text)}
+  .ph.a figcaption{order:-1}
+  .sticker{position:absolute;z-index:2;font:600 14px/18px var(--sans);white-space:nowrap}
+  .sticker .float{display:flex;align-items:center;gap:10px;background:var(--surface-raised);border-radius:999px;padding:10px 16px 10px 10px;box-shadow:0 18px 40px -20px rgba(31,34,25,.45)}
+  .sticker i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:600 15px/1 var(--serif);font-style:normal}
+  .sticker small{display:block;font:400 12px/16px var(--sans);color:var(--ink-muted)}
+  .sticker.s1{left:-8%;top:120px}
+  .sticker.s1 i{background:var(--secondary);color:var(--on-brand)}
+  .sticker.s2{right:-2%;top:310px}
+  .sticker.s2 i{background:var(--accent);color:var(--on-brand)}
+  .float{animation:float 6s ease-in-out infinite}
+  .float.d2{animation-delay:-3s}
+  @keyframes float{50%{translate:0 -10px}}
+  .blob{position:absolute;z-index:-1;pointer-events:none}
+  .hero{position:relative;overflow:hidden}
+  .hero .blob{right:-140px;top:-120px;width:620px;opacity:.5}
+  .hero .blob path{fill:var(--surface-sunken)}
+  .hero .g12{position:relative}
+
+  /* Marquee */
+  .marquee{overflow:hidden;padding-block:var(--s8);border-block:1px dashed var(--line);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .marquee .track{display:flex;gap:var(--s8);width:max-content;animation:marq 60s linear infinite}
+  .marquee:hover .track{animation-play-state:paused}
+  .marquee span{font:italic 400 clamp(26px,3vw,40px)/1.2 var(--serif);color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:var(--s8)}
+  .marquee span svg{width:22px;height:22px;flex:none}
+  @keyframes marq{to{transform:translateX(-50%)}}
+
+  /* Filter tabs icons */
+  .filters button svg{width:16px;height:16px;flex:none}
+  .filters button{transition:border-color .2s,color .2s,background .25s,transform .25s var(--ease)}
+  .filters button:active{transform:scale(.96)}
+
+  /* Guide decorations */
+  .guide .blob{left:-120px;bottom:-160px;width:460px;opacity:.12}
+  .guide .blob path{fill:var(--cream)}
+
+  /* Reveal on scroll */
+  .js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0ms)}
+  .js .rv.in{opacity:1;transform:none}
+  .js .rv-img .photo img{transform:scale(1.18)}
+  .js .rv-img.in .photo img{transform:scale(1);transition-delay:var(--d,0ms)}
+  .js .rv-img.in:hover .photo img,.item a:hover img,.cat a:hover img{transform:scale(1.05)}
+  .js .item.pop{animation:pop .5s var(--ease) both;animation-delay:var(--d,0ms)}
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}}
+  .hero .ld{opacity:0;transform:translateY(30px);animation:rise 1s var(--ease) forwards;animation-delay:var(--d,0ms)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  .hero .ph .photo{clip-path:inset(100% 0 0 0 round 24px);animation:wipe 1.3s var(--ease) forwards;animation-delay:var(--d,300ms)}
+  @keyframes wipe{to{clip-path:inset(0 0 0 0 round 0)}}
+  @keyframes wipec{to{clip-path:circle(50% at 50% 50%)}}
+  .view{animation:in .6s var(--ease) both}
+  main.out .view{opacity:0;transform:translateY(-8px);transition:opacity .22s,transform .22s}
+  [data-speed]{will-change:transform}
+  .p-photo .photo img,.f-photo .photo img{position:absolute;left:0;top:-9%;height:118%}
+  @media (prefers-reduced-motion: reduce){
+    .js .rv,.hero .ld{opacity:1!important;transform:none!important}
+    .hero .ph .photo{clip-path:none!important}
+    .marquee .track,.float,.f-bg img{animation:none}
+    #loader{display:none}
+  }
+
+  /* Responsive */
+  @media (max-width: 1199px){
+    .grid{grid-template-columns:1fr}
+  }
+  @media (max-width: 1080px){
+    .steps{grid-template-columns:minmax(0,1fr)}
+    .g-head{grid-template-columns:minmax(0,1fr)}
+    .g-desc{justify-self:start;max-width:44.5em}
+    .guide .team{aspect-ratio:16/9}
+    .cat{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .cat li:nth-child(n){margin-top:0}
+    .cat li:nth-child(3n+2){margin-top:var(--s12)}
+    .p-body .side{grid-column:1 / -1}
+    .p-body .main{grid-column:1 / -1}
+  }
+  @media (min-width: 1181px) and (max-width: 1240px){
+    .search .s-l{display:none}
+    .search{padding-inline:13px!important}
+  }
+  @media (max-width: 760px){
+    :root{--hh:76px}
+    .inst.d-only{display:none}
+    nav.main.open .inst.m-only{display:flex;margin-top:var(--s3)}
+  }
+  @media (max-width: 1080px){
+  }
+  @media (max-width: 1180px){
+    nav.main{display:none}
+    nav.main.open{display:block;position:absolute;left:0;right:0;top:100%;background:var(--primary-strong);border-radius:0 0 var(--r-xl) var(--r-xl);padding:var(--s4) var(--margin) var(--s6)}
+    nav.main.open ul{flex-direction:column;align-items:flex-start;gap:var(--s2)}
+    .menu-btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid color-mix(in srgb, var(--on-primary) 45%, transparent);border-radius:999px;background:none;color:var(--on-primary);font:600 14px/20px var(--sans);cursor:pointer}
+    .menu-btn{margin-left:auto}
+    .hero-text,.collage{grid-column:1 / -1}
+    .collage{min-height:560px;margin-top:var(--s12)}
+    .ph.a{height:320px;width:76%}
+    .ph.b{top:230px;height:240px;width:48%}
+    .ph.c{top:380px;right:4%;width:clamp(150px,40%,200px)}
+    .sticker.s1{left:0;top:56px}
+    .sticker.s2{display:none}
+  }
+  @media (max-width: 900px){
+    .hero-text,.collage,.sec-head .t,.sec-head p,.p-head .t,.facts,.f-photo,.f-text,.f-qa .q,.f-qa .a,.orig .t,.orig .sheet,.empty .t,.queue,.about .intro,footer .fb,footer .ft-bot .n1,footer .ft-bot .n2{grid-column:1 / -1}
+    footer .fl,footer .fc{grid-column:span 6}
+    footer .fp{grid-column:1 / -1}
+    footer .ft-bot .n2{text-align:left}
+    footer .logos{flex-direction:row}
+    footer .logo-slot{flex:1}
+    .collage{min-height:540px;margin-top:var(--s12)}
+    .collage{min-height:560px}
+    .ph.a{height:320px;width:76%}
+    .ph.b{top:230px;height:240px;width:48%}
+    .ph.c{top:380px;right:4%;width:clamp(150px,40%,200px)}
+    .hero .blob{width:420px}
+    .sec-head p{margin-top:var(--s4)}
+    .fact{grid-column:1 / -1}
+    .f-text{position:static}
+    .f-qa .a{padding-top:0}
+    .toc,.about-c{grid-column:1 / -1}
+    .toc{position:static;margin-bottom:var(--s8)}
+    .orig .sheet{max-width:420px}
+  }
+  @media (max-width: 640px){
+    .pager{grid-template-columns:1fr}
+    .pager a+a{align-items:flex-start;text-align:left;border-left:0;border-top:1px solid var(--line)}
+    .p-media{grid-template-columns:minmax(0,1fr)}
+    .p-short{height:auto;width:min(100%,260px);justify-self:center}
+    .names{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .stats{grid-template-columns:minmax(0,1fr);gap:var(--s4)}
+    .kv div{grid-template-columns:minmax(0,1fr);gap:0}
+    .item a{grid-template-columns:1fr;gap:var(--s4)}
+    .cat{grid-template-columns:1fr 1fr;gap:var(--s8) 16px}
+    .cat li:nth-child(n){margin-top:0}
+    .cat li:nth-child(2n){margin-top:var(--s8)}
+    .cat .org{font-size:20px;line-height:24px}
+    .cat .photo::before{height:55%}
+    .cat .top{flex-direction:column;align-items:flex-start;gap:6px;padding:10px;font-size:11px;letter-spacing:.06em}
+  }
+</style>
 </head>
 <body>
-<div class="borrador"><div class="envoltura"><strong>Borrador.</strong> Faltan algunas fichas, videos y las notas científicas; se irán agregando.</div></div><header class="cabecera"><div class="envoltura cabecera__fila"><a class="marca" href="index.html"><span class="marca__sello" aria-hidden="true"></span><span class="marca__texto">Yurumí a la mano<small>Caja de herramientas de gestión ambiental</small></span></a><nav class="nav" aria-label="Principal"><a href="index.html#proyectos" aria-current="page">Proyectos</a><a href="fichas/index.html">Fichas</a><a href="notas/index.html">Notas científicas</a><a href="acerca.html">Acerca de</a></nav></div></header><main id="contenido">
-<section class="portada"><div class="envoltura portada__fila">
-  <div class="portada__texto">
-    <p class="antetitulo">Caja de herramientas de gestión ambiental · 2026-2</p>
-    <h1>Yurumí a la mano</h1>
-    <p class="portada__bajada">Ocho proyectos de campo en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta), para conocer, medir y cuidar sus ecosistemas. Cada proyecto trae un video, fichas de sus especies y su ecosistema, y una nota científica.</p>
-    <div class="portada__acciones">
-      <a class="boton" href="#proyectos">Ver los proyectos</a>
-      <a class="boton boton--sec" href="fichas/index.html">Buscar una especie</a>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div id="loader" aria-hidden="true"><svg viewBox="0 0 64 64"><path class="lf" d="M32 56C18 50 12 38 14 22c10-2 22 2 28 12 4 7 3 15-10 22z"/><path d="M32 56C18 50 12 38 14 22c10-2 22 2 28 12 4 7 3 15-10 22zM32 56c-4-10-8-18-16-30"/></svg></div>
+<div id="progress" aria-hidden="true"></div>
+<header class="site">
+  <div class="wrap">
+    <div class="inst d-only"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></div>
+    <a class="brand" href="#inicio"><span class="txt"><b>Yurumí a la mano</b><span>Caja de herramientas</span></span></a>
+    <nav class="main" id="nav-main" aria-label="Principal">
+      <ul>
+        <li><a href="#proyectos" data-nav="proyectos">Proyectos</a></li>
+        <li><a href="#fichas" data-nav="fichas">Fichas</a></li>
+        <li><a href="#notas" data-nav="notas">Notas científicas</a></li>
+        <li><a href="#acerca" data-nav="acerca">Acerca de</a></li>
+        <li><button class="search" type="button" data-search aria-label="Buscar especie" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="s-l">Buscar especie</span></button></li>
+        <li class="inst m-only"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-main">Menú</button>
+  </div>
+  <div class="sp" id="sp" role="dialog" aria-label="Buscar especie o ecosistema" hidden>
+    <div class="sp-in">
+      <div class="sp-top">
+        <label class="sp-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="sp-sr">Buscar</span><input id="sp-i" type="search" placeholder="Busca por especie, nombre común o ecosistema" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="sp-r" aria-autocomplete="list"></label>
+        <button class="sp-x" type="button" id="sp-x">Cerrar</button>
+      </div>
+      <p class="sp-s" id="sp-s" role="status"></p>
+      <ul class="sp-r" id="sp-r" role="listbox" aria-label="Resultados"></ul>
     </div>
   </div>
-  <aside class="inventario" aria-label="Avance de la caja">
-    <p class="inventario__titulo">Avance de la caja</p>
-    <ul><li><b>8<small>/8</small></b><span>proyectos de campo</span></li><li><b>5<small>/8</small></b><span>videos explicativos</span></li><li><b>15<small>/24</small></b><span>fichas (especies y ecosistemas)</span></li><li><b>0<small>/8</small></b><span>notas científicas</span></li></ul>
-  </aside>
-</div></section>
-
-<section class="seccion" id="proyectos"><div class="envoltura">
-  <div class="seccion__cabeza">
-    <h2>Proyectos de campo</h2>
-    <p>Cada proyecto reúne su video, sus fichas y su nota científica.</p>
+</header>
+<main id="contenido" tabindex="-1"></main>
+<footer>
+  <div class="wrap g12 ft-top">
+    <div class="fb">
+      <a class="brand" href="#inicio"><span class="txt"><b>Yurumí a la mano</b><span>Caja de herramientas</span></span></a>
+      <p>Ocho proyectos de campo para conocer, medir y cuidar los ecosistemas de la Reserva Natural de la Sociedad Civil Yurumí.</p>
+    </div>
+    <nav class="fl" aria-label="Pie de página"><h2>Explora</h2><ul><li><a href="#proyectos">Proyectos</a></li><li><a href="#fichas">Fichas</a></li><li><a href="#notas">Notas científicas</a></li><li><a href="#acerca">Acerca de</a></li></ul></nav>
+    <div class="fc"><h2>La reserva</h2><p>RNSC Yurumí<br>Puerto López (Meta)</p><p>Grupo de gestión ambiental, ecosistemas terrestres y biología tropical · 2026-2</p></div>
+    <div class="fp"><h2>Con el apoyo de</h2><div class="logos"><div class="logo-slot"><img src="img/logos/uelbosque.png" alt="Universidad El Bosque"></div><div class="logo-slot"><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></div></div></div>
   </div>
-  <ul class="rejilla-proyectos"><li class="pt"><a class="pt__enlace" href="proyectos/p01.html"><figure class="foto foto--tarjeta"><div class="foto__marco"><img src="recursos/fotos/02.jpg" alt="Termita soldado de Nasutitermes corniger (Foto: Alison Pesillo)" loading="lazy" decoding="async"></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-01 <span>· Bosque de galería</span></p><h3 class="pt__titulo">El hogar descompuesto de las termitas</h3><p class="pt__estado"><span class="chip chip--no">Video</span><span class="chip chip--si">Fichas 3/3</span><span class="chip chip--no">Nota</span></p></div></a></li><li class="pt"><a class="pt__enlace" href="proyectos/p02.html"><figure class="foto foto--tarjeta"><div class="foto__marco"><img src="recursos/fotos/05.jpg" alt="Octoblepharum sp. sobre corteza (Valdiri, 2026)" loading="lazy" decoding="async"></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-02 <span>· Bosque de galería</span></p><h3 class="pt__titulo">Entre certezas</h3><p class="pt__lugar">Líquenes y musgos en los árboles</p><p class="pt__estado"><span class="chip chip--si">Video</span><span class="chip chip--parcial">Fichas 2/3</span><span class="chip chip--no">Nota</span></p></div></a></li><li class="pt"><a class="pt__enlace" href="proyectos/p03.html"><figure class="foto foto--tarjeta"><div class="foto__marco"><img src="recursos/fotos/08.jpg" alt="Desmocelis villosa en los pastizales de Yurumí (Foto: Alison Pesillo)" loading="lazy" decoding="async"></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-03 <span>· Pastizal</span></p><h3 class="pt__titulo">Entre pétalos y zumbidos</h3><p class="pt__estado"><span class="chip chip--si">Video</span><span class="chip chip--si">Fichas 3/3</span><span class="chip chip--no">Nota</span></p></div></a></li><li class="pt"><a class="pt__enlace" href="proyectos/p04.html"><figure class="foto foto--tarjeta"><div class="foto__marco"><img src="recursos/fotos/10.jpg" alt="Cuidado maternal en arañas de la familia Lycosidae" style="object-position: 50% 78%" loading="lazy" decoding="async"></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-04 <span>· Bosque de galería</span></p><h3 class="pt__titulo">Guardianas de la orilla</h3><p class="pt__lugar">Variación morfológica, sexual y ecológica de Lycosidae como herramienta de apoyo a la gestión del recurso hídrico en la RNSC Yurumí, Puerto López, Meta</p><p class="pt__estado"><span class="chip chip--si">Video</span><span class="chip chip--parcial">Fichas 2/3</span><span class="chip chip--no">Nota</span></p></div></a></li><li class="pt"><a class="pt__enlace" href="proyectos/p05.html"><figure class="foto foto--tarjeta"><div class="foto__marco"><img src="recursos/fotos/11.jpg" alt="Oruga de la familia Geometridae alimentándose de una hoja" loading="lazy" decoding="async"></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-05 <span>· Bosque de galería</span></p><h3 class="pt__titulo">Hojas bajo la lupa</h3><p class="pt__lugar">Relación entre rasgos funcionales y herbivoría para identificar especies vegetales potencialmente resistentes al daño foliar en la RNSC Yurumí, Puerto López, Meta</p><p class="pt__estado"><span class="chip chip--no">Video</span><span class="chip chip--parcial">Fichas 2/3</span><span class="chip chip--no">Nota</span></p></div></a></li><li class="pt"><a class="pt__enlace" href="proyectos/p06.html"><figure class="foto foto--tarjeta"><div class="foto__marco"><img src="recursos/fotos/12.jpg" alt="Sapajus apella alimentándose de platanillo (Pulido, 2026)" loading="lazy" decoding="async"></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-06 <span>· Bosque de galería</span></p><h3 class="pt__titulo">Un recurso entre parches</h3><p class="pt__lugar">Distribución del platanillo y su importancia potencial para los monos maiceros</p><p class="pt__estado"><span class="chip chip--no">Video</span><span class="chip chip--si">Fichas 3/3</span><span class="chip chip--no">Nota</span></p></div></a></li><li class="pt"><a class="pt__enlace" href="proyectos/p07.html"><figure class="foto foto--tarjeta"><div class="foto__marco foto__marco--vacio"><span class="foto__etiqueta">Foto pendiente</span></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-07</p><h3 class="pt__titulo">La hoja que nadie se comió</h3><p class="pt__estado"><span class="chip chip--si">Video</span><span class="chip chip--parcial">Fichas 0/3</span><span class="chip chip--no">Nota</span></p></div></a></li><li class="pt"><a class="pt__enlace" href="proyectos/p08.html"><figure class="foto foto--tarjeta"><div class="foto__marco foto__marco--vacio"><span class="foto__etiqueta">Foto pendiente</span></div></figure><div class="pt__cuerpo"><p class="pt__codigo">P-08</p><h3 class="pt__titulo">Todo empieza con una hoja</h3><p class="pt__lugar">¿Quién se come a quién bajo el agua?</p><p class="pt__estado"><span class="chip chip--si">Video</span><span class="chip chip--parcial">Fichas 0/3</span><span class="chip chip--no">Nota</span></p></div></a></li></ul>
-</div></section>
-
-<section class="seccion seccion--suave"><div class="envoltura">
-  <div class="seccion__cabeza"><h2>Cómo usar la caja</h2></div>
-  <div class="usos">
-    <div><h3>Para conocer un ecosistema</h3><p>Entra a un proyecto, mira el video y luego lee la ficha del ecosistema y las de sus especies.</p></div>
-    <div><h3>Para buscar una especie</h3><p>En <a href="fichas/index.html">Fichas</a> están todas las especies y ecosistemas, sin importar el proyecto.</p></div>
-    <div><h3>Para tu visita a Yurumí</h3><p>Cada ficha trae una actividad en «Qué puedes hacer» para hacer durante la caminata.</p></div>
+  <div class="wrap g12 ft-bot">
+    <p class="n1">Licencia CC BY 4.0: puedes usar y adaptar este contenido citando la fuente. Los créditos de las fotografías aparecen en cada ficha.</p>
+    <p class="n2"><a href="#acerca">Cómo citar</a></p>
   </div>
-</div></section>
-</main><footer class="pie"><div class="envoltura pie__fila"><p><strong>Yurumí a la mano</strong> · Caja de herramientas de gestión ambiental<br>Grupo de gestión ambiental, ecosistemas terrestres y biología tropical · 2026&#8209;2<br>RNSC Yurumí, Puerto López (Meta)</p><p>Contenido bajo licencia CC BY 4.0: puede usarse y adaptarse citando la fuente. <a href="acerca.html#licencia">Cómo citar</a></p></div></footer><script src="sitio.js?v=e21f5478"></script>
+</footer>
+
+<script>
+const DATA = {"sitio": {"nombre": "Yurumí a la mano", "subtitulo": "Caja de herramientas de gestión ambiental", "bajada": "Ocho proyectos de campo en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta), para conocer, medir y cuidar sus ecosistemas. Cada proyecto trae un video, fichas de sus especies y su ecosistema, una nota científica y un póster.", "lugar": "RNSC Yurumí, Puerto López (Meta)", "creditos": "Grupo de gestión ambiental, ecosistemas terrestres y biología tropical", "periodo": "2026-2", "licencia": "CC BY 4.0"}, "proyectos": [{"id": "p01", "estado": "listo", "titulo": "El hogar descompuesto de las termitas", "subtitulo": null, "ecosistema": "Bosque de galería", "foto": "02", "foto_texto": "Termita soldado de Nasutitermes corniger (Foto: Alison Pesillo)", "video": null, "fichas": ["termitas-bosque-galeria", "termitas-nasutitermes-nasus", "termitas-nasutitermes-troncos"], "nota": null}, {"id": "p02", "estado": "listo", "titulo": "Entre certezas", "subtitulo": "Líquenes y musgos en los árboles", "ecosistema": "Bosque de galería", "foto": "05", "foto_texto": "Octoblepharum sp. sobre corteza (Valdiri, 2026)", "video": {"id": "yuT1f7jNXw8", "short": true}, "fichas": ["platanillo-bosque-galeria", "epifitos-octoblepharum"], "nota": null}, {"id": "p03", "estado": "listo", "titulo": "Entre pétalos y zumbidos", "subtitulo": null, "ecosistema": "Pastizal", "foto": "08", "foto_texto": "Desmocelis villosa en los pastizales de Yurumí (Foto: Alison Pesillo)", "video": {"id": "8t-rkZv2ihU", "short": true}, "fichas": ["petalos-pastizal", "petalos-trigona-spinipes", "petalos-desmocelis-villosa"], "nota": null}, {"id": "p04", "estado": "listo", "titulo": "Guardianas de la orilla", "subtitulo": "Variación morfológica, sexual y ecológica de Lycosidae como herramienta de apoyo a la gestión del recurso hídrico en la RNSC Yurumí, Puerto López, Meta", "ecosistema": "Bosque de galería", "foto": "10", "foto_texto": "Cuidado maternal en arañas de la familia Lycosidae", "video": {"id": "DbKizPdt6FE", "short": true}, "fichas": ["bosque-galeria-arcoiris", "aranas-lycosidae"], "nota": null}, {"id": "p05", "estado": "listo", "titulo": "Hojas bajo la lupa", "subtitulo": "Relación entre rasgos funcionales y herbivoría para identificar especies vegetales potencialmente resistentes al daño foliar en la RNSC Yurumí, Puerto López, Meta", "ecosistema": "Bosque de galería", "foto": "11", "foto_texto": "Oruga de la familia Geometridae alimentándose de una hoja", "video": null, "fichas": ["bosque-galeria-arcoiris", "hojas-geometridae"], "nota": null}, {"id": "p06", "estado": "listo", "titulo": "Un recurso entre parches", "subtitulo": "Distribución del platanillo y su importancia potencial para los monos maiceros", "ecosistema": "Bosque de galería", "foto": "12", "foto_texto": "Sapajus apella alimentándose de platanillo (Pulido, 2026)", "video": null, "fichas": ["platanillo-bosque-galeria", "platanillo-sapajus-apella", "platanillo-phenakospermum"], "nota": null}, {"id": "p07", "estado": "listo", "titulo": "La hoja que nadie se comió", "subtitulo": null, "ecosistema": null, "foto": null, "foto_texto": null, "video": {"id": "oWcEV79uiY4", "short": true}, "fichas": [], "nota": null}, {"id": "p08", "estado": "listo", "titulo": "Todo empieza con una hoja", "subtitulo": "¿Quién se come a quién bajo el agua?", "ecosistema": null, "foto": null, "foto_texto": null, "video": {"id": "9RMvCWEwPJY", "short": true}, "fichas": [], "nota": null}], "fichas": [{"slug": "termitas-bosque-galeria", "tipo": "ecosistema", "img": "01", "titulo": "El refugio de la biodiversidad", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Bosque de galería, RNSC Yurumí. Foto: Mariana Soto", "pregunta": "¿Por qué las plantas en este bosque son tan abundantes?", "respuesta": "Este bosque solo podrás encontrarlo cerca de ríos y lagos, lo que favorece suelos más fértiles. ¡Viven cerca del supermercado más grande del mundo!", "dato": "El bosque de galería conecta hábitats, abarca una gran cantidad de especies y protege las fuentes de agua.", "hacer": "No dañes las plantas ni contamines el agua: es el hogar de muchos seres vivos que quieren seguir viviendo allí."}, {"slug": "termitas-nasutitermes-nasus", "tipo": "especie", "img": "02", "titulo": "Hasta el ser más diminuto es extraordinariamente complejo", "organismo": "Nasutitermes corniger", "cientifico": true, "comun": "Termita", "leyenda": "Nasutitermes corniger, RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Para qué sirve el “pico” de la termita?", "respuesta": "El “pico” de la termita se llama nasus; le sirve para defenderse ante una amenaza, pues expulsa una sustancia corrosiva para sus enemigos. Si llevas un gas pimienta para defenderte en las calles, ¡estás imitando a una termita!", "dato": "El nasus está presente solo en las termitas soldado, que deben defender la colonia de las hormigas.", "hacer": "La sustancia que producen para defenderse no es dañina para el ser humano. ¡No te asustes ni la mates! No te puede hacer ningún daño."}, {"slug": "termitas-nasutitermes-troncos", "tipo": "especie", "img": "03", "titulo": "Termitas en su hogar: troncos en estado de descomposición", "organismo": "Nasutitermes corniger", "cientifico": true, "comun": "Termita", "leyenda": "Nasutitermes corniger, RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Por qué las termitas viven sobre troncos medianamente descompuestos?", "respuesta": "Dentro de estos troncos encuentran alimento, refugio y las condiciones que necesitan para sobrevivir. Para ellas es como la casa a la que llegan tras un largo día de trabajo, donde encuentran a su familia y todas las comodidades de un hogar.", "dato": "Al alimentarse de estos troncos devuelven sus nutrientes al suelo, donde pueden ser usados por otros organismos.", "hacer": "Si ves un árbol en descomposición, ¡no lo destruyas! Las termitas y el ecosistema te lo agradecerán."}, {"slug": "platanillo-bosque-galeria", "tipo": "ecosistema", "img": "04", "titulo": "Bosque de galería: trama de vida", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Mosaico de bosque de galería (Vega, 2026)", "pregunta": "¿Qué papel cumple el bosque de galería en la RNSC Yurumí?", "respuesta": "Son franjas de vegetación que crecen a lo largo de los ríos. En Yurumí acompañan el río Yucao, en Puerto López, Meta; protegen el cauce y ayudan a regular el caudal y la disponibilidad de agua. Unos son inundables y otros no, y conviven con sabanas, morichales y serranía.", "cifra": "216 ha", "dato": "de mata de monte y bosques de galería: el 27 % de las 800 ha de la reserva.", "hacer": "Anota durante tu caminata qué tan cerca del río está el bosque y cuántos niveles de vegetación distingues."}, {"slug": "epifitos-octoblepharum", "tipo": "especie", "img": "05", "titulo": "El musgo que le huye al río", "organismo": "Octoblepharum sp.", "cientifico": true, "comun": "Musgo", "leyenda": "Octoblepharum sp. sobre corteza (Valdiri, 2026)", "pregunta": "¿Por qué este musgo blanquecino abunda más lejos del agua?", "respuesta": "Este musgo crece erguido, en cojines compactos, como una esponja que se cierra sobre sí misma para no perder agua. Por eso resiste mejor la sequedad de los troncos alejados del río, donde los musgos de manto no aguantan tanto.", "cifra": "P = 0,036", "dato": "Encontramos que su cobertura aumenta mientras más lejos está del cuerpo de agua (no es azar).", "hacer": "Compara dos troncos, uno cerca y otro lejos del caño: si ves más de este musgo blanquecino en el más alejado, acabas de confirmar nuestro hallazgo."}, {"slug": "petalos-pastizal", "tipo": "ecosistema", "img": "06", "titulo": "¡El pasto esconde todo un mundo!", "organismo": "Pastizal", "cientifico": false, "leyenda": "Pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿De verdad puede pasar tanto en un lugar que parece tener solamente pasto?", "respuesta": "En el pastizal crecen plantas de distintas formas y tamaños que sirven de alimento y refugio para muchos animales. Es como un edificio lleno de vecinos: las plantas, los insectos y otros seres vivos comparten el espacio y dependen unos de otros de distintas maneras. En nuestro estudio encontramos que dos plantas del mismo pastizal recibían cantidades diferentes de visitas.", "dato": "Este ecosistema ofrece alimento, refugio y lugares para vivir a muchos animales pequeños.", "estado": "Pastizales bajo presión por la expansión agropecuaria y la transformación del suelo.", "hacer": "Camina por los senderos, evita pisar las flores y no dejes basura. ¡Hasta el rincón más pequeño del pastizal puede ser importante para la vida!"}, {"slug": "petalos-trigona-spinipes", "tipo": "especie", "img": "07", "titulo": "Una pequeña visitante muy trabajadora", "organismo": "Trigona spinipes", "cientifico": true, "comun": "Abeja", "leyenda": "Trigona spinipes en los pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Qué hace una abeja cuando se posa sobre una flor?", "respuesta": "Puede estar buscando alimento y, mientras se mueve entre las flores, puede llevar un polvito dorado llamado polen de una a otra. ¡Es como una repartidora que visita distintas casas y lleva un pequeño paquete que ayuda a las plantas a formar semillas! En las observaciones, <em>Trigona spinipes<\/em> visitó con mayor frecuencia <em>Desmocelis villosa<\/em> que <em>Hyptis conferta<\/em>.", "dato": "Estas abejas viven en colonias y pueden defender juntas su nido cuando detectan algún peligro.", "estado": "Sin categoría confirmada en la UICN. Sin categoría nacional confirmada.", "hacer": "Si encuentras una abeja sobre una flor, obsérvala sin tocarla. ¡Los insectos también necesitan lugares tranquilos para alimentarse!"}, {"slug": "petalos-desmocelis-villosa", "tipo": "especie", "img": "08", "titulo": "Una flor que destaca entre las demás", "organismo": "Desmocelis villosa", "cientifico": true, "comun": "Planta con flor", "leyenda": "Desmocelis villosa en los pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "Si hay más flores de un tipo que de otro, ¿significa que serán las favoritas de los insectos?", "respuesta": "<em>Desmocelis villosa<\/em> tiene pequeñas flores rosadas o moradas que resaltan entre la vegetación del pastizal. Sus flores pueden ofrecer alimento a los insectos, ¡como una pequeña tienda de comida en medio de un vecindario! En nuestro estudio recibió más visitas de abejas que <em>Hyptis conferta<\/em>, aunque había menos plantas de su tipo.", "dato": "La forma de sus flores y el alimento que ofrecen podrían hacerlas más atractivas para las abejas que otras plantas.", "estado": "Sin categoría confirmada en la UICN. Sin categoría nacional confirmada.", "hacer": "Observa las flores pequeñas que crecen entre el pasto. ¡No las arranques! Pueden ser una fuente de alimento para los insectos."}, {"slug": "bosque-galeria-arcoiris", "tipo": "ecosistema", "img": "09", "titulo": "El paraíso al final del arcoíris", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Bosque de galería visto desde la sabana, con un arcoíris en el cielo. RNSC Yurumí", "pregunta": "¿Qué hay al final del arcoíris?", "respuesta": "Un bosque de galería: un tipo de bosque que crece a lo largo de ríos, quebradas y otros cuerpos de agua, formando una franja de vegetación que contrasta con la vegetación que lo rodea.", "dato": "El IDEAM identifica en la Orinoquía al bosque de galería inundable basal como uno de los ecosistemas regionales.", "hacer": "Recorrerlo con botas pantaneras, hidratación y la mejor actitud."}, {"slug": "aranas-lycosidae", "tipo": "especie", "img": "10", "titulo": "El peso de una nueva generación", "organismo": "Lycosidae", "cientifico": false, "comun": "Araña lobo", "leyenda": "Cuidado maternal en arañas de la familia Lycosidae, RNSC Yurumí", "pregunta": "¿Cuántas crías puede cargar a la vez?", "respuesta": "Las arañas lobo pueden cargar aproximadamente entre 40 y más de 100 crías sobre el abdomen, aunque la cantidad varía según la especie y el tamaño de la hembra. En algunas especies se han registrado cifras cercanas a las 300.", "dato": "En las Lycosidae la madre no se limita a proteger los huevos: las crías recién nacidas suben a su abdomen y permanecen allí durante varios días.", "hacer": "¡No tener miedo! No están allí para lastimarte."}, {"slug": "hojas-geometridae", "tipo": "especie", "img": "11", "titulo": "Hojas bajo la lupa", "organismo": "Geometridae", "cientifico": false, "comun": "Oruga medidora", "leyenda": "Oruga de la familia Geometridae alimentándose de una hoja", "pregunta": "¿Plaga o supervivencia?", "respuesta": "Aunque algunas especies pueden convertirse en plagas cuando sus poblaciones aumentan y causan daños importantes a los cultivos, la mayoría forma parte de las interacciones naturales entre plantas y herbívoros.", "dato": "El nombre de esta oruga viene de su forma de moverse, parecida a cuando se mide a palmos: con la mano abierta y luego juntando el meñique con el pulgar.", "hacer": "¡Meditar sobre cómo la metamorfosis permite el paso de esta pequeña oruga a una polilla!"}, {"slug": "platanillo-sapajus-apella", "tipo": "especie", "img": "12", "titulo": "El platanillo como recurso alimenticio", "organismo": "Sapajus apella", "cientifico": true, "comun": "Mono maicero", "leyenda": "Sapajus apella alimentándose de platanillo (Pulido, 2026)", "pregunta": "¿Qué comen los maiceros cuando no hay frutas?", "respuesta": "No dependen de un solo alimento: aprovechan lo que encuentran cuando escasea la comida, como la base de la hoja (pecíolo) del platanillo.", "cifra": "3,4 kg", "dato": "de restos de alimento a lo largo de los parches de platanillo: así supimos que los maiceros lo usan.", "hacer": "Observa a los maiceros con binoculares desde una distancia prudente y anota en tu ficha de registro qué comen."}, {"slug": "platanillo-phenakospermum", "tipo": "especie", "img": "13", "titulo": "El platanillo como recurso alimenticio", "organismo": "Phenakospermum guyannense", "cientifico": true, "comun": "Platanillo", "leyenda": "Phenakospermum guyannense en bosque de galería (Jiménez, 2026)", "pregunta": "¿Cómo cambia la oferta de platanillo entre parches?", "respuesta": "Las plantas adultas suelen tener más hojas que las jóvenes. Es como una despensa en la que algunas plantas guardan más alimento disponible, mientras las jóvenes crecen y renuevan el follaje.", "cifra": "41", "dato": "platanillos distribuidos en 7 parches.", "hacer": "Anota durante tu caminata cuántos platanillos ves, si están agrupados, su edad (maduros o juveniles) y si hay restos de platanillo en el suelo."}], "foco": {"10": "50% 78%", "02": "25% 50%"}};
+const PROJ = DATA.proyectos, FICHAS = DATA.fichas, FOCO = DATA.foco || {};
+const ORIG = 'https://yurumi-a-la-mano.github.io/';
+const LEAF = '<svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-5-2-7-6.5-6-12 4-.8 8.5.6 10.5 4.2 1.5 2.6 1 5.6-4.5 7.8z"/><path d="M12 21c-1.5-3.8-3-6.6-6-11"/></svg>';
+const BLOB = '<svg class="blob" viewBox="0 0 600 600" aria-hidden="true"><path d="M421 68c66 40 128 108 120 182-8 75-86 112-126 176-40 63-56 132-129 146-74 14-160-36-196-104S62 316 92 246c30-71 70-150 140-182 70-33 123-36 189 4z"/></svg>';
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const IC = {
+  all:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/></svg>',
+  bosque:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 6 12h4l-4 6h12l-4-6h4z"/><path d="M12 18v3"/></svg>',
+  pastizal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 20c1-5 1-9 0-13M9 20c0-6 1-10 3-14M14 20c0-4 1-8 4-11M19 20c0-3 0-6 1-8"/></svg>',
+  pend:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>',
+  especie:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-5-2-7-6.5-6-12 4-.8 8.5.6 10.5 4.2 1.5 2.6 1 5.6-4.5 7.8z"/><path d="M12 21c-1.5-3.8-3-6.6-6-11"/></svg>',
+  ecosistema:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19 9 9l4 6 3-4 5 8z"/><circle cx="17" cy="6" r="2"/></svg>'
+};
+IC.todas = IC.all;
+const habKey = e => !e ? 'pend' : (e === 'Pastizal' ? 'pastizal' : 'bosque');
+const habLabel = e => e || 'Hábitat por definir';
+const fichaBy = s => FICHAS.find(f => f.slug === s);
+const projOf = slug => PROJ.filter(p => p.fichas.includes(slug));
+const img = (kind, n, alt, eager) => n ? `<img src="img/${kind}/${n}.jpg" alt="${alt||''}" loading="${eager?'eager':'lazy'}" style="object-position:${FOCO[n]||'50% 50%'}">` : '';
+const photo = (n, alt, cls='', eager) => n ? `<div class="photo ${cls}">${img('fotos', n, alt, eager)}</div>` : `<div class="photo pending ${cls}" aria-hidden="true">Foto pendiente</div>`;
+const orgHTML = f => f.cientifico ? `<span class="sci">${f.organismo}</span>` : f.organismo;
+const cap = s => s ? s.replace(/\(Foto: ([^)]+)\)/, '· Foto: $1') : '';
+
+function projectItems(){
+  return PROJ.map(p => `<li class="item" data-h="${habKey(p.ecosistema)}"><a href="#${p.id}">
+    <div class="photo ${p.foto ? '' : 'pending'}">${p.foto ? img('fotos', p.foto, '') : 'Foto pendiente'}<div class="top"><span>${IC[habKey(p.ecosistema)]}${habLabel(p.ecosistema)}</span></div></div>
+    <div class="body">
+      <h3>${p.titulo}</h3>
+      ${p.subtitulo ? `<p class="sub">${p.subtitulo}</p>` : ''}
+      <div class="row3"><span class="more">Ver proyecto</span></div>
+    </div></a></li>`).join('');
+}
+const count = k => PROJ.filter(p => k==='all' || habKey(p.ecosistema)===k).length;
+function projectFilters(){
+  return `<div class="filters" role="group" aria-label="Filtrar por hábitat" data-target="grid">
+    ${[['all','Todos'],['bosque','Bosque de galería'],['pastizal','Pastizal'],['pend','Por definir']].map(([k,l],i)=>`<button type="button" data-f="${k}" aria-pressed="${i===0}">${IC[k]}${l} <span>${count(k)}</span></button>`).join('')}
+  </div>`;
+}
+
+const V = {};
+V.inicio = () => `
+  <section class="hero" aria-labelledby="h-hero">${BLOB}<div class="wrap g12">
+    <div class="hero-text">
+      <p class="overline ld" style="--d:100ms">RNSC Yurumí · Puerto López, Meta · 2026-2</p>
+      <h1 id="h-hero" class="ld" style="--d:220ms"><span class="tl">Conocer, medir</span> <span class="tl">y cuidar los ecosistemas</span> <span class="tl">de <span class="hl">Yurumí</span></span></h1>
+      <p class="lead ld" style="--d:380ms"><span class="ln">Ocho proyectos de campo para descubrir <b class="rotator" aria-label="termitas, musgos, abejas, arañas lobo, orugas, monos maiceros"><span class="on">termitas</span><span>musgos</span><span>abejas</span><span>arañas lobo</span><span>orugas</span><span>monos maiceros</span></b> en la reserva.</span> <span class="ln">Cada uno reúne un video, fichas de especies y ecosistemas, una nota científica y un póster.</span></p>
+      <div class="actions ld" style="--d:500ms"><a class="btn" href="#proyectos">Ver los 8 proyectos ${ARROW}</a><button class="link" type="button" data-search aria-haspopup="dialog">Buscar una especie ${ARROW}</button></div>
+    </div>
+    <div class="collage" aria-label="Fotografías de campo">
+      <a class="ph a" href="#p06" data-speed="-0.06" style="--d:350ms"><figure style="margin:0;display:contents">${photo('12','Mono maicero comiendo platanillo','',true)}<figcaption><span class="sci">Sapajus apella</span> comiendo platanillo. Foto: Pulido.</figcaption></figure></a>
+      <a class="ph b" href="#p03" data-speed="0.08" style="--d:550ms"><figure style="margin:0;display:contents">${photo('08','Flor de Desmocelis villosa en el pastizal','',true)}<figcaption><span class="sci">Desmocelis villosa</span>. Foto: Alison Pesillo.</figcaption></figure></a>
+      <a class="ph c" href="#p01" data-speed="-0.14" style="--d:750ms"><figure style="margin:0;display:contents">${photo('02','Termita soldado','',true)}<figcaption>Termita soldado.</figcaption></figure></a>
+      <div class="sticker s1 ld" style="--d:1100ms" data-speed="-0.1"><span class="float"><i>8</i><span>Proyectos de campo<small>en la reserva</small></span></span></div>
+      <div class="sticker s2 ld" style="--d:1300ms" data-speed="0.12"><span class="float d2"><i>${FICHAS.length}</i><span>Fichas para tu visita<small>especies y ecosistemas</small></span></span></div>
+    </div>
+  </div></section>
+  ${marquee()}
+  ${guide()}
+  <section class="projects" aria-labelledby="h-proy"><div class="wrap">
+    <div class="sec-head g12"><div class="t"><p class="overline">02 · Índice</p><h2 id="h-proy">Proyectos de campo</h2></div><p>Cada proyecto reúne su video, sus fichas de especies y ecosistemas, su nota científica y su póster.</p></div>
+    ${projectFilters()}
+    <ul class="grid" id="grid">${projectItems()}</ul>
+  </div></section>`;
+
+function marquee(){
+  const names = [...new Set(FICHAS.filter(f=>f.tipo==='especie').map(f=>f.organismo))];
+  const row = names.map(n=>`<span>${n}${LEAF}</span>`).join('');
+  return `<div class="marquee" aria-hidden="true"><div class="track">${row}${row}</div></div>`;
+}
+function guide(){
+  return `<section class="guide" aria-labelledby="h-guia">${BLOB}<div class="wrap g12">
+    <figure class="team"><div class="photo"><img src="img/fotos/grupo.jpg?v=2" alt="Foto del grupo durante la salida de campo" loading="lazy" style="object-position:50% 25%"></div></figure>
+    <div class="g-body">
+    <div class="g-head"><div class="t"><p class="overline">01 · Guía</p><h2 id="h-guia">Cómo usar la caja</h2></div><p class="g-desc">En esta caja encontrarás ocho proyectos de campo realizados en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta). Para conocerlos de forma sencilla, cada uno incluye un video y fichas didácticas sobre sus especies y ecosistemas. Para profundizar, todos cuentan con una nota científica, y cuatro de ellos también con un póster.</p></div>
+    <ol class="steps">
+      <li><span class="n">01</span><h3>Para conocer un ecosistema</h3><p>Mira el video del proyecto y luego lee sus fichas.</p></li>
+      <li><span class="n">02</span><h3>Para buscar una especie</h3><p>Entra a <a href="#fichas">Fichas</a>: ahí están todas las especies y ecosistemas de la reserva.</p></li>
+      <li><span class="n">03</span><h3>Para tu visita a Yurumí</h3><p>Cada ficha trae una actividad en «Qué puedes hacer».</p></li>
+    </ol>
+    </div></div></section>`;
+}
+
+V.proyectos = () => `
+  <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><span>Proyectos</span></nav></div>
+  <section class="projects page-top" aria-labelledby="h-p"><div class="wrap">
+    <div class="sec-head g12"><div class="t"><p class="overline">RNSC Yurumí · 2026-2</p><h1 id="h-p">Proyectos de campo</h1></div><p>Ocho investigaciones en el bosque de galería y el pastizal de la reserva. Cada una trae su video, sus fichas, su nota científica y su póster.</p></div>
+    ${projectFilters()}
+    <ul class="grid" id="grid">${projectItems()}</ul>
+  </div></section>`;
+
+// YouTube solo se puede incrustar fuera de Claude. Si el sitio usa dominio propio, agrégalo aquí.
+const EMBED = /(^|\.)github\.io$|^localhost$|^127\.0\.0\.1$/.test(location.hostname);
+
+function projectView(p){
+  const i = PROJ.indexOf(p), prev = PROJ[(i+PROJ.length-1)%PROJ.length], next = PROJ[(i+1)%PROJ.length];
+  const fs = p.fichas.map(fichaBy).filter(Boolean);
+  const eco = fs.filter(f=>f.tipo==='ecosistema'), esp = fs.filter(f=>f.tipo==='especie');
+  const slots = [...eco, ...esp];
+  while (slots.length < 3) slots.push(null);
+  const pendCard = (label, tit, sub) => `<li><div class="cat-p"><div class="photo pending"><div class="top"><span>${IC.pend}Pendiente</span><b>${label}</b></div></div><span class="org">${tit}</span><p class="ttl">${sub}</p></div></li>`;
+  const fichaRow = f => f ? `<li><a href="#ficha-${f.slug}"><div class="photo">${img('fotos', f.img, '')}<div class="top"><span>${IC[f.tipo]}${f.tipo === 'especie' ? 'Especie' : 'Ecosistema'}</span><b>Ficha</b></div></div><span class="org ${f.cientifico?'sci':''}">${f.organismo}</span><p class="ttl">${f.comun ? f.comun + ' — ' : ''}${f.titulo}</p></a></li>`
+    : pendCard('Ficha', 'Ficha pendiente', 'Aún no está en la carpeta');
+  return `
+  <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><a href="#proyectos">Proyectos</a><span>/</span><span>${p.titulo}</span></nav></div>
+  <section class="wrap g12 p-head" aria-labelledby="h-pr">
+    <div class="t"><p class="overline">Proyecto de campo</p><h1 id="h-pr">${p.titulo}</h1>${p.subtitulo?`<p class="subt">${p.subtitulo}</p>`:''}</div>
+  </section>
+  <div class="p-media">
+    ${p.video && EMBED ? `<div class="p-short embed"><iframe src="https://www.youtube-nocookie.com/embed/${p.video.id}?rel=0&playsinline=1" title="Video del proyecto: ${p.titulo}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>` : p.video ? `<a class="p-short" href="https://www.youtube.com/shorts/${p.video.id}" target="_blank" rel="noopener" aria-label="Ver el video del proyecto en YouTube"><span class="p-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><b>Ver el video</b><small>Se abre en YouTube</small></a>` : `<div class="p-short pend">Video pendiente</div>`}
+    ${p.foto ? `<figure class="p-photo" data-par>${photo(p.foto, p.foto_texto, '', true)}<figcaption>${cap(p.foto_texto)}</figcaption></figure>` : `<div class="p-photo">${photo(null)}</div>`}
+  </div>
+  <section class="wrap g12 p-body">
+    <div class="side"><p class="overline">Materiales del proyecto</p></div>
+    <div class="main">
+      <ul class="cat mats">${slots.map(fichaRow).join('')}${pendCard('Nota científica', 'Resultados del proyecto', 'Aún no está en la carpeta')}</ul>
+      <p class="muted" style="margin:0;font-size:14px">Créditos: Grupo de gestión ambiental, ecosistemas terrestres y biología tropical · 2026-2</p>
+    </div>
+  </section>
+  <nav class="wrap" aria-label="Otros proyectos"><div class="pager">
+    <a href="#${prev.id}"><span class="pg-bg" aria-hidden="true">${img('fotos', prev.foto, '')}</span><span class="pg-l">${ARROW}Anterior</span><b>${prev.titulo}</b></a>
+    <a href="#${next.id}"><span class="pg-bg" aria-hidden="true">${img('fotos', next.foto, '')}</span><span class="pg-l">Siguiente${ARROW}</span><b>${next.titulo}</b></a>
+  </div></nav>`;
+}
+
+V.fichas = () => {
+  const c = t => FICHAS.filter(f => t==='all' || f.tipo===t).length;
+  return `
+  <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><span>Fichas</span></nav></div>
+  <section class="wrap page-top" aria-labelledby="h-f">
+    <div class="sec-head g12"><div class="t"><p class="overline">Catálogo</p><h1 id="h-f">Fichas de especies y ecosistemas</h1></div><p>Todas las especies y ecosistemas de Yurumí a la mano. Cada ficha indica en qué proyecto se estudió y trae su versión original en PDF.</p></div>
+    <div class="filters" role="group" aria-label="Filtrar por tipo" data-target="cat">
+      ${[['all','Todas'],['especie','Especies'],['ecosistema','Ecosistemas']].map(([k,l],i)=>`<button type="button" data-f="${k}" aria-pressed="${i===0}">${IC[k]}${l} <span>${c(k)}</span></button>`).join('')}
+    </div>
+    <ul class="cat" id="cat">${FICHAS.map(f => `<li data-h="${f.tipo}"><a href="#ficha-${f.slug}">
+      <div class="photo">${img('fotos', f.img, '')}<div class="top"><span>${IC[f.tipo]}${f.tipo === 'especie' ? 'Especie' : 'Ecosistema'}</span></div></div>
+      <span class="org ${f.cientifico?'sci':''}">${f.organismo}</span>
+      <p class="ttl">${f.comun ? f.comun + ' — ' : ''}${f.titulo}</p></a></li>`).join('')}</ul>
+  </section>`;
+};
+
+const MAS = {
+  'termitas-bosque-galeria': ['Conoce más sobre el bosque de galería', 'este bosque como refugio de la biodiversidad'],
+  'termitas-nasutitermes-nasus': ['Conoce más sobre <span class="sci">Nasutitermes corniger</span>', 'el nasus con el que las termitas soldado defienden su colonia'],
+  'termitas-nasutitermes-troncos': ['Conoce más sobre <span class="sci">Nasutitermes corniger</span>', 'la vida de estas termitas en los troncos en descomposición'],
+  'platanillo-bosque-galeria': ['Conoce más sobre el bosque de galería', 'el papel de este bosque en la RNSC Yurumí'],
+  'epifitos-octoblepharum': ['Conoce más sobre <span class="sci">Octoblepharum</span> sp.', 'este musgo y por qué abunda más lejos del agua'],
+  'petalos-pastizal': ['Conoce más sobre el pastizal', 'la vida que esconde este ecosistema'],
+  'petalos-trigona-spinipes': ['Conoce más sobre <span class="sci">Trigona spinipes</span>', 'esta abeja y sus visitas a las flores del pastizal'],
+  'petalos-desmocelis-villosa': ['Conoce más sobre <span class="sci">Desmocelis villosa</span>', 'esta planta y las visitas que recibe de las abejas'],
+  'bosque-galeria-arcoiris': ['Conoce más sobre el bosque de galería', 'cómo crece este bosque a lo largo de ríos y quebradas'],
+  'aranas-lycosidae': ['Conoce más sobre las arañas lobo', 'estas arañas y el cuidado que le dan a sus crías'],
+  'hojas-geometridae': ['Conoce más sobre las orugas medidoras', 'estas orugas y su relación con las plantas'],
+  'platanillo-sapajus-apella': ['Conoce más sobre <span class="sci">Sapajus apella</span>', 'este mono y cómo aprovecha el platanillo como alimento'],
+  'platanillo-phenakospermum': ['Conoce más sobre <span class="sci">Phenakospermum guyannense</span>', 'esta planta y cómo cambia su oferta entre parches']
+};
+
+function fichaView(f){
+  const ps = projOf(f.slug);
+  return `
+  <section class="f-hero" aria-labelledby="h-fi">
+    <div class="f-bg" data-speed="0.18">${img('fotos', f.img, f.leyenda, true)}</div>
+    <div class="wrap f-crumbs"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><a href="#fichas">Fichas</a><span>/</span><span>${f.organismo}</span></nav></div>
+    <div class="wrap f-text">
+      <p class="overline">Ficha de ${f.tipo}</p>
+      <h1 id="h-fi" class="f-org ${f.cientifico?'sci':''}">${f.organismo}</h1>
+      ${f.comun ? `<p class="common">${f.comun}</p>` : ''}
+      <h2>${f.titulo}</h2>
+      <div class="f-est"><p class="overline">Se estudió en</p><div class="tags">${ps.map(p=>`<a class="tag" href="#${p.id}">${p.titulo}</a>`).join('')}</div></div>
+    </div>
+    <p class="f-cr">${f.leyenda}</p>
+  </section>
+  <section class="orig"><div class="wrap g12">
+    <div class="t"><h2>${MAS[f.slug][0]}</h2><p class="muted" style="margin:0">Aquí encontrarás más información sobre ${MAS[f.slug][1]}.</p><a class="link" href="${ORIG}recursos/pdf/${f.slug}.pdf" target="_blank" rel="noopener">Abrir el PDF ${ARROW}</a></div>
+    <figure class="sheet"><a href="${ORIG}recursos/pdf/${f.slug}.pdf" target="_blank" rel="noopener" aria-label="Abrir el PDF de la ficha: ${f.titulo}">${img('fichas', f.img, 'Vista previa de la ficha: ' + f.titulo)}</a></figure>
+  </div></section>`;
+}
+
+V.notas = () => `
+  <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><span>Notas científicas</span></nav></div>
+  <section class="wrap page-top">
+    <div class="sec-head g12"><div class="t"><p class="overline">Resultados</p><h1>Notas científicas</h1></div><p>Los resultados de cada proyecto de campo, escritos en formato de nota corta y con su referencia lista para citar.</p></div>
+    <div class="g12 empty">
+      <div class="t"><h2>Todavía no hay notas publicadas</h2><p>Aparecerán aquí a medida que los equipos las entreguen. Mientras tanto, puedes revisar cada proyecto y sus fichas.</p><a class="link" href="#proyectos" style="align-self:flex-start">Ver los proyectos ${ARROW}</a></div>
+      <ol class="queue" aria-label="Estado de las notas por proyecto">${PROJ.map(p=>`<li><a href="#${p.id}"><span>${p.titulo}</span><span class="st">Pendiente</span></a></li>`).join('')}</ol>
+    </div>
+  </section>`;
+
+const CITA = 'Grupo de gestión ambiental, ecosistemas terrestres y biología tropical (2026). Yurumí a la mano: caja de herramientas. Universidad El Bosque, Museo de Ciencias. RNSC Yurumí, Puerto López (Meta).';
+const AUTORES = ['Juliana Ramos','Juan Lozano','Andres Caceres','Jose Nieves','Paula Vega','Ximena Pulido','Danna Jimenez','Nicolas Valdiri','Sara Fajardo','Alison Pesillo','Cesar Andrade','Julian Ortiz','Mariana Soto','Salome Lombana','Sara Corredor','Daniel Balcázar','Esteban Olaya'];
+const PROFES = ['Patricia Torres','Karem Castro','Monica Castillo'];
+const nombres = l => `<ul class="names">${l.map(n => `<li>${n}</li>`).join('')}</ul>`;
+V.acerca = () => `
+  <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><span>Acerca de</span></nav></div>
+  <section class="wrap page-top">
+    <div class="sec-head g12"><div class="t"><p class="overline">Acerca de</p><h1>Una caja de herramientas hecha en campo</h1></div></div>
+    <div class="g12 about">
+      <p class="intro">Yurumí a la mano es una caja de herramientas de la Universidad El Bosque y su Museo de Ciencias, construida a partir de proyectos de campo en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta).</p>
+      <nav class="toc" aria-label="En esta página"><p class="overline">En esta página</p><ol><li><button type="button" data-sec="para">Para qué sirve</button></li><li><button type="button" data-sec="quien">Quién la hizo</button></li><li><button type="button" data-sec="reserva">La reserva</button></li><li><button type="button" data-sec="coberturas">Coberturas e hidrografía</button></li><li><button type="button" data-sec="clima">Clima y relieve</button></li><li><button type="button" data-sec="puerto">Puerto López</button></li><li><button type="button" data-sec="citar">Licencia y cómo citar</button></li></ol></nav>
+      <div class="about-c">
+      <section id="para" tabindex="-1"><h2>Para qué sirve</h2><div><p>Está pensada para visitantes de la reserva, docentes, estudiantes, gestores ambientales y comunidades que quieran conocer sus ecosistemas, replicar un monitoreo sencillo o apoyar decisiones de manejo con datos de campo.</p></div></section>
+      <section id="quien" tabindex="-1"><h2>Quién la hizo</h2><div>
+        <p>Grupo de gestión ambiental, ecosistemas terrestres y biología tropical, periodo 2026-2. Universidad El Bosque · Museo de Ciencias. Los créditos de las fotografías aparecen en cada ficha.</p>
+        <p class="overline" style="margin-top:var(--s6)">Autores</p>
+        ${nombres(AUTORES)}
+        <p class="overline" style="margin-top:var(--s6)">Profesoras</p>
+        ${nombres(PROFES)}
+      </div></section>
+      <section id="reserva" tabindex="-1"><h2>La reserva</h2><div>
+        <p>La Reserva Natural de la Sociedad Civil (RNSC) Yurumí está en la vereda Matazul Yucao, al nororiente del municipio de Puerto López, Meta, en la altillanura de la Orinoquia colombiana. Tiene 800 hectáreas.</p>
+        <p>Se inscribió en Resnatur en 2013 y fue reconocida oficialmente como reserva mediante la Resolución 029 del 14 de abril de 2015. Esa resolución fue modificada por la Resolución 117 de 2021 de Parques Nacionales Naturales.</p>
+      </div></section>
+      <section id="coberturas" tabindex="-1"><h2>Coberturas e hidrografía</h2><div>
+        <ul class="stats">
+          <li><b>152 ha</b><span>de sabana (19 %)</span></li>
+          <li><b>216 ha</b><span>de mata de monte y bosque de galería (27 %)</span></li>
+          <li><b>432 ha</b><span>de serranía llanera (54 %)</span></li>
+        </ul>
+        <p>Más de 400 ha están en regeneración natural asistida. La reserva está dentro de la subcuenca del río Yucao, afluente importante del río Meta. Por ella pasan los caños Conuco, Barbasco y Alcornoco, y allí se han identificado 4 nacimientos de agua.</p>
+      </div></section>
+      <section id="clima" tabindex="-1"><h2>Clima y relieve</h2><div>
+        <dl class="kv">
+          <div><dt>Precipitación media anual</dt><dd>2.133 mm</dd></div>
+          <div><dt>Temperatura media</dt><dd>27,1 °C</dd></div>
+          <div><dt>Humedad relativa</dt><dd>Entre 70 y 85 %</dd></div>
+          <div><dt>Temporada seca</dt><dd>Aproximadamente de diciembre a marzo</dd></div>
+          <div><dt>Temporada lluviosa</dt><dd>De abril a noviembre</dd></div>
+          <div><dt>Relieve</dt><dd>Altillanura plana y estructural, terrazas y valles aluviales, planicies de inundación, lomeríos y pequeños valles asociados a ríos</dd></div>
+        </dl>
+      </div></section>
+      <section id="puerto" tabindex="-1"><h2>Puerto López</h2><div>
+        <p>El municipio tiene 6.239 km², 33.556 habitantes y una densidad aproximada de 5,38 hab/km². Su economía se basa en:</p>
+        <ul class="econ">
+          <li>La ganadería (bovinos, equinos, porcinos, ovinos y caprinos)</li>
+          <li>La agricultura (arroz, yuca, plátano, cacao, limón)</li>
+          <li>La pesca</li>
+          <li>Los hidrocarburos</li>
+        </ul>
+      </div></section>
+      <section id="citar" tabindex="-1"><h2>Licencia y cómo citar</h2><div>
+        <p>Todo el contenido se publica bajo la licencia Creative Commons Atribución 4.0 Internacional (CC BY 4.0). Puedes copiarlo, adaptarlo y compartirlo, siempre que cites la fuente.</p>
+        <p class="overline" style="margin-top:var(--s6)">Cómo citar la caja completa</p>
+        <p class="cite" id="cita">${CITA}</p>
+        <button class="link" type="button" id="copy">Copiar referencia</button><span class="copy-ok" id="copy-ok" role="status"></span>
+      </div></section>
+      </div>
+    </div>
+  </section>`;
+
+
+document.documentElement.classList.add('js');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const REV = '.p-short, .sec-head .t > *, .sec-head > p, .filters, .grid .item, .cat li, .steps li, .guide .t > *, .g-desc, .mat, .note, .fact, .facts, .p-head .t > *, .queue li, .about section, .about .intro, .orig .t > *, .orig .sheet, .f-qa .q, .f-qa .a, .f-text > *, .pager a, .empty .t > *, .crumbs, .p-photo, .f-photo, footer .ft-top > *';
+let io;
+function setupReveal(){
+  if (io) io.disconnect();
+  const els = [...document.querySelectorAll(REV)];
+  if (reduce) { els.forEach(e=>e.classList.add('in')); return; }
+  els.forEach(el => {
+    el.classList.add('rv');
+    if (el.querySelector(':scope .photo img') || el.classList.contains('p-photo') || el.classList.contains('f-photo')) el.classList.add('rv-img');
+    const sib = [...el.parentElement.children].filter(x => x.matches(REV));
+    el.style.setProperty('--d', (Math.max(0, sib.indexOf(el)) % 6) * 80 + 'ms');
+  });
+  io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); countUp(e.target); } }), {rootMargin:'0px 0px -8% 0px', threshold:.12});
+  els.forEach(e => io.observe(e));
+}
+function countUp(el){
+  const big = el.querySelector && el.querySelector('.big');
+  if (!big || big.dataset.done) return; big.dataset.done = 1;
+  const m = big.textContent.match(/^(\d+)(,\d+)?(.*)$/); if (!m || reduce) return;
+  const target = parseFloat(m[1] + (m[2]||'').replace(',','.')), dec = m[2] ? m[2].length-1 : 0, rest = m[3], t0 = performance.now();
+  const step = t => { const k = Math.min(1,(t-t0)/1400), v = target * (1 - Math.pow(1-k,3)); big.textContent = v.toFixed(dec).replace('.',',') + rest; if (k<1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+// Scroll: progress, header, parallax
+const bar = document.getElementById('progress'), hdr = document.querySelector('header.site');
+let ticking = false;
+function onScroll(){
+  if (ticking) return; ticking = true;
+  requestAnimationFrame(() => {
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${h>0 ? y/h : 0})`;
+    hdr.classList.toggle('scrolled', y > 10);
+    tocSpy();
+    if (!reduce){
+      document.querySelectorAll('[data-speed]').forEach(el => { el.style.translate = `0 ${(y * parseFloat(el.dataset.speed)).toFixed(1)}px`; });
+      document.querySelectorAll('[data-par] img').forEach(img => {
+        const r = img.parentElement.getBoundingClientRect(); const c = (r.top + r.height/2 - innerHeight/2) / innerHeight;
+        img.style.translate = `0 ${(c * -40).toFixed(1)}px`;
+      });
+    }
+    ticking = false;
+  });
+}
+addEventListener('scroll', onScroll, {passive:true});
+addEventListener('resize', onScroll);
+// Hero word rotator
+let rotT;
+function startRotator(){
+  clearInterval(rotT);
+  const r = document.querySelector('.rotator'); if (!r || reduce) return;
+  const items = [...r.children]; let i = 0;
+  const wOf = x => Math.ceil(x.getBoundingClientRect().width) + 'px';
+  r.style.width = wOf(items[0]);
+  rotT = setInterval(() => { const a = items[i]; i = (i+1) % items.length; const b = items[i]; r.style.width = wOf(b);
+    a.classList.remove('on'); a.classList.add('off'); b.classList.remove('off'); b.classList.add('on');
+    setTimeout(()=>a.classList.remove('off'), 700); }, 2200);
+}
+// Título en 3 líneas y bajada en 2: ajusta el tamaño para que quepan
+function fitLines(el, need, box){
+  if (need > box) el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * box / need * .99).toFixed(2) + 'px';
+}
+function fitHero(){
+  const h = document.getElementById('h-hero'); if (!h) return;
+  const box = h.parentElement.clientWidth;
+  h.style.fontSize = '';
+  fitLines(h, Math.max(...[...h.querySelectorAll('.tl')].map(x => x.offsetWidth)), box);
+  const l = h.parentElement.querySelector('.lead'), r = l.querySelector('.rotator');
+  l.style.fontSize = '';
+  if (innerWidth > 700){
+    const [a, b] = l.querySelectorAll('.ln');
+    const widest = Math.max(...[...r.children].map(x => x.offsetWidth));
+    fitLines(l, Math.max(a.offsetWidth - r.offsetWidth + widest, b.offsetWidth), box);
+  }
+  if (r.style.width){ const on = r.querySelector('.on'); if (on) r.style.width = Math.ceil(on.getBoundingClientRect().width) + 'px'; }
+}
+addEventListener('resize', fitHero);
+if (document.fonts){ document.fonts.ready.then(fitHero); document.fonts.addEventListener('loadingdone', fitHero); }
+let tocSecs = [];
+function tocSpy(){
+  if (!tocSecs.length) return;
+  const line = innerHeight * .3;
+  let cur = tocSecs[0];
+  tocSecs.forEach(x => { if (x.sec.getBoundingClientRect().top <= line) cur = x; });
+  tocSecs.forEach(x => x === cur ? x.b.setAttribute('aria-current', 'true') : x.b.removeAttribute('aria-current'));
+}
+function setupToc(){
+  tocSecs = [...document.querySelectorAll('.toc button')].map(b => ({ b, sec: document.getElementById(b.dataset.sec) }));
+  tocSecs.forEach(({b, sec}) => b.addEventListener('click', () => { sec.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'}); sec.focus({preventScroll:true}); }));
+  tocSpy();
+}
+function afterRender(){ fitHero(); setupReveal(); startRotator(); setupToc(); onScroll(); }
+addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('done'), 350));
+setTimeout(() => document.getElementById('loader').classList.add('done'), 2500);
+const main = document.getElementById('contenido');
+// Buscador de especies y ecosistemas
+const norm = t => String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const SIDX = FICHAS.map(f => ({ f, n: norm(`${f.organismo} ${f.comun || ''}`), k: norm([f.organismo, f.comun, f.titulo, f.tipo, ...projOf(f.slug).map(p => p.titulo)].join(' ')) }));
+const sp = document.getElementById('sp'), spI = document.getElementById('sp-i'), spR = document.getElementById('sp-r'), spS = document.getElementById('sp-s');
+let spAct = -1, spBack = null;
+const esc = t => t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function spRender(){
+  const q = norm(spI.value).trim(), ws = q.split(/\s+/).filter(Boolean);
+  const res = SIDX.filter(x => ws.every(w => x.k.includes(w)));
+  if (q) res.sort((a, b) => Number(b.n.startsWith(q)) - Number(a.n.startsWith(q)));
+  spR.innerHTML = res.map(({f}, i) => `<li role="presentation"><a role="option" id="sp-o${i}" href="#ficha-${f.slug}" aria-selected="false"><span class="sp-th">${img('fotos', f.img, '')}</span><span><span class="sp-n ${f.cientifico ? 'sci' : ''}">${f.organismo}</span><span class="sp-d">${f.comun ? f.comun + ' · ' : ''}${f.titulo}</span></span></a></li>`).join('');
+  spS.innerHTML = res.length ? (q ? `${res.length} ${res.length === 1 ? 'resultado' : 'resultados'}` : `Todas las fichas (${res.length})`) : `No encontramos «${esc(spI.value.trim())}». <a href="#fichas">Ver todas las fichas</a>`;
+  spAct = -1; spI.removeAttribute('aria-activedescendant');
+}
+function spMark(i){
+  const o = [...spR.querySelectorAll('a')]; if (!o.length) return;
+  spAct = (i + o.length) % o.length;
+  o.forEach((a, k) => { a.classList.toggle('on', k === spAct); a.setAttribute('aria-selected', k === spAct); });
+  spI.setAttribute('aria-activedescendant', o[spAct].id); o[spAct].scrollIntoView({block:'nearest'});
+}
+function spOpen(from){
+  spBack = from || null; sp.hidden = false; spI.value = ''; spRender(); spI.focus();
+  document.querySelectorAll('button.search').forEach(b => b.setAttribute('aria-expanded', true));
+}
+function spClose(back){
+  if (sp.hidden) return;
+  sp.hidden = true;
+  document.querySelectorAll('button.search').forEach(b => b.setAttribute('aria-expanded', false));
+  if (back && spBack) spBack.focus();
+}
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-search]');
+  if (t){ e.stopPropagation(); sp.hidden ? spOpen(t) : spClose(true); return; }
+  if (e.target.closest('#sp-x')){ spClose(true); return; }
+  if (e.target.closest('.sp a')){ spClose(); return; }
+  if (!sp.hidden && !e.target.closest('#sp')) spClose();
+});
+spI.addEventListener('input', spRender);
+spI.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown'){ e.preventDefault(); spMark(spAct + 1); }
+  else if (e.key === 'ArrowUp'){ e.preventDefault(); spMark(spAct - 1); }
+  else if (e.key === 'Enter'){ e.preventDefault(); const a = spR.querySelectorAll('a')[Math.max(spAct, 0)]; if (a){ location.hash = a.getAttribute('href'); spClose(); } }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') spClose(true); });
+addEventListener('hashchange', () => spClose());
+function bindFilters(){
+  main.querySelectorAll('.filters').forEach(g => {
+    const list = document.getElementById(g.dataset.target);
+    g.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      g.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x===b));
+      let k = 0; list.querySelectorAll(':scope > li').forEach(li => { const show = (b.dataset.f==='all' || li.dataset.h===b.dataset.f); li.hidden = !show; li.classList.remove('pop'); if (show){ li.classList.add('in'); void li.offsetWidth; li.style.setProperty('--d', (k++ % 8) * 50 + 'ms'); li.classList.add('pop'); } });
+    }));
+  });
+  const cp = document.getElementById('copy');
+  if (cp) cp.addEventListener('click', async () => {
+    const ok = document.getElementById('copy-ok');
+    try { await navigator.clipboard.writeText(CITA); ok.textContent = 'Referencia copiada'; }
+    catch(e){ const r = document.createRange(); r.selectNodeContents(document.getElementById('cita')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); ok.textContent = 'Selecciona y copia el texto'; }
+  });
+}
+let first = true;
+function route(){
+  if (!first && !reduce){ main.classList.add('out'); bar.style.transition='none'; setTimeout(render, 220); } else render();
+  first = false;
+}
+function render(){
+  main.classList.remove('out');
+  const h = (location.hash || '#inicio').slice(1);
+  let html, nav = '', title = 'Yurumí a la mano';
+  const p = PROJ.find(x => x.id === h);
+  const f = h.startsWith('ficha-') && fichaBy(h.slice(6));
+  if (p){ html = projectView(p); nav='proyectos'; title = `${p.titulo} — Yurumí a la mano`; }
+  else if (f){ html = fichaView(f); nav='fichas'; title = `${f.organismo} — Yurumí a la mano`; }
+  else if (V[h]){ html = V[h](); nav = h==='inicio' ? '' : h; if (h!=='inicio') title = document.querySelector(`[data-nav="${h}"]`).textContent + ' — Yurumí a la mano'; }
+  else if (h === 'contenido'){ return; }
+  else { html = V.inicio(); }
+  main.innerHTML = `<div class="view">${html}</div>`;
+  document.title = title;
+  document.body.dataset.v = f ? 'ficha' : '';
+  document.querySelectorAll('[data-nav]').forEach(a => a.dataset.nav===nav ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
+  bindFilters();
+  window.scrollTo(0,0);
+  afterRender();
+  if (h !== 'inicio' && location.hash) main.focus({preventScroll:true});
+}
+window.addEventListener('hashchange', route);
+route();
+const mb=document.querySelector('.menu-btn'), nv=document.getElementById('nav-main');
+mb.addEventListener('click',()=>{const o=nv.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'Cerrar':'Menú';});
+nv.addEventListener('click',e=>{if(e.target.closest('a,button')){nv.classList.remove('open');mb.setAttribute('aria-expanded',false);mb.textContent='Menú';}});
+</script>
 </body>
 </html>
