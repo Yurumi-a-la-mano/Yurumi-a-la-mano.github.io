@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yurumí a la mano</title>
+<title>Yurumí ¡A la mano!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400;1,8..60,600&family=Public+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
   .wrap{padding-inline:var(--margin);max-width:1440px;margin-inline:auto}
   .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
   .overline{font:600 12px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--secondary-text);margin:0}
-  .sci{font-style:italic}
+  .sci{font-style:italic!important}
   .muted{color:var(--ink-muted)}
   h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;text-wrap:balance}
   .view{animation:in .35s ease both}
@@ -66,6 +66,8 @@
   .inst .m{height:44px}
   .inst i{width:1px;height:32px;background:var(--line)}
   .inst.m-only{display:none}
+  a.inst,.inst-a{text-decoration:none}
+  .inst-a{display:flex;align-items:center;gap:var(--s3)}
 
   /* Buscador */
   .search{cursor:pointer}
@@ -165,7 +167,6 @@
   .guide .g-body{display:flex;flex-direction:column;gap:var(--s8);padding:clamp(40px,6vw,80px) var(--margin)}
   .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3)}
   .steps li{display:grid;grid-template-columns:48px 1fr;gap:var(--s1) var(--s4);padding:var(--s6);border-radius:var(--r-lg);background:color-mix(in srgb, var(--on-primary) 8%, transparent);align-items:baseline;transition:background .3s,transform .4s var(--ease)}
-  .steps li:hover{background:color-mix(in srgb, var(--on-primary) 14%, transparent);transform:translateY(-3px)}
   .steps .n{font:400 22px/1 var(--serif);color:var(--primary);background:var(--cream);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-variant-numeric:tabular-nums}
   .steps h3{font-size:22px;line-height:28px}
   .steps p{margin:0;grid-column:2}
@@ -335,6 +336,9 @@
   .kv dd{margin:0}
   .econ{margin:0;padding-left:1.2em;font-size:17px;line-height:28px}
   .cite{background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s6);font:400 18px/28px var(--serif);margin:var(--s4) 0}
+  .about section p.cite{margin-bottom:var(--s6)}
+  .cite[role="button"]{cursor:pointer}
+  .cite.copiada::selection,.cite.copiada *::selection{background:#b3d4fc;color:var(--ink)}
   .copy-ok{font-size:14px;color:var(--secondary-text);margin-left:var(--s4)}
 
   /* Footer */
@@ -395,7 +399,7 @@
   .rotator span.off{transform:translateY(-110%);opacity:0}
   .lead b{font-weight:600;color:var(--accent-text)}
   .ph.a figcaption{order:-1}
-  .sticker{position:absolute;z-index:2;font:600 14px/18px var(--sans);white-space:nowrap}
+  .sticker{position:absolute;z-index:2;font:600 14px/18px var(--sans);white-space:nowrap;text-decoration:none;color:inherit}
   .sticker .float{display:flex;align-items:center;gap:10px;background:var(--surface-raised);border-radius:999px;padding:10px 16px 10px 10px;box-shadow:0 18px 40px -20px rgba(31,34,25,.45)}
   .sticker i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:600 15px/1 var(--serif);font-style:normal}
   .sticker small{display:block;font:400 12px/16px var(--sans);color:var(--ink-muted)}
@@ -418,6 +422,7 @@
   .marquee:hover .track{animation-play-state:paused}
   .marquee span{font:italic 400 clamp(26px,3vw,40px)/1.2 var(--serif);color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:var(--s8)}
   .marquee span svg{width:22px;height:22px;flex:none}
+  .marquee a{text-decoration:none;color:inherit}
   @keyframes marq{to{transform:translateX(-50%)}}
 
   /* Filter tabs icons */
@@ -538,21 +543,21 @@
 <div id="progress" aria-hidden="true"></div>
 <header class="site">
   <div class="wrap">
-    <div class="inst d-only"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></div>
-    <a class="brand" href="#inicio"><span class="txt"><b>Yurumí a la mano</b><span>Caja de herramientas</span></span></a>
+    <a class="inst d-only" href="#inicio"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></a>
+    <a class="brand" href="#inicio"><span class="txt"><b>Yurumí ¡A la mano!</b><span>Caja de herramientas</span></span></a>
     <nav class="main" id="nav-main" aria-label="Principal">
       <ul>
         <li><a href="#proyectos" data-nav="proyectos">Proyectos</a></li>
         <li><a href="#fichas" data-nav="fichas">Fichas</a></li>
         <li><a href="#notas" data-nav="notas">Notas científicas</a></li>
         <li><a href="#acerca" data-nav="acerca">Acerca de</a></li>
-        <li><button class="search" type="button" data-search aria-label="Buscar especie" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="s-l">Buscar especie</span></button></li>
-        <li class="inst m-only"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></li>
+        <li><button class="search" type="button" data-search aria-label="Buscar ficha" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="s-l">Buscar ficha</span></button></li>
+        <li class="inst m-only"><a class="inst-a" href="#inicio"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></a></li>
       </ul>
     </nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-main">Menú</button>
   </div>
-  <div class="sp" id="sp" role="dialog" aria-label="Buscar especie o ecosistema" hidden>
+  <div class="sp" id="sp" role="dialog" aria-label="Buscar ficha" hidden>
     <div class="sp-in">
       <div class="sp-top">
         <label class="sp-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="sp-sr">Buscar</span><input id="sp-i" type="search" placeholder="Busca por especie, nombre común o ecosistema" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="sp-r" aria-autocomplete="list"></label>
@@ -567,21 +572,21 @@
 <footer>
   <div class="wrap g12 ft-top">
     <div class="fb">
-      <a class="brand" href="#inicio"><span class="txt"><b>Yurumí a la mano</b><span>Caja de herramientas</span></span></a>
+      <a class="brand" href="#inicio"><span class="txt"><b>Yurumí ¡A la mano!</b><span>Caja de herramientas</span></span></a>
       <p>Ocho proyectos de campo para conocer, medir y cuidar los ecosistemas de la Reserva Natural de la Sociedad Civil Yurumí.</p>
     </div>
     <nav class="fl" aria-label="Pie de página"><h2>Explora</h2><ul><li><a href="#proyectos">Proyectos</a></li><li><a href="#fichas">Fichas</a></li><li><a href="#notas">Notas científicas</a></li><li><a href="#acerca">Acerca de</a></li></ul></nav>
-    <div class="fc"><h2>La reserva</h2><p>RNSC Yurumí<br>Puerto López (Meta)</p><p>Grupo de gestión ambiental, ecosistemas terrestres y biología tropical · 2026-2</p></div>
+    <div class="fc"><h2>La Reserva</h2><p>RNSC Yurumí<br>Puerto López (Meta)</p><p>Grupo de Gestión Ambiental, Ecosistemas Terrestres y Biología Tropical · 2026-2</p></div>
     <div class="fp"><h2>Con el apoyo de</h2><div class="logos"><div class="logo-slot"><img src="img/logos/uelbosque.png" alt="Universidad El Bosque"></div><div class="logo-slot"><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></div></div></div>
   </div>
   <div class="wrap g12 ft-bot">
     <p class="n1">Licencia CC BY 4.0: puedes usar y adaptar este contenido citando la fuente. Los créditos de las fotografías aparecen en cada ficha.</p>
-    <p class="n2"><a href="#acerca">Cómo citar</a></p>
+    <p class="n2"><a href="#acerca" data-citar>Cómo citar</a></p>
   </div>
 </footer>
 
 <script>
-const DATA = {"sitio": {"nombre": "Yurumí a la mano", "subtitulo": "Caja de herramientas de gestión ambiental", "bajada": "Ocho proyectos de campo en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta), para conocer, medir y cuidar sus ecosistemas. Cada proyecto trae un video, fichas de sus especies y su ecosistema, una nota científica y un póster.", "lugar": "RNSC Yurumí, Puerto López (Meta)", "creditos": "Grupo de gestión ambiental, ecosistemas terrestres y biología tropical", "periodo": "2026-2", "licencia": "CC BY 4.0"}, "proyectos": [{"id": "p01", "estado": "listo", "titulo": "El hogar descompuesto de las termitas", "subtitulo": null, "ecosistema": "Bosque de galería", "foto": "02", "foto_texto": "Termita soldado de Nasutitermes corniger (Foto: Alison Pesillo)", "video": null, "fichas": ["termitas-bosque-galeria", "termitas-nasutitermes-nasus", "termitas-nasutitermes-troncos"], "nota": null}, {"id": "p02", "estado": "listo", "titulo": "Entre certezas", "subtitulo": "Líquenes y musgos en los árboles", "ecosistema": "Bosque de galería", "foto": "05", "foto_texto": "Octoblepharum sp. sobre corteza (Valdiri, 2026)", "video": {"id": "yuT1f7jNXw8", "short": true}, "fichas": ["platanillo-bosque-galeria", "epifitos-octoblepharum"], "nota": null}, {"id": "p03", "estado": "listo", "titulo": "Entre pétalos y zumbidos", "subtitulo": null, "ecosistema": "Pastizal", "foto": "08", "foto_texto": "Desmocelis villosa en los pastizales de Yurumí (Foto: Alison Pesillo)", "video": {"id": "8t-rkZv2ihU", "short": true}, "fichas": ["petalos-pastizal", "petalos-trigona-spinipes", "petalos-desmocelis-villosa"], "nota": null}, {"id": "p04", "estado": "listo", "titulo": "Guardianas de la orilla", "subtitulo": "Variación morfológica, sexual y ecológica de Lycosidae como herramienta de apoyo a la gestión del recurso hídrico en la RNSC Yurumí, Puerto López, Meta", "ecosistema": "Bosque de galería", "foto": "10", "foto_texto": "Cuidado maternal en arañas de la familia Lycosidae", "video": {"id": "DbKizPdt6FE", "short": true}, "fichas": ["bosque-galeria-arcoiris", "aranas-lycosidae"], "nota": null}, {"id": "p05", "estado": "listo", "titulo": "Hojas bajo la lupa", "subtitulo": "Relación entre rasgos funcionales y herbivoría para identificar especies vegetales potencialmente resistentes al daño foliar en la RNSC Yurumí, Puerto López, Meta", "ecosistema": "Bosque de galería", "foto": "11", "foto_texto": "Oruga de la familia Geometridae alimentándose de una hoja", "video": null, "fichas": ["bosque-galeria-arcoiris", "hojas-geometridae"], "nota": null}, {"id": "p06", "estado": "listo", "titulo": "Un recurso entre parches", "subtitulo": "Distribución del platanillo y su importancia potencial para los monos maiceros", "ecosistema": "Bosque de galería", "foto": "12", "foto_texto": "Sapajus apella alimentándose de platanillo (Pulido, 2026)", "video": null, "fichas": ["platanillo-bosque-galeria", "platanillo-sapajus-apella", "platanillo-phenakospermum"], "nota": null}, {"id": "p07", "estado": "listo", "titulo": "La hoja que nadie se comió", "subtitulo": null, "ecosistema": null, "foto": null, "foto_texto": null, "video": {"id": "oWcEV79uiY4", "short": true}, "fichas": [], "nota": null}, {"id": "p08", "estado": "listo", "titulo": "Todo empieza con una hoja", "subtitulo": "¿Quién se come a quién bajo el agua?", "ecosistema": null, "foto": null, "foto_texto": null, "video": {"id": "9RMvCWEwPJY", "short": true}, "fichas": [], "nota": null}], "fichas": [{"slug": "termitas-bosque-galeria", "tipo": "ecosistema", "img": "01", "titulo": "El refugio de la biodiversidad", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Bosque de galería, RNSC Yurumí. Foto: Mariana Soto", "pregunta": "¿Por qué las plantas en este bosque son tan abundantes?", "respuesta": "Este bosque solo podrás encontrarlo cerca de ríos y lagos, lo que favorece suelos más fértiles. ¡Viven cerca del supermercado más grande del mundo!", "dato": "El bosque de galería conecta hábitats, abarca una gran cantidad de especies y protege las fuentes de agua.", "hacer": "No dañes las plantas ni contamines el agua: es el hogar de muchos seres vivos que quieren seguir viviendo allí."}, {"slug": "termitas-nasutitermes-nasus", "tipo": "especie", "img": "02", "titulo": "Hasta el ser más diminuto es extraordinariamente complejo", "organismo": "Nasutitermes corniger", "cientifico": true, "comun": "Termita", "leyenda": "Nasutitermes corniger, RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Para qué sirve el “pico” de la termita?", "respuesta": "El “pico” de la termita se llama nasus; le sirve para defenderse ante una amenaza, pues expulsa una sustancia corrosiva para sus enemigos. Si llevas un gas pimienta para defenderte en las calles, ¡estás imitando a una termita!", "dato": "El nasus está presente solo en las termitas soldado, que deben defender la colonia de las hormigas.", "hacer": "La sustancia que producen para defenderse no es dañina para el ser humano. ¡No te asustes ni la mates! No te puede hacer ningún daño."}, {"slug": "termitas-nasutitermes-troncos", "tipo": "especie", "img": "03", "titulo": "Termitas en su hogar: troncos en estado de descomposición", "organismo": "Nasutitermes corniger", "cientifico": true, "comun": "Termita", "leyenda": "Nasutitermes corniger, RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Por qué las termitas viven sobre troncos medianamente descompuestos?", "respuesta": "Dentro de estos troncos encuentran alimento, refugio y las condiciones que necesitan para sobrevivir. Para ellas es como la casa a la que llegan tras un largo día de trabajo, donde encuentran a su familia y todas las comodidades de un hogar.", "dato": "Al alimentarse de estos troncos devuelven sus nutrientes al suelo, donde pueden ser usados por otros organismos.", "hacer": "Si ves un árbol en descomposición, ¡no lo destruyas! Las termitas y el ecosistema te lo agradecerán."}, {"slug": "platanillo-bosque-galeria", "tipo": "ecosistema", "img": "04", "titulo": "Bosque de galería: trama de vida", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Mosaico de bosque de galería (Vega, 2026)", "pregunta": "¿Qué papel cumple el bosque de galería en la RNSC Yurumí?", "respuesta": "Son franjas de vegetación que crecen a lo largo de los ríos. En Yurumí acompañan el río Yucao, en Puerto López, Meta; protegen el cauce y ayudan a regular el caudal y la disponibilidad de agua. Unos son inundables y otros no, y conviven con sabanas, morichales y serranía.", "cifra": "216 ha", "dato": "de mata de monte y bosques de galería: el 27 % de las 800 ha de la reserva.", "hacer": "Anota durante tu caminata qué tan cerca del río está el bosque y cuántos niveles de vegetación distingues."}, {"slug": "epifitos-octoblepharum", "tipo": "especie", "img": "05", "titulo": "El musgo que le huye al río", "organismo": "Octoblepharum sp.", "cientifico": true, "comun": "Musgo", "leyenda": "Octoblepharum sp. sobre corteza (Valdiri, 2026)", "pregunta": "¿Por qué este musgo blanquecino abunda más lejos del agua?", "respuesta": "Este musgo crece erguido, en cojines compactos, como una esponja que se cierra sobre sí misma para no perder agua. Por eso resiste mejor la sequedad de los troncos alejados del río, donde los musgos de manto no aguantan tanto.", "cifra": "P = 0,036", "dato": "Encontramos que su cobertura aumenta mientras más lejos está del cuerpo de agua (no es azar).", "hacer": "Compara dos troncos, uno cerca y otro lejos del caño: si ves más de este musgo blanquecino en el más alejado, acabas de confirmar nuestro hallazgo."}, {"slug": "petalos-pastizal", "tipo": "ecosistema", "img": "06", "titulo": "¡El pasto esconde todo un mundo!", "organismo": "Pastizal", "cientifico": false, "leyenda": "Pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿De verdad puede pasar tanto en un lugar que parece tener solamente pasto?", "respuesta": "En el pastizal crecen plantas de distintas formas y tamaños que sirven de alimento y refugio para muchos animales. Es como un edificio lleno de vecinos: las plantas, los insectos y otros seres vivos comparten el espacio y dependen unos de otros de distintas maneras. En nuestro estudio encontramos que dos plantas del mismo pastizal recibían cantidades diferentes de visitas.", "dato": "Este ecosistema ofrece alimento, refugio y lugares para vivir a muchos animales pequeños.", "estado": "Pastizales bajo presión por la expansión agropecuaria y la transformación del suelo.", "hacer": "Camina por los senderos, evita pisar las flores y no dejes basura. ¡Hasta el rincón más pequeño del pastizal puede ser importante para la vida!"}, {"slug": "petalos-trigona-spinipes", "tipo": "especie", "img": "07", "titulo": "Una pequeña visitante muy trabajadora", "organismo": "Trigona spinipes", "cientifico": true, "comun": "Abeja", "leyenda": "Trigona spinipes en los pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Qué hace una abeja cuando se posa sobre una flor?", "respuesta": "Puede estar buscando alimento y, mientras se mueve entre las flores, puede llevar un polvito dorado llamado polen de una a otra. ¡Es como una repartidora que visita distintas casas y lleva un pequeño paquete que ayuda a las plantas a formar semillas! En las observaciones, <em>Trigona spinipes<\/em> visitó con mayor frecuencia <em>Desmocelis villosa<\/em> que <em>Hyptis conferta<\/em>.", "dato": "Estas abejas viven en colonias y pueden defender juntas su nido cuando detectan algún peligro.", "estado": "Sin categoría confirmada en la UICN. Sin categoría nacional confirmada.", "hacer": "Si encuentras una abeja sobre una flor, obsérvala sin tocarla. ¡Los insectos también necesitan lugares tranquilos para alimentarse!"}, {"slug": "petalos-desmocelis-villosa", "tipo": "especie", "img": "08", "titulo": "Una flor que destaca entre las demás", "organismo": "Desmocelis villosa", "cientifico": true, "comun": "Planta con flor", "leyenda": "Desmocelis villosa en los pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "Si hay más flores de un tipo que de otro, ¿significa que serán las favoritas de los insectos?", "respuesta": "<em>Desmocelis villosa<\/em> tiene pequeñas flores rosadas o moradas que resaltan entre la vegetación del pastizal. Sus flores pueden ofrecer alimento a los insectos, ¡como una pequeña tienda de comida en medio de un vecindario! En nuestro estudio recibió más visitas de abejas que <em>Hyptis conferta<\/em>, aunque había menos plantas de su tipo.", "dato": "La forma de sus flores y el alimento que ofrecen podrían hacerlas más atractivas para las abejas que otras plantas.", "estado": "Sin categoría confirmada en la UICN. Sin categoría nacional confirmada.", "hacer": "Observa las flores pequeñas que crecen entre el pasto. ¡No las arranques! Pueden ser una fuente de alimento para los insectos."}, {"slug": "bosque-galeria-arcoiris", "tipo": "ecosistema", "img": "09", "titulo": "El paraíso al final del arcoíris", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Bosque de galería visto desde la sabana, con un arcoíris en el cielo. RNSC Yurumí", "pregunta": "¿Qué hay al final del arcoíris?", "respuesta": "Un bosque de galería: un tipo de bosque que crece a lo largo de ríos, quebradas y otros cuerpos de agua, formando una franja de vegetación que contrasta con la vegetación que lo rodea.", "dato": "El IDEAM identifica en la Orinoquía al bosque de galería inundable basal como uno de los ecosistemas regionales.", "hacer": "Recorrerlo con botas pantaneras, hidratación y la mejor actitud."}, {"slug": "aranas-lycosidae", "tipo": "especie", "img": "10", "titulo": "El peso de una nueva generación", "organismo": "Lycosidae", "cientifico": false, "comun": "Araña lobo", "leyenda": "Cuidado maternal en arañas de la familia Lycosidae, RNSC Yurumí", "pregunta": "¿Cuántas crías puede cargar a la vez?", "respuesta": "Las arañas lobo pueden cargar aproximadamente entre 40 y más de 100 crías sobre el abdomen, aunque la cantidad varía según la especie y el tamaño de la hembra. En algunas especies se han registrado cifras cercanas a las 300.", "dato": "En las Lycosidae la madre no se limita a proteger los huevos: las crías recién nacidas suben a su abdomen y permanecen allí durante varios días.", "hacer": "¡No tener miedo! No están allí para lastimarte."}, {"slug": "hojas-geometridae", "tipo": "especie", "img": "11", "titulo": "Hojas bajo la lupa", "organismo": "Geometridae", "cientifico": false, "comun": "Oruga medidora", "leyenda": "Oruga de la familia Geometridae alimentándose de una hoja", "pregunta": "¿Plaga o supervivencia?", "respuesta": "Aunque algunas especies pueden convertirse en plagas cuando sus poblaciones aumentan y causan daños importantes a los cultivos, la mayoría forma parte de las interacciones naturales entre plantas y herbívoros.", "dato": "El nombre de esta oruga viene de su forma de moverse, parecida a cuando se mide a palmos: con la mano abierta y luego juntando el meñique con el pulgar.", "hacer": "¡Meditar sobre cómo la metamorfosis permite el paso de esta pequeña oruga a una polilla!"}, {"slug": "platanillo-sapajus-apella", "tipo": "especie", "img": "12", "titulo": "El platanillo como recurso alimenticio", "organismo": "Sapajus apella", "cientifico": true, "comun": "Mono maicero", "leyenda": "Sapajus apella alimentándose de platanillo (Pulido, 2026)", "pregunta": "¿Qué comen los maiceros cuando no hay frutas?", "respuesta": "No dependen de un solo alimento: aprovechan lo que encuentran cuando escasea la comida, como la base de la hoja (pecíolo) del platanillo.", "cifra": "3,4 kg", "dato": "de restos de alimento a lo largo de los parches de platanillo: así supimos que los maiceros lo usan.", "hacer": "Observa a los maiceros con binoculares desde una distancia prudente y anota en tu ficha de registro qué comen."}, {"slug": "platanillo-phenakospermum", "tipo": "especie", "img": "13", "titulo": "El platanillo como recurso alimenticio", "organismo": "Phenakospermum guyannense", "cientifico": true, "comun": "Platanillo", "leyenda": "Phenakospermum guyannense en bosque de galería (Jiménez, 2026)", "pregunta": "¿Cómo cambia la oferta de platanillo entre parches?", "respuesta": "Las plantas adultas suelen tener más hojas que las jóvenes. Es como una despensa en la que algunas plantas guardan más alimento disponible, mientras las jóvenes crecen y renuevan el follaje.", "cifra": "41", "dato": "platanillos distribuidos en 7 parches.", "hacer": "Anota durante tu caminata cuántos platanillos ves, si están agrupados, su edad (maduros o juveniles) y si hay restos de platanillo en el suelo."}], "foco": {"10": "50% 78%", "02": "25% 50%"}};
+const DATA = {"sitio": {"nombre": "Yurumí ¡A la mano!", "subtitulo": "Caja de herramientas de gestión ambiental", "bajada": "Ocho proyectos de campo en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta), para conocer, medir y cuidar sus ecosistemas. Cada proyecto trae un video, fichas de sus especies y su ecosistema, una nota científica y un póster.", "lugar": "RNSC Yurumí, Puerto López (Meta)", "creditos": "Grupo de Gestión Ambiental, Ecosistemas Terrestres y Biología Tropical", "periodo": "2026-2", "licencia": "CC BY 4.0"}, "proyectos": [{"id": "p01", "estado": "listo", "titulo": "El hogar descompuesto de las termitas", "subtitulo": null, "ecosistema": "Bosque de galería", "foto": "02", "foto_texto": "Termita soldado de Nasutitermes corniger (Foto: Alison Pesillo)", "video": null, "fichas": ["termitas-bosque-galeria", "termitas-nasutitermes-nasus", "termitas-nasutitermes-troncos"], "nota": null}, {"id": "p02", "estado": "listo", "titulo": "Entre certezas", "subtitulo": "Líquenes y musgos en los árboles", "ecosistema": "Bosque de galería", "foto": "05", "foto_texto": "Octoblepharum sp. sobre corteza (Valdiri, 2026)", "video": {"id": "yuT1f7jNXw8", "short": true}, "fichas": ["platanillo-bosque-galeria", "epifitos-octoblepharum"], "nota": null}, {"id": "p03", "estado": "listo", "titulo": "Entre pétalos y zumbidos", "subtitulo": null, "ecosistema": "Pastizal", "foto": "08", "foto_texto": "Desmocelis villosa en los pastizales de Yurumí (Foto: Alison Pesillo)", "video": {"id": "8t-rkZv2ihU", "short": true}, "fichas": ["petalos-pastizal", "petalos-trigona-spinipes", "petalos-desmocelis-villosa"], "nota": null}, {"id": "p04", "estado": "listo", "titulo": "Guardianas de la orilla", "subtitulo": "Variación morfológica, sexual y ecológica de Lycosidae como herramienta de apoyo a la gestión del recurso hídrico en la RNSC Yurumí, Puerto López, Meta", "ecosistema": "Bosque de galería", "foto": "10", "foto_texto": "Cuidado maternal en arañas de la familia Lycosidae", "video": {"id": "DbKizPdt6FE", "short": true}, "fichas": ["bosque-galeria-arcoiris", "aranas-lycosidae"], "nota": null}, {"id": "p05", "estado": "listo", "titulo": "Hojas bajo la lupa", "subtitulo": "Relación entre rasgos funcionales y herbivoría para identificar especies vegetales potencialmente resistentes al daño foliar en la RNSC Yurumí, Puerto López, Meta", "ecosistema": "Bosque de galería", "foto": "11", "foto_texto": "Oruga de la familia Geometridae alimentándose de una hoja", "video": null, "fichas": ["bosque-galeria-arcoiris", "hojas-geometridae"], "nota": null}, {"id": "p06", "estado": "listo", "titulo": "Un recurso entre parches", "subtitulo": "Distribución del platanillo y su importancia potencial para los monos maiceros", "ecosistema": "Bosque de galería", "foto": "12", "foto_texto": "Sapajus apella alimentándose de platanillo (Pulido, 2026)", "video": null, "fichas": ["platanillo-bosque-galeria", "platanillo-sapajus-apella", "platanillo-phenakospermum"], "nota": null}, {"id": "p07", "estado": "listo", "titulo": "La hoja que nadie se comió", "subtitulo": null, "ecosistema": null, "foto": null, "foto_texto": null, "video": {"id": "oWcEV79uiY4", "short": true}, "fichas": [], "nota": null}, {"id": "p08", "estado": "listo", "titulo": "Todo empieza con una hoja", "subtitulo": "¿Quién se come a quién bajo el agua?", "ecosistema": null, "foto": null, "foto_texto": null, "video": {"id": "9RMvCWEwPJY", "short": true}, "fichas": [], "nota": null}], "fichas": [{"slug": "termitas-bosque-galeria", "tipo": "ecosistema", "img": "01", "titulo": "El refugio de la biodiversidad", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Bosque de galería, RNSC Yurumí. Foto: Mariana Soto", "pregunta": "¿Por qué las plantas en este bosque son tan abundantes?", "respuesta": "Este bosque solo podrás encontrarlo cerca de ríos y lagos, lo que favorece suelos más fértiles. ¡Viven cerca del supermercado más grande del mundo!", "dato": "El bosque de galería conecta hábitats, abarca una gran cantidad de especies y protege las fuentes de agua.", "hacer": "No dañes las plantas ni contamines el agua: es el hogar de muchos seres vivos que quieren seguir viviendo allí."}, {"slug": "termitas-nasutitermes-nasus", "tipo": "especie", "img": "02", "titulo": "Hasta el ser más diminuto es extraordinariamente complejo", "organismo": "Nasutitermes corniger", "cientifico": true, "comun": "Termita", "leyenda": "Nasutitermes corniger, RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Para qué sirve el “pico” de la termita?", "respuesta": "El “pico” de la termita se llama nasus; le sirve para defenderse ante una amenaza, pues expulsa una sustancia corrosiva para sus enemigos. Si llevas un gas pimienta para defenderte en las calles, ¡estás imitando a una termita!", "dato": "El nasus está presente solo en las termitas soldado, que deben defender la colonia de las hormigas.", "hacer": "La sustancia que producen para defenderse no es dañina para el ser humano. ¡No te asustes ni la mates! No te puede hacer ningún daño."}, {"slug": "termitas-nasutitermes-troncos", "tipo": "especie", "img": "03", "titulo": "Termitas en su hogar: troncos en estado de descomposición", "organismo": "Nasutitermes corniger", "cientifico": true, "comun": "Termita", "leyenda": "Nasutitermes corniger, RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Por qué las termitas viven sobre troncos medianamente descompuestos?", "respuesta": "Dentro de estos troncos encuentran alimento, refugio y las condiciones que necesitan para sobrevivir. Para ellas es como la casa a la que llegan tras un largo día de trabajo, donde encuentran a su familia y todas las comodidades de un hogar.", "dato": "Al alimentarse de estos troncos devuelven sus nutrientes al suelo, donde pueden ser usados por otros organismos.", "hacer": "Si ves un árbol en descomposición, ¡no lo destruyas! Las termitas y el ecosistema te lo agradecerán."}, {"slug": "platanillo-bosque-galeria", "tipo": "ecosistema", "img": "04", "titulo": "Bosque de galería: trama de vida", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Mosaico de bosque de galería (Vega, 2026)", "pregunta": "¿Qué papel cumple el bosque de galería en la RNSC Yurumí?", "respuesta": "Son franjas de vegetación que crecen a lo largo de los ríos. En Yurumí acompañan el río Yucao, en Puerto López, Meta; protegen el cauce y ayudan a regular el caudal y la disponibilidad de agua. Unos son inundables y otros no, y conviven con sabanas, morichales y serranía.", "cifra": "216 ha", "dato": "de mata de monte y bosques de galería: el 27 % de las 800 ha de la Reserva.", "hacer": "Anota durante tu caminata qué tan cerca del río está el bosque y cuántos niveles de vegetación distingues."}, {"slug": "epifitos-octoblepharum", "tipo": "especie", "img": "05", "titulo": "El musgo que le huye al río", "organismo": "Octoblepharum sp.", "cientifico": true, "comun": "Musgo", "leyenda": "Octoblepharum sp. sobre corteza (Valdiri, 2026)", "pregunta": "¿Por qué este musgo blanquecino abunda más lejos del agua?", "respuesta": "Este musgo crece erguido, en cojines compactos, como una esponja que se cierra sobre sí misma para no perder agua. Por eso resiste mejor la sequedad de los troncos alejados del río, donde los musgos de manto no aguantan tanto.", "cifra": "P = 0,036", "dato": "Encontramos que su cobertura aumenta mientras más lejos está del cuerpo de agua (no es azar).", "hacer": "Compara dos troncos, uno cerca y otro lejos del caño: si ves más de este musgo blanquecino en el más alejado, acabas de confirmar nuestro hallazgo."}, {"slug": "petalos-pastizal", "tipo": "ecosistema", "img": "06", "titulo": "¡El pasto esconde todo un mundo!", "organismo": "Pastizal", "cientifico": false, "leyenda": "Pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿De verdad puede pasar tanto en un lugar que parece tener solamente pasto?", "respuesta": "En el pastizal crecen plantas de distintas formas y tamaños que sirven de alimento y refugio para muchos animales. Es como un edificio lleno de vecinos: las plantas, los insectos y otros seres vivos comparten el espacio y dependen unos de otros de distintas maneras. En nuestro estudio encontramos que dos plantas del mismo pastizal recibían cantidades diferentes de visitas.", "dato": "Este ecosistema ofrece alimento, refugio y lugares para vivir a muchos animales pequeños.", "estado": "Pastizales bajo presión por la expansión agropecuaria y la transformación del suelo.", "hacer": "Camina por los senderos, evita pisar las flores y no dejes basura. ¡Hasta el rincón más pequeño del pastizal puede ser importante para la vida!"}, {"slug": "petalos-trigona-spinipes", "tipo": "especie", "img": "07", "titulo": "Una pequeña visitante muy trabajadora", "organismo": "Trigona spinipes", "cientifico": true, "comun": "Abeja", "leyenda": "Trigona spinipes en los pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "¿Qué hace una abeja cuando se posa sobre una flor?", "respuesta": "Puede estar buscando alimento y, mientras se mueve entre las flores, puede llevar un polvito dorado llamado polen de una a otra. ¡Es como una repartidora que visita distintas casas y lleva un pequeño paquete que ayuda a las plantas a formar semillas! En las observaciones, <em>Trigona spinipes<\/em> visitó con mayor frecuencia <em>Desmocelis villosa<\/em> que <em>Hyptis conferta<\/em>.", "dato": "Estas abejas viven en colonias y pueden defender juntas su nido cuando detectan algún peligro.", "estado": "Sin categoría confirmada en la UICN. Sin categoría nacional confirmada.", "hacer": "Si encuentras una abeja sobre una flor, obsérvala sin tocarla. ¡Los insectos también necesitan lugares tranquilos para alimentarse!"}, {"slug": "petalos-desmocelis-villosa", "tipo": "especie", "img": "08", "titulo": "Una flor que destaca entre las demás", "organismo": "Desmocelis villosa", "cientifico": true, "comun": "Planta con flor", "leyenda": "Desmocelis villosa en los pastizales de la RNSC Yurumí. Foto: Alison Pesillo", "pregunta": "Si hay más flores de un tipo que de otro, ¿significa que serán las favoritas de los insectos?", "respuesta": "<em>Desmocelis villosa<\/em> tiene pequeñas flores rosadas o moradas que resaltan entre la vegetación del pastizal. Sus flores pueden ofrecer alimento a los insectos, ¡como una pequeña tienda de comida en medio de un vecindario! En nuestro estudio recibió más visitas de abejas que <em>Hyptis conferta<\/em>, aunque había menos plantas de su tipo.", "dato": "La forma de sus flores y el alimento que ofrecen podrían hacerlas más atractivas para las abejas que otras plantas.", "estado": "Sin categoría confirmada en la UICN. Sin categoría nacional confirmada.", "hacer": "Observa las flores pequeñas que crecen entre el pasto. ¡No las arranques! Pueden ser una fuente de alimento para los insectos."}, {"slug": "bosque-galeria-arcoiris", "tipo": "ecosistema", "img": "09", "titulo": "El paraíso al final del arcoíris", "organismo": "Bosque de galería", "cientifico": false, "leyenda": "Bosque de galería visto desde la sabana, con un arcoíris en el cielo. RNSC Yurumí", "pregunta": "¿Qué hay al final del arcoíris?", "respuesta": "Un bosque de galería: un tipo de bosque que crece a lo largo de ríos, quebradas y otros cuerpos de agua, formando una franja de vegetación que contrasta con la vegetación que lo rodea.", "dato": "El IDEAM identifica en la Orinoquía al bosque de galería inundable basal como uno de los ecosistemas regionales.", "hacer": "Recorrerlo con botas pantaneras, hidratación y la mejor actitud."}, {"slug": "aranas-lycosidae", "tipo": "especie", "img": "10", "titulo": "El peso de una nueva generación", "organismo": "Lycosidae", "cientifico": false, "comun": "Araña lobo", "leyenda": "Cuidado maternal en arañas de la familia Lycosidae, RNSC Yurumí", "pregunta": "¿Cuántas crías puede cargar a la vez?", "respuesta": "Las arañas lobo pueden cargar aproximadamente entre 40 y más de 100 crías sobre el abdomen, aunque la cantidad varía según la especie y el tamaño de la hembra. En algunas especies se han registrado cifras cercanas a las 300.", "dato": "En las Lycosidae la madre no se limita a proteger los huevos: las crías recién nacidas suben a su abdomen y permanecen allí durante varios días.", "hacer": "¡No tener miedo! No están allí para lastimarte."}, {"slug": "hojas-geometridae", "tipo": "especie", "img": "11", "titulo": "Hojas bajo la lupa", "organismo": "Geometridae", "cientifico": false, "comun": "Oruga medidora", "leyenda": "Oruga de la familia Geometridae alimentándose de una hoja", "pregunta": "¿Plaga o supervivencia?", "respuesta": "Aunque algunas especies pueden convertirse en plagas cuando sus poblaciones aumentan y causan daños importantes a los cultivos, la mayoría forma parte de las interacciones naturales entre plantas y herbívoros.", "dato": "El nombre de esta oruga viene de su forma de moverse, parecida a cuando se mide a palmos: con la mano abierta y luego juntando el meñique con el pulgar.", "hacer": "¡Meditar sobre cómo la metamorfosis permite el paso de esta pequeña oruga a una polilla!"}, {"slug": "platanillo-sapajus-apella", "tipo": "especie", "img": "12", "titulo": "El platanillo como recurso alimenticio", "organismo": "Sapajus apella", "cientifico": true, "comun": "Mono maicero", "leyenda": "Sapajus apella alimentándose de platanillo (Pulido, 2026)", "pregunta": "¿Qué comen los maiceros cuando no hay frutas?", "respuesta": "No dependen de un solo alimento: aprovechan lo que encuentran cuando escasea la comida, como la base de la hoja (pecíolo) del platanillo.", "cifra": "3,4 kg", "dato": "de restos de alimento a lo largo de los parches de platanillo: así supimos que los maiceros lo usan.", "hacer": "Observa a los maiceros con binoculares desde una distancia prudente y anota en tu ficha de registro qué comen."}, {"slug": "platanillo-phenakospermum", "tipo": "especie", "img": "13", "titulo": "El platanillo como recurso alimenticio", "organismo": "Phenakospermum guyannense", "cientifico": true, "comun": "Platanillo", "leyenda": "Phenakospermum guyannense en bosque de galería (Jiménez, 2026)", "pregunta": "¿Cómo cambia la oferta de platanillo entre parches?", "respuesta": "Las plantas adultas suelen tener más hojas que las jóvenes. Es como una despensa en la que algunas plantas guardan más alimento disponible, mientras las jóvenes crecen y renuevan el follaje.", "cifra": "41", "dato": "platanillos distribuidos en 7 parches.", "hacer": "Anota durante tu caminata cuántos platanillos ves, si están agrupados, su edad (maduros o juveniles) y si hay restos de platanillo en el suelo."}], "foco": {"10": "50% 78%", "02": "25% 50%"}};
 const PROJ = DATA.proyectos, FICHAS = DATA.fichas, FOCO = DATA.foco || {};
 const ORIG = 'https://yurumi-a-la-mano.github.io/';
 const LEAF = '<svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-5-2-7-6.5-6-12 4-.8 8.5.6 10.5 4.2 1.5 2.6 1 5.6-4.5 7.8z"/><path d="M12 21c-1.5-3.8-3-6.6-6-11"/></svg>';
@@ -602,7 +607,30 @@ const fichaBy = s => FICHAS.find(f => f.slug === s);
 const projOf = slug => PROJ.filter(p => p.fichas.includes(slug));
 const img = (kind, n, alt, eager) => n ? `<img src="img/${kind}/${n}.jpg" alt="${alt||''}" loading="${eager?'eager':'lazy'}" style="object-position:${FOCO[n]||'50% 50%'}">` : '';
 const photo = (n, alt, cls='', eager) => n ? `<div class="photo ${cls}">${img('fotos', n, alt, eager)}</div>` : `<div class="photo pending ${cls}" aria-hidden="true">Foto pendiente</div>`;
-const orgHTML = f => f.cientifico ? `<span class="sci">${f.organismo}</span>` : f.organismo;
+const orgHTML = f => f.cientifico ? f.organismo.replace(/^(.+?)( sp\.)?$/, (m, n, sp) => `<span class="sci">${n}</span>${sp || ''}`) : f.organismo;
+// sciMark: pone en cursiva los nombres científicos en los nodos de texto (no toca atributos como alt o aria-label)
+const SCI_NAMES = ['Phenakospermum guyannense','Nasutitermes corniger','Desmocelis villosa','Trigona spinipes','Hyptis conferta','Sapajus apella','Octoblepharum'];
+const SCI_RE = new RegExp(SCI_NAMES.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+function sciMark(root){
+  if (!root) return;
+  const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n =>
+    (!n.nodeValue.trim() || n.parentElement.closest('.sci, script, style, textarea, input')) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  const nodes = []; while (tw.nextNode()) nodes.push(tw.currentNode);
+  nodes.forEach(n => {
+    const t = n.nodeValue; SCI_RE.lastIndex = 0; if (!SCI_RE.test(t)) return; SCI_RE.lastIndex = 0;
+    const frag = document.createDocumentFragment(); let last = 0, m;
+    while ((m = SCI_RE.exec(t))){
+      if (m.index > last) frag.appendChild(document.createTextNode(t.slice(last, m.index)));
+      const em = document.createElement('em'); em.className = 'sci'; em.textContent = m[0]; frag.appendChild(em);
+      last = m.index + m[0].length;
+    }
+    if (last < t.length) frag.appendChild(document.createTextNode(t.slice(last)));
+    n.parentNode.replaceChild(frag, n);
+  });
+}
+// Nombres científicos que se ponen en cursiva dentro de pies de foto y textos
+const SCI = [...new Set(FICHAS.filter(f => f.cientifico).map(f => f.organismo.replace(/ sp\.$/, '')))].concat(['Hyptis conferta']).sort((a, b) => b.length - a.length);
+const sciWrap = t => t ? SCI.reduce((s, n) => s.split(n).join(`<span class="sci">${n}</span>`), t) : t;
 const cap = s => s ? s.replace(/\(Foto: ([^)]+)\)/, '· Foto: $1') : '';
 
 function projectItems(){
@@ -627,15 +655,15 @@ V.inicio = () => `
     <div class="hero-text">
       <p class="overline ld" style="--d:100ms">RNSC Yurumí · Puerto López, Meta · 2026-2</p>
       <h1 id="h-hero" class="ld" style="--d:220ms"><span class="tl">Conocer, medir</span> <span class="tl">y cuidar los ecosistemas</span> <span class="tl">de <span class="hl">Yurumí</span></span></h1>
-      <p class="lead ld" style="--d:380ms"><span class="ln">Ocho proyectos de campo para descubrir <b class="rotator" aria-label="termitas, musgos, abejas, arañas lobo, orugas, monos maiceros"><span class="on">termitas</span><span>musgos</span><span>abejas</span><span>arañas lobo</span><span>orugas</span><span>monos maiceros</span></b> en la reserva.</span> <span class="ln">Cada uno reúne un video, fichas de especies y ecosistemas, una nota científica y un póster.</span></p>
-      <div class="actions ld" style="--d:500ms"><a class="btn" href="#proyectos">Ver los 8 proyectos ${ARROW}</a><button class="link" type="button" data-search aria-haspopup="dialog">Buscar una especie ${ARROW}</button></div>
+      <p class="lead ld" style="--d:380ms"><span class="ln">Ocho proyectos de campo para descubrir <b class="rotator" aria-label="termitas, musgos, abejas, arañas lobo, orugas, monos maiceros"><span class="on">termitas</span><span>musgos</span><span>abejas</span><span>arañas lobo</span><span>orugas</span><span>monos maiceros</span></b> en la Reserva.</span> <span class="ln">Cada uno reúne un video, fichas de especies y ecosistemas, una nota científica y un póster.</span></p>
+      <div class="actions ld" style="--d:500ms"><a class="btn" href="#proyectos">Ver los 8 proyectos ${ARROW}</a><button class="link" type="button" data-search aria-haspopup="dialog">Buscar una ficha ${ARROW}</button></div>
     </div>
     <div class="collage" aria-label="Fotografías de campo">
       <a class="ph a" href="#p06" data-speed="-0.06" style="--d:350ms"><figure style="margin:0;display:contents">${photo('12','Mono maicero comiendo platanillo','',true)}<figcaption><span class="sci">Sapajus apella</span> comiendo platanillo. Foto: Pulido.</figcaption></figure></a>
       <a class="ph b" href="#p03" data-speed="0.08" style="--d:550ms"><figure style="margin:0;display:contents">${photo('08','Flor de Desmocelis villosa en el pastizal','',true)}<figcaption><span class="sci">Desmocelis villosa</span>. Foto: Alison Pesillo.</figcaption></figure></a>
       <a class="ph c" href="#p01" data-speed="-0.14" style="--d:750ms"><figure style="margin:0;display:contents">${photo('02','Termita soldado','',true)}<figcaption>Termita soldado.</figcaption></figure></a>
-      <div class="sticker s1 ld" style="--d:1100ms" data-speed="-0.1"><span class="float"><i>8</i><span>Proyectos de campo<small>en la reserva</small></span></span></div>
-      <div class="sticker s2 ld" style="--d:1300ms" data-speed="0.12"><span class="float d2"><i>${FICHAS.length}</i><span>Fichas para tu visita<small>especies y ecosistemas</small></span></span></div>
+      <a class="sticker s1 ld" href="#proyectos" style="--d:1100ms" data-speed="-0.1"><span class="float"><i>8</i><span>Proyectos de campo<small>en la Reserva</small></span></span></a>
+      <a class="sticker s2 ld" href="#fichas" style="--d:1300ms" data-speed="0.12"><span class="float d2"><i>${FICHAS.length}</i><span>Fichas para tu visita<small>especies y ecosistemas</small></span></span></a>
     </div>
   </div></section>
   ${marquee()}
@@ -647,9 +675,12 @@ V.inicio = () => `
   </div></section>`;
 
 function marquee(){
-  const names = [...new Set(FICHAS.filter(f=>f.tipo==='especie').map(f=>f.organismo))];
-  const row = names.map(n=>`<span>${n}${LEAF}</span>`).join('');
-  return `<div class="marquee" aria-hidden="true"><div class="track">${row}${row}</div></div>`;
+  const esp = FICHAS.filter(f=>f.tipo==='especie');
+  const names = [...new Set(esp.map(f=>f.organismo))];
+  // Cada nombre enlaza a su ficha (si hay dos fichas del mismo organismo, a la primera).
+  // La segunda copia de la fila solo existe para que la animación sea continua: se oculta a lectores de pantalla y al teclado.
+  const row = hidden => names.map(n=>`<a href="#ficha-${esp.find(f=>f.organismo===n).slug}"${hidden ? ' tabindex="-1" aria-hidden="true"' : ''}><span>${n}${LEAF}</span></a>`).join('');
+  return `<div class="marquee" aria-label="Especies de las fichas"><div class="track">${row(false)}${row(true)}</div></div>`;
 }
 function guide(){
   return `<section class="guide" aria-labelledby="h-guia">${BLOB}<div class="wrap g12">
@@ -658,7 +689,7 @@ function guide(){
     <div class="g-head"><div class="t"><p class="overline">01 · Guía</p><h2 id="h-guia">Cómo usar la caja</h2></div><p class="g-desc">En esta caja encontrarás ocho proyectos de campo realizados en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta). Para conocerlos de forma sencilla, cada uno incluye un video y fichas didácticas sobre sus especies y ecosistemas. Para profundizar, todos cuentan con una nota científica, y cuatro de ellos también con un póster.</p></div>
     <ol class="steps">
       <li><span class="n">01</span><h3>Para conocer un ecosistema</h3><p>Mira el video del proyecto y luego lee sus fichas.</p></li>
-      <li><span class="n">02</span><h3>Para buscar una especie</h3><p>Entra a <a href="#fichas">Fichas</a>: ahí están todas las especies y ecosistemas de la reserva.</p></li>
+      <li><span class="n">02</span><h3>Para buscar una especie</h3><p>Entra a <a href="#fichas">Fichas</a>: ahí están todas las especies y ecosistemas de la Reserva.</p></li>
       <li><span class="n">03</span><h3>Para tu visita a Yurumí</h3><p>Cada ficha trae una actividad en «Qué puedes hacer».</p></li>
     </ol>
     </div></div></section>`;
@@ -667,7 +698,7 @@ function guide(){
 V.proyectos = () => `
   <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><span>Proyectos</span></nav></div>
   <section class="projects page-top" aria-labelledby="h-p"><div class="wrap">
-    <div class="sec-head g12"><div class="t"><p class="overline">RNSC Yurumí · 2026-2</p><h1 id="h-p">Proyectos de campo</h1></div><p>Ocho investigaciones en el bosque de galería y el pastizal de la reserva. Cada una trae su video, sus fichas, su nota científica y su póster.</p></div>
+    <div class="sec-head g12"><div class="t"><p class="overline">RNSC Yurumí · 2026-2</p><h1 id="h-p">Proyectos de campo</h1></div><p>Ocho investigaciones en el bosque de galería y el pastizal de la Reserva. Cada una trae su video, sus fichas, su nota científica y su póster.</p></div>
     ${projectFilters()}
     <ul class="grid" id="grid">${projectItems()}</ul>
   </div></section>`;
@@ -682,7 +713,7 @@ function projectView(p){
   const slots = [...eco, ...esp];
   while (slots.length < 3) slots.push(null);
   const pendCard = (label, tit, sub) => `<li><div class="cat-p"><div class="photo pending"><div class="top"><span>${IC.pend}Pendiente</span><b>${label}</b></div></div><span class="org">${tit}</span><p class="ttl">${sub}</p></div></li>`;
-  const fichaRow = f => f ? `<li><a href="#ficha-${f.slug}"><div class="photo">${img('fotos', f.img, '')}<div class="top"><span>${IC[f.tipo]}${f.tipo === 'especie' ? 'Especie' : 'Ecosistema'}</span><b>Ficha</b></div></div><span class="org ${f.cientifico?'sci':''}">${f.organismo}</span><p class="ttl">${f.comun ? f.comun + ' — ' : ''}${f.titulo}</p></a></li>`
+  const fichaRow = f => f ? `<li><a href="#ficha-${f.slug}"><div class="photo">${img('fotos', f.img, '')}<div class="top"><span>${IC[f.tipo]}${f.tipo === 'especie' ? 'Especie' : 'Ecosistema'}</span><b>Ficha</b></div></div><span class="org">${orgHTML(f)}</span><p class="ttl">${f.comun ? f.comun + ' — ' : ''}${f.titulo}</p></a></li>`
     : pendCard('Ficha', 'Ficha pendiente', 'Aún no está en la carpeta');
   return `
   <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><a href="#proyectos">Proyectos</a><span>/</span><span>${p.titulo}</span></nav></div>
@@ -691,13 +722,13 @@ function projectView(p){
   </section>
   <div class="p-media">
     ${p.video && EMBED ? `<div class="p-short embed"><iframe src="https://www.youtube-nocookie.com/embed/${p.video.id}?rel=0&playsinline=1" title="Video del proyecto: ${p.titulo}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>` : p.video ? `<a class="p-short" href="https://www.youtube.com/shorts/${p.video.id}" target="_blank" rel="noopener" aria-label="Ver el video del proyecto en YouTube"><span class="p-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><b>Ver el video</b><small>Se abre en YouTube</small></a>` : `<div class="p-short pend">Video pendiente</div>`}
-    ${p.foto ? `<figure class="p-photo" data-par>${photo(p.foto, p.foto_texto, '', true)}<figcaption>${cap(p.foto_texto)}</figcaption></figure>` : `<div class="p-photo">${photo(null)}</div>`}
+    ${p.foto ? `<figure class="p-photo" data-par>${photo(p.foto, p.foto_texto, '', true)}<figcaption>${sciWrap(cap(p.foto_texto))}</figcaption></figure>` : `<div class="p-photo">${photo(null)}</div>`}
   </div>
   <section class="wrap g12 p-body">
     <div class="side"><p class="overline">Materiales del proyecto</p></div>
     <div class="main">
       <ul class="cat mats">${slots.map(fichaRow).join('')}${pendCard('Nota científica', 'Resultados del proyecto', 'Aún no está en la carpeta')}</ul>
-      <p class="muted" style="margin:0;font-size:14px">Créditos: Grupo de gestión ambiental, ecosistemas terrestres y biología tropical · 2026-2</p>
+      <p class="muted" style="margin:0;font-size:14px">Créditos: Grupo de Gestión Ambiental, Ecosistemas Terrestres y Biología Tropical · 2026-2</p>
     </div>
   </section>
   <nav class="wrap" aria-label="Otros proyectos"><div class="pager">
@@ -711,13 +742,13 @@ V.fichas = () => {
   return `
   <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><span>Fichas</span></nav></div>
   <section class="wrap page-top" aria-labelledby="h-f">
-    <div class="sec-head g12"><div class="t"><p class="overline">Catálogo</p><h1 id="h-f">Fichas de especies y ecosistemas</h1></div><p>Todas las especies y ecosistemas de Yurumí a la mano. Cada ficha indica en qué proyecto se estudió y trae su versión original en PDF.</p></div>
+    <div class="sec-head g12"><div class="t"><p class="overline">Catálogo</p><h1 id="h-f">Fichas de especies y ecosistemas</h1></div><p>Todas las especies y ecosistemas de Yurumí ¡A la mano! Cada ficha indica en qué proyecto se estudió y trae su versión original en PDF.</p></div>
     <div class="filters" role="group" aria-label="Filtrar por tipo" data-target="cat">
       ${[['all','Todas'],['especie','Especies'],['ecosistema','Ecosistemas']].map(([k,l],i)=>`<button type="button" data-f="${k}" aria-pressed="${i===0}">${IC[k]}${l} <span>${c(k)}</span></button>`).join('')}
     </div>
     <ul class="cat" id="cat">${FICHAS.map(f => `<li data-h="${f.tipo}"><a href="#ficha-${f.slug}">
       <div class="photo">${img('fotos', f.img, '')}<div class="top"><span>${IC[f.tipo]}${f.tipo === 'especie' ? 'Especie' : 'Ecosistema'}</span></div></div>
-      <span class="org ${f.cientifico?'sci':''}">${f.organismo}</span>
+      <span class="org">${orgHTML(f)}</span>
       <p class="ttl">${f.comun ? f.comun + ' — ' : ''}${f.titulo}</p></a></li>`).join('')}</ul>
   </section>`;
 };
@@ -743,15 +774,15 @@ function fichaView(f){
   return `
   <section class="f-hero" aria-labelledby="h-fi">
     <div class="f-bg" data-speed="0.18">${img('fotos', f.img, f.leyenda, true)}</div>
-    <div class="wrap f-crumbs"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><a href="#fichas">Fichas</a><span>/</span><span>${f.organismo}</span></nav></div>
+    <div class="wrap f-crumbs"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><a href="#fichas">Fichas</a><span>/</span><span>${orgHTML(f)}</span></nav></div>
     <div class="wrap f-text">
       <p class="overline">Ficha de ${f.tipo}</p>
-      <h1 id="h-fi" class="f-org ${f.cientifico?'sci':''}">${f.organismo}</h1>
+      <h1 id="h-fi" class="f-org">${orgHTML(f)}</h1>
       ${f.comun ? `<p class="common">${f.comun}</p>` : ''}
       <h2>${f.titulo}</h2>
       <div class="f-est"><p class="overline">Se estudió en</p><div class="tags">${ps.map(p=>`<a class="tag" href="#${p.id}">${p.titulo}</a>`).join('')}</div></div>
     </div>
-    <p class="f-cr">${f.leyenda}</p>
+    <p class="f-cr">${sciWrap(f.leyenda)}</p>
   </section>
   <section class="orig"><div class="wrap g12">
     <div class="t"><h2>${MAS[f.slug][0]}</h2><p class="muted" style="margin:0">Aquí encontrarás más información sobre ${MAS[f.slug][1]}.</p><a class="link" href="${ORIG}recursos/pdf/${f.slug}.pdf" target="_blank" rel="noopener">Abrir el PDF ${ARROW}</a></div>
@@ -769,7 +800,7 @@ V.notas = () => `
     </div>
   </section>`;
 
-const CITA = 'Grupo de gestión ambiental, ecosistemas terrestres y biología tropical (2026). Yurumí a la mano: caja de herramientas. Universidad El Bosque, Museo de Ciencias. RNSC Yurumí, Puerto López (Meta).';
+const CITA = 'Grupo de Gestión Ambiental, Ecosistemas Terrestres y Biología Tropical (2026). Yurumí ¡A la mano!: caja de herramientas. Universidad El Bosque, Museo de Ciencias. RNSC Yurumí, Puerto López (Meta).';
 const AUTORES = ['Juliana Ramos','Juan Lozano','Andres Caceres','Jose Nieves','Paula Vega','Ximena Pulido','Danna Jimenez','Nicolas Valdiri','Sara Fajardo','Alison Pesillo','Cesar Andrade','Julian Ortiz','Mariana Soto','Salome Lombana','Sara Corredor','Daniel Balcázar','Esteban Olaya'];
 const PROFES = ['Patricia Torres','Karem Castro','Monica Castillo'];
 const nombres = l => `<ul class="names">${l.map(n => `<li>${n}</li>`).join('')}</ul>`;
@@ -778,20 +809,20 @@ V.acerca = () => `
   <section class="wrap page-top">
     <div class="sec-head g12"><div class="t"><p class="overline">Acerca de</p><h1>Una caja de herramientas hecha en campo</h1></div></div>
     <div class="g12 about">
-      <p class="intro">Yurumí a la mano es una caja de herramientas de la Universidad El Bosque y su Museo de Ciencias, construida a partir de proyectos de campo en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta).</p>
-      <nav class="toc" aria-label="En esta página"><p class="overline">En esta página</p><ol><li><button type="button" data-sec="para">Para qué sirve</button></li><li><button type="button" data-sec="quien">Quién la hizo</button></li><li><button type="button" data-sec="reserva">La reserva</button></li><li><button type="button" data-sec="coberturas">Coberturas e hidrografía</button></li><li><button type="button" data-sec="clima">Clima y relieve</button></li><li><button type="button" data-sec="puerto">Puerto López</button></li><li><button type="button" data-sec="citar">Licencia y cómo citar</button></li></ol></nav>
+      <p class="intro">Yurumí ¡A la mano! es una caja de herramientas de la Universidad El Bosque y su Museo de Ciencias, construida a partir de proyectos de campo en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta).</p>
+      <nav class="toc" aria-label="En esta página"><p class="overline">En esta página</p><ol><li><button type="button" data-sec="para">Para qué sirve</button></li><li><button type="button" data-sec="quien">Quién la hizo</button></li><li><button type="button" data-sec="reserva">La Reserva</button></li><li><button type="button" data-sec="coberturas">Coberturas e hidrografía</button></li><li><button type="button" data-sec="clima">Clima y relieve</button></li><li><button type="button" data-sec="puerto">Puerto López</button></li><li><button type="button" data-sec="citar">Licencia y cómo citar</button></li></ol></nav>
       <div class="about-c">
-      <section id="para" tabindex="-1"><h2>Para qué sirve</h2><div><p>Está pensada para visitantes de la reserva, docentes, estudiantes, gestores ambientales y comunidades que quieran conocer sus ecosistemas, replicar un monitoreo sencillo o apoyar decisiones de manejo con datos de campo.</p></div></section>
+      <section id="para" tabindex="-1"><h2>Para qué sirve</h2><div><p>Está pensada para visitantes de la Reserva, docentes, estudiantes, gestores ambientales y comunidades que quieran conocer sus ecosistemas, replicar un monitoreo sencillo o apoyar decisiones de manejo con datos de campo.</p></div></section>
       <section id="quien" tabindex="-1"><h2>Quién la hizo</h2><div>
-        <p>Grupo de gestión ambiental, ecosistemas terrestres y biología tropical, periodo 2026-2. Universidad El Bosque · Museo de Ciencias. Los créditos de las fotografías aparecen en cada ficha.</p>
+        <p>Grupo de Gestión Ambiental, Ecosistemas Terrestres y Biología Tropical, periodo 2026-2. Universidad El Bosque · Museo de Ciencias. Los créditos de las fotografías aparecen en cada ficha.</p>
         <p class="overline" style="margin-top:var(--s6)">Autores</p>
         ${nombres(AUTORES)}
         <p class="overline" style="margin-top:var(--s6)">Profesoras</p>
         ${nombres(PROFES)}
       </div></section>
-      <section id="reserva" tabindex="-1"><h2>La reserva</h2><div>
+      <section id="reserva" tabindex="-1"><h2>La Reserva</h2><div>
         <p>La Reserva Natural de la Sociedad Civil (RNSC) Yurumí está en la vereda Matazul Yucao, al nororiente del municipio de Puerto López, Meta, en la altillanura de la Orinoquia colombiana. Tiene 800 hectáreas.</p>
-        <p>Se inscribió en Resnatur en 2013 y fue reconocida oficialmente como reserva mediante la Resolución 029 del 14 de abril de 2015. Esa resolución fue modificada por la Resolución 117 de 2021 de Parques Nacionales Naturales.</p>
+        <p>Se inscribió en Resnatur en 2013 y fue reconocida oficialmente como Reserva mediante la Resolución 029 del 14 de abril de 2015. Esa resolución fue modificada por la Resolución 117 de 2021 de Parques Nacionales Naturales.</p>
       </div></section>
       <section id="coberturas" tabindex="-1"><h2>Coberturas e hidrografía</h2><div>
         <ul class="stats">
@@ -799,7 +830,7 @@ V.acerca = () => `
           <li><b>216 ha</b><span>de mata de monte y bosque de galería (27 %)</span></li>
           <li><b>432 ha</b><span>de serranía llanera (54 %)</span></li>
         </ul>
-        <p>Más de 400 ha están en regeneración natural asistida. La reserva está dentro de la subcuenca del río Yucao, afluente importante del río Meta. Por ella pasan los caños Conuco, Barbasco y Alcornoco, y allí se han identificado 4 nacimientos de agua.</p>
+        <p>Más de 400 ha están en regeneración natural asistida. La Reserva está dentro de la subcuenca del río Yucao, afluente importante del río Meta. Por ella pasan los caños Conuco, Barbasco y Alcornoco, y allí se han identificado 4 nacimientos de agua.</p>
       </div></section>
       <section id="clima" tabindex="-1"><h2>Clima y relieve</h2><div>
         <dl class="kv">
@@ -823,7 +854,7 @@ V.acerca = () => `
       <section id="citar" tabindex="-1"><h2>Licencia y cómo citar</h2><div>
         <p>Todo el contenido se publica bajo la licencia Creative Commons Atribución 4.0 Internacional (CC BY 4.0). Puedes copiarlo, adaptarlo y compartirlo, siempre que cites la fuente.</p>
         <p class="overline" style="margin-top:var(--s6)">Cómo citar la caja completa</p>
-        <p class="cite" id="cita">${CITA}</p>
+        <p class="cite" id="cita" role="button" tabindex="0" title="Clic para copiar la referencia">${CITA}</p>
         <button class="link" type="button" id="copy">Copiar referencia</button><span class="copy-ok" id="copy-ok" role="status"></span>
       </div></section>
       </div>
@@ -937,7 +968,8 @@ function spRender(){
   const q = norm(spI.value).trim(), ws = q.split(/\s+/).filter(Boolean);
   const res = SIDX.filter(x => ws.every(w => x.k.includes(w)));
   if (q) res.sort((a, b) => Number(b.n.startsWith(q)) - Number(a.n.startsWith(q)));
-  spR.innerHTML = res.map(({f}, i) => `<li role="presentation"><a role="option" id="sp-o${i}" href="#ficha-${f.slug}" aria-selected="false"><span class="sp-th">${img('fotos', f.img, '')}</span><span><span class="sp-n ${f.cientifico ? 'sci' : ''}">${f.organismo}</span><span class="sp-d">${f.comun ? f.comun + ' · ' : ''}${f.titulo}</span></span></a></li>`).join('');
+  spR.innerHTML = res.map(({f}, i) => `<li role="presentation"><a role="option" id="sp-o${i}" href="#ficha-${f.slug}" aria-selected="false"><span class="sp-th">${img('fotos', f.img, '')}</span><span><span class="sp-n">${orgHTML(f)}</span><span class="sp-d">${f.comun ? f.comun + ' · ' : ''}${f.titulo}</span></span></a></li>`).join('');
+  sciMark(spR);
   spS.innerHTML = res.length ? (q ? `${res.length} ${res.length === 1 ? 'resultado' : 'resultados'}` : `Todas las fichas (${res.length})`) : `No encontramos «${esc(spI.value.trim())}». <a href="#fichas">Ver todas las fichas</a>`;
   spAct = -1; spI.removeAttribute('aria-activedescendant');
 }
@@ -980,6 +1012,19 @@ function bindFilters(){
       let k = 0; list.querySelectorAll(':scope > li').forEach(li => { const show = (b.dataset.f==='all' || li.dataset.h===b.dataset.f); li.hidden = !show; li.classList.remove('pop'); if (show){ li.classList.add('in'); void li.offsetWidth; li.style.setProperty('--d', (k++ % 8) * 50 + 'ms'); li.classList.add('pop'); } });
     }));
   });
+  const cb = document.getElementById('cita');
+  if (cb){
+    const copiar = async () => {
+      const ok = document.getElementById('copy-ok');
+      const r = document.createRange(); r.selectNodeContents(cb);
+      const sel = getSelection();
+      try { await navigator.clipboard.writeText(CITA); ok.textContent = 'Referencia copiada'; }
+      catch(e){ ok.textContent = 'No se pudo copiar automáticamente: el texto quedó seleccionado para copiarlo'; }
+      cb.classList.add('copiada'); sel.removeAllRanges(); sel.addRange(r);
+    };
+    cb.addEventListener('click', copiar);
+    cb.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); copiar(); } });
+  }
   const cp = document.getElementById('copy');
   if (cp) cp.addEventListener('click', async () => {
     const ok = document.getElementById('copy-ok');
@@ -987,6 +1032,19 @@ function bindFilters(){
     catch(e){ const r = document.createRange(); r.selectNodeContents(document.getElementById('cita')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); ok.textContent = 'Selecciona y copia el texto'; }
   });
 }
+// "Cómo citar" del pie: abre Acerca de y baja hasta la sección de citar
+let irACitar = false;
+function scrollCitar(){
+  const sec = document.getElementById('citar'); if (!sec) return;
+  sec.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  sec.focus({preventScroll:true});
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-citar]'); if (!a) return;
+  e.preventDefault();
+  if (location.hash === '#acerca' && document.getElementById('citar')) scrollCitar();
+  else { irACitar = true; location.hash = '#acerca'; }
+});
 let first = true;
 function route(){
   if (!first && !reduce){ main.classList.add('out'); bar.style.transition='none'; setTimeout(render, 220); } else render();
@@ -995,15 +1053,16 @@ function route(){
 function render(){
   main.classList.remove('out');
   const h = (location.hash || '#inicio').slice(1);
-  let html, nav = '', title = 'Yurumí a la mano';
+  let html, nav = '', title = 'Yurumí ¡A la mano!';
   const p = PROJ.find(x => x.id === h);
   const f = h.startsWith('ficha-') && fichaBy(h.slice(6));
-  if (p){ html = projectView(p); nav='proyectos'; title = `${p.titulo} — Yurumí a la mano`; }
-  else if (f){ html = fichaView(f); nav='fichas'; title = `${f.organismo} — Yurumí a la mano`; }
-  else if (V[h]){ html = V[h](); nav = h==='inicio' ? '' : h; if (h!=='inicio') title = document.querySelector(`[data-nav="${h}"]`).textContent + ' — Yurumí a la mano'; }
+  if (p){ html = projectView(p); nav='proyectos'; title = `${p.titulo} — Yurumí ¡A la mano!`; }
+  else if (f){ html = fichaView(f); nav='fichas'; title = `${f.organismo} — Yurumí ¡A la mano!`; }
+  else if (V[h]){ html = V[h](); nav = h==='inicio' ? '' : h; if (h!=='inicio') title = document.querySelector(`[data-nav="${h}"]`).textContent + ' — Yurumí ¡A la mano!'; }
   else if (h === 'contenido'){ return; }
   else { html = V.inicio(); }
   main.innerHTML = `<div class="view">${html}</div>`;
+  sciMark(main);
   document.title = title;
   document.body.dataset.v = f ? 'ficha' : '';
   document.querySelectorAll('[data-nav]').forEach(a => a.dataset.nav===nav ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
@@ -1011,6 +1070,7 @@ function render(){
   window.scrollTo(0,0);
   afterRender();
   if (h !== 'inicio' && location.hash) main.focus({preventScroll:true});
+  if (irACitar){ irACitar = false; requestAnimationFrame(scrollCitar); }
 }
 window.addEventListener('hashchange', route);
 route();
