@@ -39,7 +39,7 @@
   .wrap{padding-inline:var(--margin);max-width:1440px;margin-inline:auto}
   .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
   .overline{font:600 12px/16px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--secondary-text);margin:0}
-  .sci{font-style:italic}
+  .sci{font-style:italic!important}
   .muted{color:var(--ink-muted)}
   h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;text-wrap:balance}
   .view{animation:in .35s ease both}
@@ -66,6 +66,8 @@
   .inst .m{height:44px}
   .inst i{width:1px;height:32px;background:var(--line)}
   .inst.m-only{display:none}
+  a.inst,.inst-a{text-decoration:none}
+  .inst-a{display:flex;align-items:center;gap:var(--s3)}
 
   /* Buscador */
   .search{cursor:pointer}
@@ -165,7 +167,6 @@
   .guide .g-body{display:flex;flex-direction:column;gap:var(--s8);padding:clamp(40px,6vw,80px) var(--margin)}
   .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s3)}
   .steps li{display:grid;grid-template-columns:48px 1fr;gap:var(--s1) var(--s4);padding:var(--s6);border-radius:var(--r-lg);background:color-mix(in srgb, var(--on-primary) 8%, transparent);align-items:baseline;transition:background .3s,transform .4s var(--ease)}
-  .steps li:hover{background:color-mix(in srgb, var(--on-primary) 14%, transparent);transform:translateY(-3px)}
   .steps .n{font:400 22px/1 var(--serif);color:var(--primary);background:var(--cream);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-variant-numeric:tabular-nums}
   .steps h3{font-size:22px;line-height:28px}
   .steps p{margin:0;grid-column:2}
@@ -335,6 +336,9 @@
   .kv dd{margin:0}
   .econ{margin:0;padding-left:1.2em;font-size:17px;line-height:28px}
   .cite{background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s6);font:400 18px/28px var(--serif);margin:var(--s4) 0}
+  .about section p.cite{margin-bottom:var(--s6)}
+  .cite[role="button"]{cursor:pointer}
+  .cite.copiada::selection,.cite.copiada *::selection{background:#b3d4fc;color:var(--ink)}
   .copy-ok{font-size:14px;color:var(--secondary-text);margin-left:var(--s4)}
 
   /* Footer */
@@ -395,7 +399,7 @@
   .rotator span.off{transform:translateY(-110%);opacity:0}
   .lead b{font-weight:600;color:var(--accent-text)}
   .ph.a figcaption{order:-1}
-  .sticker{position:absolute;z-index:2;font:600 14px/18px var(--sans);white-space:nowrap}
+  .sticker{position:absolute;z-index:2;font:600 14px/18px var(--sans);white-space:nowrap;text-decoration:none;color:inherit}
   .sticker .float{display:flex;align-items:center;gap:10px;background:var(--surface-raised);border-radius:999px;padding:10px 16px 10px 10px;box-shadow:0 18px 40px -20px rgba(31,34,25,.45)}
   .sticker i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font:600 15px/1 var(--serif);font-style:normal}
   .sticker small{display:block;font:400 12px/16px var(--sans);color:var(--ink-muted)}
@@ -418,6 +422,7 @@
   .marquee:hover .track{animation-play-state:paused}
   .marquee span{font:italic 400 clamp(26px,3vw,40px)/1.2 var(--serif);color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;gap:var(--s8)}
   .marquee span svg{width:22px;height:22px;flex:none}
+  .marquee a{text-decoration:none;color:inherit}
   @keyframes marq{to{transform:translateX(-50%)}}
 
   /* Filter tabs icons */
@@ -538,7 +543,7 @@
 <div id="progress" aria-hidden="true"></div>
 <header class="site">
   <div class="wrap">
-    <div class="inst d-only"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></div>
+    <a class="inst d-only" href="#inicio"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></a>
     <a class="brand" href="#inicio"><span class="txt"><b>Yurumí ¡A la mano!</b><span>Caja de herramientas</span></span></a>
     <nav class="main" id="nav-main" aria-label="Principal">
       <ul>
@@ -546,13 +551,13 @@
         <li><a href="#fichas" data-nav="fichas">Fichas</a></li>
         <li><a href="#notas" data-nav="notas">Notas científicas</a></li>
         <li><a href="#acerca" data-nav="acerca">Acerca de</a></li>
-        <li><button class="search" type="button" data-search aria-label="Buscar especie" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="s-l">Buscar especie</span></button></li>
-        <li class="inst m-only"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></li>
+        <li><button class="search" type="button" data-search aria-label="Buscar ficha" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="s-l">Buscar ficha</span></button></li>
+        <li class="inst m-only"><a class="inst-a" href="#inicio"><img class="u" src="img/logos/uelbosque.png" alt="Universidad El Bosque"><i aria-hidden="true"></i><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></a></li>
       </ul>
     </nav>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-main">Menú</button>
   </div>
-  <div class="sp" id="sp" role="dialog" aria-label="Buscar especie o ecosistema" hidden>
+  <div class="sp" id="sp" role="dialog" aria-label="Buscar ficha" hidden>
     <div class="sp-in">
       <div class="sp-top">
         <label class="sp-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="sp-sr">Buscar</span><input id="sp-i" type="search" placeholder="Busca por especie, nombre común o ecosistema" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="sp-r" aria-autocomplete="list"></label>
@@ -576,7 +581,7 @@
   </div>
   <div class="wrap g12 ft-bot">
     <p class="n1">Licencia CC BY 4.0: puedes usar y adaptar este contenido citando la fuente. Los créditos de las fotografías aparecen en cada ficha.</p>
-    <p class="n2"><a href="#acerca">Cómo citar</a></p>
+    <p class="n2"><a href="#acerca" data-citar>Cómo citar</a></p>
   </div>
 </footer>
 
@@ -603,6 +608,26 @@ const projOf = slug => PROJ.filter(p => p.fichas.includes(slug));
 const img = (kind, n, alt, eager) => n ? `<img src="img/${kind}/${n}.jpg" alt="${alt||''}" loading="${eager?'eager':'lazy'}" style="object-position:${FOCO[n]||'50% 50%'}">` : '';
 const photo = (n, alt, cls='', eager) => n ? `<div class="photo ${cls}">${img('fotos', n, alt, eager)}</div>` : `<div class="photo pending ${cls}" aria-hidden="true">Foto pendiente</div>`;
 const orgHTML = f => f.cientifico ? f.organismo.replace(/^(.+?)( sp\.)?$/, (m, n, sp) => `<span class="sci">${n}</span>${sp || ''}`) : f.organismo;
+// sciMark: pone en cursiva los nombres científicos en los nodos de texto (no toca atributos como alt o aria-label)
+const SCI_NAMES = ['Phenakospermum guyannense','Nasutitermes corniger','Desmocelis villosa','Trigona spinipes','Hyptis conferta','Sapajus apella','Octoblepharum'];
+const SCI_RE = new RegExp(SCI_NAMES.map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
+function sciMark(root){
+  if (!root) return;
+  const tw = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n =>
+    (!n.nodeValue.trim() || n.parentElement.closest('.sci, script, style, textarea, input')) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT });
+  const nodes = []; while (tw.nextNode()) nodes.push(tw.currentNode);
+  nodes.forEach(n => {
+    const t = n.nodeValue; SCI_RE.lastIndex = 0; if (!SCI_RE.test(t)) return; SCI_RE.lastIndex = 0;
+    const frag = document.createDocumentFragment(); let last = 0, m;
+    while ((m = SCI_RE.exec(t))){
+      if (m.index > last) frag.appendChild(document.createTextNode(t.slice(last, m.index)));
+      const em = document.createElement('em'); em.className = 'sci'; em.textContent = m[0]; frag.appendChild(em);
+      last = m.index + m[0].length;
+    }
+    if (last < t.length) frag.appendChild(document.createTextNode(t.slice(last)));
+    n.parentNode.replaceChild(frag, n);
+  });
+}
 // Nombres científicos que se ponen en cursiva dentro de pies de foto y textos
 const SCI = [...new Set(FICHAS.filter(f => f.cientifico).map(f => f.organismo.replace(/ sp\.$/, '')))].concat(['Hyptis conferta']).sort((a, b) => b.length - a.length);
 const sciWrap = t => t ? SCI.reduce((s, n) => s.split(n).join(`<span class="sci">${n}</span>`), t) : t;
@@ -631,14 +656,14 @@ V.inicio = () => `
       <p class="overline ld" style="--d:100ms">RNSC Yurumí · Puerto López, Meta · 2026-2</p>
       <h1 id="h-hero" class="ld" style="--d:220ms"><span class="tl">Conocer, medir</span> <span class="tl">y cuidar los ecosistemas</span> <span class="tl">de <span class="hl">Yurumí</span></span></h1>
       <p class="lead ld" style="--d:380ms"><span class="ln">Ocho proyectos de campo para descubrir <b class="rotator" aria-label="termitas, musgos, abejas, arañas lobo, orugas, monos maiceros"><span class="on">termitas</span><span>musgos</span><span>abejas</span><span>arañas lobo</span><span>orugas</span><span>monos maiceros</span></b> en la Reserva.</span> <span class="ln">Cada uno reúne un video, fichas de especies y ecosistemas, una nota científica y un póster.</span></p>
-      <div class="actions ld" style="--d:500ms"><a class="btn" href="#proyectos">Ver los 8 proyectos ${ARROW}</a><button class="link" type="button" data-search aria-haspopup="dialog">Buscar una especie ${ARROW}</button></div>
+      <div class="actions ld" style="--d:500ms"><a class="btn" href="#proyectos">Ver los 8 proyectos ${ARROW}</a><button class="link" type="button" data-search aria-haspopup="dialog">Buscar una ficha ${ARROW}</button></div>
     </div>
     <div class="collage" aria-label="Fotografías de campo">
       <a class="ph a" href="#p06" data-speed="-0.06" style="--d:350ms"><figure style="margin:0;display:contents">${photo('12','Mono maicero comiendo platanillo','',true)}<figcaption><span class="sci">Sapajus apella</span> comiendo platanillo. Foto: Pulido.</figcaption></figure></a>
       <a class="ph b" href="#p03" data-speed="0.08" style="--d:550ms"><figure style="margin:0;display:contents">${photo('08','Flor de Desmocelis villosa en el pastizal','',true)}<figcaption><span class="sci">Desmocelis villosa</span>. Foto: Alison Pesillo.</figcaption></figure></a>
       <a class="ph c" href="#p01" data-speed="-0.14" style="--d:750ms"><figure style="margin:0;display:contents">${photo('02','Termita soldado','',true)}<figcaption>Termita soldado.</figcaption></figure></a>
-      <div class="sticker s1 ld" style="--d:1100ms" data-speed="-0.1"><span class="float"><i>8</i><span>Proyectos de campo<small>en la Reserva</small></span></span></div>
-      <div class="sticker s2 ld" style="--d:1300ms" data-speed="0.12"><span class="float d2"><i>${FICHAS.length}</i><span>Fichas para tu visita<small>especies y ecosistemas</small></span></span></div>
+      <a class="sticker s1 ld" href="#proyectos" style="--d:1100ms" data-speed="-0.1"><span class="float"><i>8</i><span>Proyectos de campo<small>en la Reserva</small></span></span></a>
+      <a class="sticker s2 ld" href="#fichas" style="--d:1300ms" data-speed="0.12"><span class="float d2"><i>${FICHAS.length}</i><span>Fichas para tu visita<small>especies y ecosistemas</small></span></span></a>
     </div>
   </div></section>
   ${marquee()}
@@ -650,9 +675,12 @@ V.inicio = () => `
   </div></section>`;
 
 function marquee(){
-  const names = [...new Set(FICHAS.filter(f=>f.tipo==='especie').map(f=>f.organismo))];
-  const row = names.map(n=>`<span>${n}${LEAF}</span>`).join('');
-  return `<div class="marquee" aria-hidden="true"><div class="track">${row}${row}</div></div>`;
+  const esp = FICHAS.filter(f=>f.tipo==='especie');
+  const names = [...new Set(esp.map(f=>f.organismo))];
+  // Cada nombre enlaza a su ficha (si hay dos fichas del mismo organismo, a la primera).
+  // La segunda copia de la fila solo existe para que la animación sea continua: se oculta a lectores de pantalla y al teclado.
+  const row = hidden => names.map(n=>`<a href="#ficha-${esp.find(f=>f.organismo===n).slug}"${hidden ? ' tabindex="-1" aria-hidden="true"' : ''}><span>${n}${LEAF}</span></a>`).join('');
+  return `<div class="marquee" aria-label="Especies de las fichas"><div class="track">${row(false)}${row(true)}</div></div>`;
 }
 function guide(){
   return `<section class="guide" aria-labelledby="h-guia">${BLOB}<div class="wrap g12">
@@ -826,7 +854,7 @@ V.acerca = () => `
       <section id="citar" tabindex="-1"><h2>Licencia y cómo citar</h2><div>
         <p>Todo el contenido se publica bajo la licencia Creative Commons Atribución 4.0 Internacional (CC BY 4.0). Puedes copiarlo, adaptarlo y compartirlo, siempre que cites la fuente.</p>
         <p class="overline" style="margin-top:var(--s6)">Cómo citar la caja completa</p>
-        <p class="cite" id="cita">${CITA}</p>
+        <p class="cite" id="cita" role="button" tabindex="0" title="Clic para copiar la referencia">${CITA}</p>
         <button class="link" type="button" id="copy">Copiar referencia</button><span class="copy-ok" id="copy-ok" role="status"></span>
       </div></section>
       </div>
@@ -941,6 +969,7 @@ function spRender(){
   const res = SIDX.filter(x => ws.every(w => x.k.includes(w)));
   if (q) res.sort((a, b) => Number(b.n.startsWith(q)) - Number(a.n.startsWith(q)));
   spR.innerHTML = res.map(({f}, i) => `<li role="presentation"><a role="option" id="sp-o${i}" href="#ficha-${f.slug}" aria-selected="false"><span class="sp-th">${img('fotos', f.img, '')}</span><span><span class="sp-n">${orgHTML(f)}</span><span class="sp-d">${f.comun ? f.comun + ' · ' : ''}${f.titulo}</span></span></a></li>`).join('');
+  sciMark(spR);
   spS.innerHTML = res.length ? (q ? `${res.length} ${res.length === 1 ? 'resultado' : 'resultados'}` : `Todas las fichas (${res.length})`) : `No encontramos «${esc(spI.value.trim())}». <a href="#fichas">Ver todas las fichas</a>`;
   spAct = -1; spI.removeAttribute('aria-activedescendant');
 }
@@ -983,6 +1012,19 @@ function bindFilters(){
       let k = 0; list.querySelectorAll(':scope > li').forEach(li => { const show = (b.dataset.f==='all' || li.dataset.h===b.dataset.f); li.hidden = !show; li.classList.remove('pop'); if (show){ li.classList.add('in'); void li.offsetWidth; li.style.setProperty('--d', (k++ % 8) * 50 + 'ms'); li.classList.add('pop'); } });
     }));
   });
+  const cb = document.getElementById('cita');
+  if (cb){
+    const copiar = async () => {
+      const ok = document.getElementById('copy-ok');
+      const r = document.createRange(); r.selectNodeContents(cb);
+      const sel = getSelection();
+      try { await navigator.clipboard.writeText(CITA); ok.textContent = 'Referencia copiada'; }
+      catch(e){ ok.textContent = 'No se pudo copiar automáticamente: el texto quedó seleccionado para copiarlo'; }
+      cb.classList.add('copiada'); sel.removeAllRanges(); sel.addRange(r);
+    };
+    cb.addEventListener('click', copiar);
+    cb.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); copiar(); } });
+  }
   const cp = document.getElementById('copy');
   if (cp) cp.addEventListener('click', async () => {
     const ok = document.getElementById('copy-ok');
@@ -990,6 +1032,19 @@ function bindFilters(){
     catch(e){ const r = document.createRange(); r.selectNodeContents(document.getElementById('cita')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); ok.textContent = 'Selecciona y copia el texto'; }
   });
 }
+// "Cómo citar" del pie: abre Acerca de y baja hasta la sección de citar
+let irACitar = false;
+function scrollCitar(){
+  const sec = document.getElementById('citar'); if (!sec) return;
+  sec.scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  sec.focus({preventScroll:true});
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[data-citar]'); if (!a) return;
+  e.preventDefault();
+  if (location.hash === '#acerca' && document.getElementById('citar')) scrollCitar();
+  else { irACitar = true; location.hash = '#acerca'; }
+});
 let first = true;
 function route(){
   if (!first && !reduce){ main.classList.add('out'); bar.style.transition='none'; setTimeout(render, 220); } else render();
@@ -1007,6 +1062,7 @@ function render(){
   else if (h === 'contenido'){ return; }
   else { html = V.inicio(); }
   main.innerHTML = `<div class="view">${html}</div>`;
+  sciMark(main);
   document.title = title;
   document.body.dataset.v = f ? 'ficha' : '';
   document.querySelectorAll('[data-nav]').forEach(a => a.dataset.nav===nav ? a.setAttribute('aria-current','page') : a.removeAttribute('aria-current'));
@@ -1014,6 +1070,7 @@ function render(){
   window.scrollTo(0,0);
   afterRender();
   if (h !== 'inicio' && location.hash) main.focus({preventScroll:true});
+  if (irACitar){ irACitar = false; requestAnimationFrame(scrollCitar); }
 }
 window.addEventListener('hashchange', route);
 route();
