@@ -551,7 +551,7 @@
       <ul>
         <li><a href="#proyectos" data-nav="proyectos">Proyectos</a></li>
         <li><a href="#fichas" data-nav="fichas">Fichas</a></li>
-        <li><a href="#notas" data-nav="notas">Notas científicas</a></li>
+        <li class="solo-notas"><a href="#notas" data-nav="notas">Notas científicas</a></li>
         <li><a href="#posters" data-nav="posters">Pósteres</a></li>
         <li><a href="#acerca" data-nav="acerca">Acerca de</a></li>
         <li><button class="search" type="button" data-search aria-label="Buscar ficha" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5" stroke-linecap="round"/></svg><span class="s-l">Buscar ficha</span></button></li>
@@ -578,7 +578,7 @@
       <a class="brand" href="#inicio"><span class="txt"><b>Yurumí ¡A la mano!</b><span>Caja de herramientas</span></span></a>
       <p>Ocho proyectos de campo para conocer, medir y cuidar los ecosistemas de la Reserva Natural de la Sociedad Civil Yurumí.</p>
     </div>
-    <nav class="fl" aria-label="Pie de página"><h2>Explora</h2><ul><li><a href="#proyectos">Proyectos</a></li><li><a href="#fichas">Fichas</a></li><li><a href="#notas">Notas científicas</a></li><li><a href="#posters">Pósteres</a></li><li><a href="#acerca">Acerca de</a></li></ul></nav>
+    <nav class="fl" aria-label="Pie de página"><h2>Explora</h2><ul><li><a href="#proyectos">Proyectos</a></li><li><a href="#fichas">Fichas</a></li><li class="solo-notas"><a href="#notas">Notas científicas</a></li><li><a href="#posters">Pósteres</a></li><li><a href="#acerca">Acerca de</a></li></ul></nav>
     <div class="fc"><h2>La Reserva</h2><p>RNSC Yurumí<br>Puerto López (Meta)</p><p>Grupo de Gestión Ambiental, Ecosistemas Terrestres y Biología Tropical · 2026-2</p></div>
     <div class="fp"><h2>Con el apoyo de</h2><div class="logos"><div class="logo-slot"><img src="img/logos/uelbosque.png" alt="Universidad El Bosque"></div><div class="logo-slot"><img class="m" src="img/logos/museo-ciencias.png" alt="Museo de Ciencias, Universidad El Bosque"></div></div></div>
   </div>
@@ -595,6 +595,9 @@ const PROJ = DATA.proyectos, FICHAS = DATA.fichas, FOCO = DATA.foco || {};
 const POSTERS = DATA.posters || [], POSTERS_TOTAL = 5;
 // Notas científicas: una por proyecto {slug, proyecto, titulo, resumen, autores, cita, img (img/notas/<img>.jpg), pdf}
 const NOTAS = DATA.notas || [];
+// Interruptor: false oculta la pestaña de notas y todo lo que lleva a ellas. true las vuelve a mostrar.
+const MOSTRAR_NOTAS = false;
+if (!MOSTRAR_NOTAS) document.querySelectorAll('.solo-notas').forEach(e => e.remove());
 const ORIG = 'https://yurumi-a-la-mano.github.io/';
 const LEAF = '<svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-5-2-7-6.5-6-12 4-.8 8.5.6 10.5 4.2 1.5 2.6 1 5.6-4.5 7.8z"/><path d="M12 21c-1.5-3.8-3-6.6-6-11"/></svg>';
 const BLOB = '<svg class="blob" viewBox="0 0 600 600" aria-hidden="true"><path d="M421 68c66 40 128 108 120 182-8 75-86 112-126 176-40 63-56 132-129 146-74 14-160-36-196-104S62 316 92 246c30-71 70-150 140-182 70-33 123-36 189 4z"/></svg>';
@@ -664,7 +667,7 @@ V.inicio = () => `
     <div class="hero-text">
       <p class="overline ld" style="--d:100ms">RNSC Yurumí · Puerto López, Meta · 2026-2</p>
       <h1 id="h-hero" class="ld" style="--d:220ms"><span class="tl">Conocer, explorar</span> <span class="tl">y cuidar los ecosistemas</span> <span class="tl">de <span class="hl">Yurumí</span></span></h1>
-      <p class="lead ld" style="--d:380ms"><span class="ln">Ocho proyectos de campo para descubrir <b class="rotator" aria-label="termitas, musgos, abejas, arañas lobo, orugas, monos maiceros"><span class="on">termitas</span><span>musgos</span><span>abejas</span><span>arañas lobo</span><span>orugas</span><span>monos maiceros</span></b> en la Reserva.</span> <span class="ln">Cada uno reúne un video, fichas de especies y ecosistemas, una nota científica y un póster.</span></p>
+      <p class="lead ld" style="--d:380ms"><span class="ln">Ocho proyectos de campo para descubrir <b class="rotator" aria-label="termitas, musgos, abejas, arañas lobo, orugas, monos maiceros"><span class="on">termitas</span><span>musgos</span><span>abejas</span><span>arañas lobo</span><span>orugas</span><span>monos maiceros</span></b> en la Reserva.</span> <span class="ln">Cada uno reúne un video, fichas de especies y ecosistemas${MOSTRAR_NOTAS ? ', una nota científica' : ''} y un póster.</span></p>
       <div class="actions ld" style="--d:500ms"><a class="btn" href="#proyectos">Ver los 8 proyectos ${ARROW}</a><button class="link" type="button" data-search aria-haspopup="dialog">Buscar una ficha ${ARROW}</button></div>
     </div>
     <div class="collage" aria-label="Fotografías de campo">
@@ -678,7 +681,7 @@ V.inicio = () => `
   ${marquee()}
   ${guide()}
   <section class="projects" aria-labelledby="h-proy"><div class="wrap">
-    <div class="sec-head g12"><div class="t"><p class="overline">02 · Índice</p><h2 id="h-proy">Proyectos de campo</h2></div><p>Cada proyecto reúne su video, sus fichas de especies y ecosistemas, su nota científica y su póster.</p></div>
+    <div class="sec-head g12"><div class="t"><p class="overline">02 · Índice</p><h2 id="h-proy">Proyectos de campo</h2></div><p>Cada proyecto reúne su video, sus fichas de especies y ecosistemas${MOSTRAR_NOTAS ? ', su nota científica' : ''} y su póster.</p></div>
     ${projectFilters()}
     <ul class="grid" id="grid">${projectItems()}</ul>
   </div></section>`;
@@ -695,7 +698,7 @@ function guide(){
   return `<section class="guide" aria-labelledby="h-guia">${BLOB}<div class="wrap g12">
     <figure class="team"><div class="photo"><img src="img/fotos/grupo.jpg?v=2" alt="Foto del grupo durante la salida de campo" loading="lazy" style="object-position:50% 25%"></div></figure>
     <div class="g-body">
-    <div class="g-head"><div class="t"><p class="overline">01 · Guía</p><h2 id="h-guia">Cómo usar la caja</h2></div><p class="g-desc">En esta caja encontrarás ocho proyectos de campo realizados en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta). Para conocerlos de forma sencilla, cada uno incluye un video y fichas didácticas sobre sus especies y ecosistemas. Para profundizar, todos cuentan con una nota científica, y cinco de ellos también con un póster.</p></div>
+    <div class="g-head"><div class="t"><p class="overline">01 · Guía</p><h2 id="h-guia">Cómo usar la caja</h2></div><p class="g-desc">En esta caja encontrarás ocho proyectos de campo realizados en la Reserva Natural de la Sociedad Civil Yurumí, en Puerto López (Meta). Para conocerlos de forma sencilla, cada uno incluye un video y fichas didácticas sobre sus especies y ecosistemas. ${MOSTRAR_NOTAS ? 'Para profundizar, todos cuentan con una nota científica, y cinco de ellos también con un póster.' : 'Para profundizar, cinco de ellos también cuentan con un póster.'}</p></div>
     <ol class="steps">
       <li><span class="n">01</span><h3>Para conocer un ecosistema</h3><p>Mira el video del proyecto y luego lee sus fichas.</p></li>
       <li><span class="n">02</span><h3>Para buscar una especie</h3><p>Entra a <a href="#fichas">Fichas</a>: ahí están todas las especies y ecosistemas de la Reserva.</p></li>
@@ -707,7 +710,7 @@ function guide(){
 V.proyectos = () => `
   <div class="wrap"><nav class="crumbs" aria-label="Ruta"><a href="#inicio">Inicio</a><span>/</span><span>Proyectos</span></nav></div>
   <section class="projects page-top" aria-labelledby="h-p"><div class="wrap">
-    <div class="sec-head g12"><div class="t"><p class="overline">RNSC Yurumí · 2026-2</p><h1 id="h-p">Proyectos de campo</h1></div><p>Ocho investigaciones en el bosque de galería, el pastizal, la laguna y el morichal de la Reserva. Cada una trae su video, sus fichas, su nota científica y su póster.</p></div>
+    <div class="sec-head g12"><div class="t"><p class="overline">RNSC Yurumí · 2026-2</p><h1 id="h-p">Proyectos de campo</h1></div><p>Ocho investigaciones en el bosque de galería, el pastizal, la laguna y el morichal de la Reserva. Cada una trae su video, sus fichas${MOSTRAR_NOTAS ? ', su nota científica' : ''} y su póster.</p></div>
     ${projectFilters()}
     <ul class="grid" id="grid">${projectItems()}</ul>
   </div></section>`;
@@ -737,7 +740,7 @@ function projectView(p){
   <section class="wrap g12 p-body">
     <div class="side"><p class="overline">Materiales del proyecto</p></div>
     <div class="main">
-      <ul class="cat mats">${slots.map(fichaRow).join('')}${nt ? `<li><a href="#nota-${nt.slug}"><div class="photo">${img('notas', nt.img, '')}<div class="top"><span>${IC.poster}Nota científica</span></div></div><span class="org">Nota científica</span><p class="ttl">${nt.titulo}</p></a></li>` : pendCard('Nota científica', 'Resultados del proyecto', 'Aún no está en la carpeta')}${pst ? `<li><a href="#poster-${pst.slug}"><div class="photo">${img('posters', pst.img, '')}<div class="top"><span>${IC.poster}Póster</span></div></div><span class="org">Póster</span><p class="ttl">${pst.titulo}</p></a></li>` : ''}</ul>
+      <ul class="cat mats">${slots.map(fichaRow).join('')}${!MOSTRAR_NOTAS ? '' : nt ? `<li><a href="#nota-${nt.slug}"><div class="photo">${img('notas', nt.img, '')}<div class="top"><span>${IC.poster}Nota científica</span></div></div><span class="org">Nota científica</span><p class="ttl">${nt.titulo}</p></a></li>` : pendCard('Nota científica', 'Resultados del proyecto', 'Aún no está en la carpeta')}${pst ? `<li><a href="#poster-${pst.slug}"><div class="photo">${img('posters', pst.img, '')}<div class="top"><span>${IC.poster}Póster</span></div></div><span class="org">Póster</span><p class="ttl">${pst.titulo}</p></a></li>` : ''}</ul>
       <p class="muted" style="margin:0;font-size:14px">Créditos: Grupo de Gestión Ambiental, Ecosistemas Terrestres y Biología Tropical · 2026-2</p>
     </div>
   </section>
@@ -1131,12 +1134,12 @@ function render(){
   const p = PROJ.find(x => x.id === h);
   const f = h.startsWith('ficha-') && fichaBy(h.slice(6));
   const ps = h.startsWith('poster-') && POSTERS.find(x => x.slug === h.slice(7));
-  const nt = h.startsWith('nota-') && NOTAS.find(x => x.slug === h.slice(5));
+  const nt = MOSTRAR_NOTAS && h.startsWith('nota-') && NOTAS.find(x => x.slug === h.slice(5));
   if (p){ html = projectView(p); nav='proyectos'; title = `${p.titulo} — Yurumí ¡A la mano!`; }
   else if (f){ html = fichaView(f); nav='fichas'; title = `${f.organismo} — Yurumí ¡A la mano!`; }
   else if (ps){ html = posterView(ps); nav='posters'; title = `${ps.titulo} — Yurumí ¡A la mano!`; }
   else if (nt){ html = notaView(nt); nav='notas'; title = `Nota científica: ${notaProj(nt) ? notaProj(nt).titulo : nt.slug} — Yurumí ¡A la mano!`; }
-  else if (V[h]){ html = V[h](); nav = h==='inicio' ? '' : h; if (h!=='inicio') title = document.querySelector(`[data-nav="${h}"]`).textContent + ' — Yurumí ¡A la mano!'; }
+  else if (V[h] && (MOSTRAR_NOTAS || h !== 'notas')){ html = V[h](); nav = h==='inicio' ? '' : h; if (h!=='inicio') title = document.querySelector(`[data-nav="${h}"]`).textContent + ' — Yurumí ¡A la mano!'; }
   else if (h === 'contenido'){ return; }
   else { html = V.inicio(); }
   main.innerHTML = `<div class="view">${html}</div>`;
